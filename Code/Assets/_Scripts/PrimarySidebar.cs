@@ -8,17 +8,21 @@ public class PrimarySidebar : Singleton<PrimarySidebar>
 {
     public event Action<ViewType> ViewChanged;
 
-    [Header("Buttons")] [SerializeField] private SidebarButton mapOverviewButton;
+    [Header("Buttons")]
+    [SerializeField] private SidebarButton mapOverviewButton;
     [SerializeField] private SidebarButton staffOverviewButton;
     [SerializeField] private SidebarButton mcpsOverviewButton;
     [SerializeField] private SidebarButton vehiclesOverviewButton;
     [SerializeField] private SidebarButton messageOverviewButton;
+    [SerializeField] private SidebarButton settingsButton;
 
-    [Header("Views")] [SerializeField] private GameObject mapView;
-    [SerializeField] private GameObject staffView;
-    [SerializeField] private GameObject mcpsView;
-    [SerializeField] private GameObject vehiclesView;
-    [SerializeField] private GameObject messageView;
+    [Header("Views")] 
+    [SerializeField] private ViewGroup mapViewGroup;
+    [SerializeField] private ViewGroup staffViewGroup;
+    [SerializeField] private ViewGroup mcpsViewGroup;
+    [SerializeField] private ViewGroup vehiclesViewGroup;
+    [SerializeField] private ViewGroup messageViewGroup;
+    [SerializeField] private ViewGroup settingsViewGroup;
 
     private ViewType currentViewType;
     private GameObject currentViewObject;
@@ -43,4 +47,5 @@ public enum ViewType
     MCPsOverview,
     VehiclesOverview,
     MessageOverview,
+    SettingsOverview,
 }
