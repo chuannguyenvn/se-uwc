@@ -1,7 +1,5 @@
-﻿public class VehicleData
+﻿public class VehicleData : Data
 {
-    public string ID { get; set; }
-    
     public string Category { get; set; }
     public string Model { get; set; }
     public string Weight { get; set; }

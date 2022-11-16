@@ -1,9 +1,7 @@
 ﻿using System;
 
-public class TaskData
+public class TaskData : Data
 {
-    public string ID { get; set; }
-
     public string EmployeeID { get; set; }
     public string MCPID { get; set; }
     

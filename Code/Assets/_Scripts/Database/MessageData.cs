@@ -1,9 +1,7 @@
 ﻿using System;
 
-public class MessageData
+public class MessageData : Data
 {
-    public string ID { get; set; }
-
     public string SenderID { get; set; }
     public string ReceiverID { get; set; }
 

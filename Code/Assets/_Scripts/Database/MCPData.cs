@@ -1,7 +1,5 @@
-﻿public class MCPData
+﻿public class MCPData : Data
 {
-    public string ID { get; set; }
-    
     public string Address { get; set; }
 
     public float Capacity { get; set; }
