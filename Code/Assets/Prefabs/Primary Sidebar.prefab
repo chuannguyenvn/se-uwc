@@ -203,8 +203,8 @@ MonoBehaviour:
   staffOverviewButton: {fileID: 3155350584687816828}
   mcpsOverviewButton: {fileID: 3155350585713076809}
   vehiclesOverviewButton: {fileID: 3155350584542800163}
-  messageOverviewButton: {fileID: 0}
-  settingsButton: {fileID: 0}
+  messageOverviewButton: {fileID: 3155350586165434611}
+  settingsButton: {fileID: 2190262989426533064}
   mapViewGroup: {fileID: 0}
   staffViewGroup: {fileID: 0}
   mcpsViewGroup: {fileID: 0}
@@ -306,12 +306,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6495973949902934618, guid: da2597e85b85c71469ba49b6cc6b14e0, type: 3}
+      propertyPath: viewType
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6495973949902934620, guid: da2597e85b85c71469ba49b6cc6b14e0, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7ee5aae405ad6d3498dd5b241d5fb11c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da2597e85b85c71469ba49b6cc6b14e0, type: 3}
+--- !u!114 &2190262989426533064 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6495973949902934618, guid: da2597e85b85c71469ba49b6cc6b14e0, type: 3}
+  m_PrefabInstance: {fileID: 4918834000876007570}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da42e5f1b25355498424197af42527e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2190262989426533067 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6495973949902934617, guid: da2597e85b85c71469ba49b6cc6b14e0, type: 3}
@@ -431,6 +446,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6495973949902934617, guid: da2597e85b85c71469ba49b6cc6b14e0, type: 3}
   m_PrefabInstance: {fileID: 8209036551293881001}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3155350586165434611 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6495973949902934618, guid: da2597e85b85c71469ba49b6cc6b14e0, type: 3}
+  m_PrefabInstance: {fileID: 8209036551293881001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da42e5f1b25355498424197af42527e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8209036552183511059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -803,7 +829,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6495973949902934616, guid: da2597e85b85c71469ba49b6cc6b14e0, type: 3}
       propertyPath: m_Name
-      value: Staff Overview Button
+      value: Staffs Overview Button
       objectReference: {fileID: 0}
     - target: {fileID: 6495973949902934617, guid: da2597e85b85c71469ba49b6cc6b14e0, type: 3}
       propertyPath: m_Pivot.x

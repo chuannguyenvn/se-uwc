@@ -43,9 +43,9 @@ public class PrimarySidebar : Singleton<PrimarySidebar>
 public enum ViewType
 {
     MapOverview,
-    StaffOverview,
+    StaffsOverview,
     MCPsOverview,
     VehiclesOverview,
-    MessageOverview,
+    MessagesOverview,
     SettingsOverview,
 }
