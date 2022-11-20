@@ -13,6 +13,16 @@ public class DatabaseLoader : PersistentSingleton<DatabaseLoader>
             MockDataGenerator.Instance.GetMockStaffData(),
             MockDataGenerator.Instance.GetMockStaffData(),
             MockDataGenerator.Instance.GetMockStaffData(),
+            MockDataGenerator.Instance.GetMockStaffData(),
+            MockDataGenerator.Instance.GetMockStaffData(),
+            MockDataGenerator.Instance.GetMockStaffData(),
+            MockDataGenerator.Instance.GetMockStaffData(),
+            MockDataGenerator.Instance.GetMockStaffData(),
+            MockDataGenerator.Instance.GetMockStaffData(),
+            MockDataGenerator.Instance.GetMockStaffData(),
+            MockDataGenerator.Instance.GetMockStaffData(),
+            MockDataGenerator.Instance.GetMockStaffData(),
+            MockDataGenerator.Instance.GetMockStaffData(),
         };
     }
 
