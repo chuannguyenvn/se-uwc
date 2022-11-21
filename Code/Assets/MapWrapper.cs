@@ -9,34 +9,33 @@ public class MapWrapper : MonoBehaviour
 {
     [SerializeField] private AbstractMap abstractMap;
 
-    private Vector2 initMousePos;
-
-    public void OnDrag(PointerEventData eventData)
-    {
-    }
+    private Vector2 prevMousePos;
 
     private void OnMouseDown()
     {
-        Debug.Log("Dragggggg");
-        initMousePos = Input.mousePosition;
-    }
-
-    private void OnMouseUp()
-    {
-        
+        prevMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     private void OnMouseDrag()
     {
-        var mouseDelta = initMousePos - (Vector2)Input.mousePosition;
+        var currentMousePos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var mouseDelta = prevMousePos - currentMousePos;
         var oldCoordinateString = abstractMap.Options.locationOptions.latitudeLongitude;
         var splits = oldCoordinateString.Split(", ");
         var oldCoordinate = new Vector2(float.Parse(splits[1]), float.Parse(splits[0]));
 
-        var newCoordinate = oldCoordinate + mouseDelta;
+        var newCoordinate = oldCoordinate + mouseDelta / abstractMap.Zoom;
         var newCoordinateString = newCoordinate.y + ", " + newCoordinate.x;
 
         abstractMap.Options.locationOptions.latitudeLongitude = newCoordinateString;
         abstractMap.UpdateMap();
+
+        prevMousePos = currentMousePos;
+    }
+
+    private void Update()
+    {
+        var newZoomValue = Mathf.Clamp(abstractMap.Zoom + Input.mouseScrollDelta.y / 5, 10, 20);
+        abstractMap.UpdateMap(newZoomValue);
     }
 }

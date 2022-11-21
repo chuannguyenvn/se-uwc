@@ -20,10 +20,5 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
         allMessages = DatabaseLoader.Instance.LoadAllMessageData();
         allTasks = DatabaseLoader.Instance.LoadAllTaskData();
         allMaintenanceLogs = DatabaseLoader.Instance.LoadAllMaintenanceLogData();
-
-        foreach (var data in allStaffs)
-        {
-            Debug.Log(data);
-        }
     }
 }
