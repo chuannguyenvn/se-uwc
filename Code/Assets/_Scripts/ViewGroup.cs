@@ -7,7 +7,7 @@ public class ViewGroup : MonoBehaviour
 {
     [SerializeField] private ViewType viewType;
 
-    private void Start()
+    private void Awake()
     {
         PrimarySidebar.Instance.ViewChanged += ViewChangedHandler;
     }
