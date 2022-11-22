@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Mapbox.Unity.Map;
+using Mapbox.Unity.Utilities;
+using Mapbox.Utils;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,6 +12,7 @@ public class MapWrapper : MonoBehaviour
     [SerializeField] private AbstractMap abstractMap;
 
     private Vector2 prevMousePos;
+
 
     private void OnMouseDown()
     {
@@ -20,16 +23,14 @@ public class MapWrapper : MonoBehaviour
     {
         var currentMousePos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var mouseDelta = prevMousePos - currentMousePos;
-        var oldCoordinateString = abstractMap.Options.locationOptions.latitudeLongitude;
-        var splits = oldCoordinateString.Split(", ");
-        var oldCoordinate = new Vector2(float.Parse(splits[1]), float.Parse(splits[0]));
 
-        var newCoordinate = oldCoordinate + mouseDelta / abstractMap.Zoom;
-        var newCoordinateString = newCoordinate.y + ", " + newCoordinate.x;
+        if (mouseDelta == prevMousePos)
+        {
+            prevMousePos = currentMousePos;
+            return;
+        }
 
-        abstractMap.Options.locationOptions.latitudeLongitude = newCoordinateString;
-        abstractMap.UpdateMap();
-
+        abstractMap.UpdateMap(abstractMap.WorldToGeoPosition(mouseDelta));
         prevMousePos = currentMousePos;
     }
 
