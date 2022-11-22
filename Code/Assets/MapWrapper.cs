@@ -11,14 +11,25 @@ using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using MapboxDirectionRequestResult;
 
-public class MapWrapper : MonoBehaviour
+public class MapWrapper : Singleton<MapWrapper>
 {
+    public event Action MapUpdated;
+
     [SerializeField] private AbstractMap abstractMap;
-    [SerializeField] private Polyline line;
 
     private Vector2 prevMousePos;
     private Vector2d start;
     private bool firstPointChosen = false;
+
+    private void Start()
+    {
+        abstractMap.OnUpdated += OnMapUpdated;
+    }
+
+    private void OnDestroy()
+    {
+        abstractMap.OnUpdated -= OnMapUpdated;
+    }
 
     private void OnMouseDown()
     {
@@ -80,10 +91,20 @@ public class MapWrapper : MonoBehaviour
     {
         yield return request.SendWebRequest();
         var result = JsonConvert.DeserializeObject<Result>(request.downloadHandler.text);
+        var coordinates = result.routes[0].geometry.coordinates;
 
-        foreach (var coordinate in result.routes[0].geometry.coordinates)
-        {
-            line.AddPoint(abstractMap.GeoToWorldPosition(new Vector2d(coordinate[1], coordinate[0])));
-        }
+        Instantiate(ResourceManager.Instance.RoutePolyline)
+            .GetComponent<RoutePolyline>()
+            .Init(coordinates);
+    }
+
+    public void OnMapUpdated()
+    {
+        MapUpdated?.Invoke();
+    }
+
+    public Vector2 GeoToWorldPoint(Vector2d coordinate)
+    {
+        return abstractMap.GeoToWorldPosition(coordinate);
     }
 }
