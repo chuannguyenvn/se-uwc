@@ -4,13 +4,17 @@ using System.Collections.Generic;
 using Mapbox.Unity.Map;
 using Mapbox.Unity.Utilities;
 using Mapbox.Utils;
+using Newtonsoft.Json;
+using Shapes;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
+using MapboxDirectionRequestResult;
 
 public class MapWrapper : MonoBehaviour
 {
     [SerializeField] private AbstractMap abstractMap;
+    [SerializeField] private Polyline line;
 
     private Vector2 prevMousePos;
     private Vector2d start;
@@ -75,6 +79,11 @@ public class MapWrapper : MonoBehaviour
     private IEnumerator ReadRequestResult(UnityWebRequest request)
     {
         yield return request.SendWebRequest();
-        Debug.Log(request.downloadHandler.text);
+        var result = JsonConvert.DeserializeObject<Result>(request.downloadHandler.text);
+
+        foreach (var coordinate in result.routes[0].geometry.coordinates)
+        {
+            line.AddPoint(abstractMap.GeoToWorldPosition(new Vector2d(coordinate[1], coordinate[0])));
+        }
     }
 }
