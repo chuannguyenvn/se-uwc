@@ -9,7 +9,6 @@ public class StaffListItemView : ListItemView<StaffData>
         PrimaryText = data.Name;
         SecondaryText = data.Role + " - currently at " + data.HomeAddress;
 
-        primaryText_TMP.text = PrimaryText;
-        secondaryText_TMP.text = SecondaryText;
+        UpdateView();
     }
 }

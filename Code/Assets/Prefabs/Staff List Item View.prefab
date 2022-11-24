@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1821226208660772386}
   - component: {fileID: 4389543558519919963}
   m_Layer: 5
-  m_Name: Secondary Text
+  m_Name: Current Address
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 5416888073231039039}
   - component: {fileID: 5849161698849711421}
   m_Layer: 5
-  m_Name: Primary Text
+  m_Name: Staff Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

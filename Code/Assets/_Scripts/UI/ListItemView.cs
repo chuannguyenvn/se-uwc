@@ -17,6 +17,12 @@ public abstract class ListItemView<T> : MonoBehaviour where T : Data
 
     public abstract void SetData(T data);
 
+    protected void UpdateView()
+    {
+        primaryText_TMP.text = PrimaryText;
+        secondaryText_TMP.text = SecondaryText;
+    }
+
     public void SetPosition(Vector2 pos)
     {
         rectTransform.anchoredPosition = pos;
