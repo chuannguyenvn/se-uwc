@@ -910,6 +910,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1244077849399134187, guid: de6d3f1a119030443851514f6b00438a, type: 3}
+      propertyPath: VehicleListItemView
+      value: 
+      objectReference: {fileID: 7133057977387643178, guid: 4fed4a9479c71f749b80033d810840be, type: 3}
     - target: {fileID: 2675084655724133704, guid: de6d3f1a119030443851514f6b00438a, type: 3}
       propertyPath: m_Name
       value: Resource Manager
