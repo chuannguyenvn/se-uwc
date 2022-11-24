@@ -11,3 +11,10 @@ public enum Role
     Janitor,
     Collector,
 }
+
+public enum VehicleCategory
+{
+    Frontloader,
+    Sideloader,
+    Rearloader
+}

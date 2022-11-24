@@ -44,7 +44,19 @@ public class DatabaseLoader : PersistentSingleton<DatabaseLoader>
 
     public List<VehicleData> LoadAllVehicleData()
     {
-        return new List<VehicleData>() { };
+        return new List<VehicleData>()
+        {
+            MockDataGenerator.Instance.GetMockVehicleData(),
+            MockDataGenerator.Instance.GetMockVehicleData(),
+            MockDataGenerator.Instance.GetMockVehicleData(),
+            MockDataGenerator.Instance.GetMockVehicleData(),
+            MockDataGenerator.Instance.GetMockVehicleData(),
+            MockDataGenerator.Instance.GetMockVehicleData(),
+            MockDataGenerator.Instance.GetMockVehicleData(),
+            MockDataGenerator.Instance.GetMockVehicleData(),
+            MockDataGenerator.Instance.GetMockVehicleData(),
+            MockDataGenerator.Instance.GetMockVehicleData(),
+        };
     }
 
     public List<MessageData> LoadAllMessageData()

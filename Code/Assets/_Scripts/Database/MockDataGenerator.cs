@@ -21,4 +21,10 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
         // TODO: Randomize lat lon so that it stays inside the city
         return new MCPData("[address]", Random.Range(0f, 1f), 0f, 0f);
     }
+
+    public VehicleData GetMockVehicleData()
+    {
+        return new VehicleData("ABC-123", VehicleCategory.Frontloader, "sadf",
+            Random.Range(1000f, 10000f), Random.Range(1000f, 10000f), Random.Range(1000f, 10000f));
+    }
 }
