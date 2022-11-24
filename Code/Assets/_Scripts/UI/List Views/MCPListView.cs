@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-
-
-public class MCPListView : ListView<MCPData>
+﻿public class MCPListView : ListView<MCPData>
 {
     private void Start()
     {

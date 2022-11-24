@@ -1,6 +1,4 @@
-﻿using System;
-using Mapbox.Utils;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Coordinate
 {    public const string AnchorCoordinate = "10.7758439, 106.7017555";

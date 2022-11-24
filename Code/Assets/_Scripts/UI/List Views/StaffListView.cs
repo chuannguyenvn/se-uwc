@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class StaffListView : ListView<StaffData>
+﻿public class StaffListView : ListView<StaffData>
 {
     private void Start()
     {

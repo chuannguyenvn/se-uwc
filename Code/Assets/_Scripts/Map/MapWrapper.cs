@@ -1,13 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Mapbox.Unity.Map;
-using Mapbox.Unity.Utilities;
 using Mapbox.Utils;
 using Newtonsoft.Json;
-using Shapes;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using MapboxDirectionRequestResult;
 
