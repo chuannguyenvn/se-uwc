@@ -36,7 +36,6 @@ public class PrimarySidebar : Singleton<PrimarySidebar>
     {
         currentViewType = viewType;
         ViewChanged?.Invoke(viewType);
-        Debug.Log("Switched to " + viewType);
     }
 }
 
