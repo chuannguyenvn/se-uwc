@@ -15,4 +15,10 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
             GetRandomDateTime(), Random.Range(0, 2) == 0 ? Role.Collector : Role.Janitor,
             Random.Range(1000000, 10000000));
     }
+
+    public MCPData GetMockMCPData()
+    {
+        // TODO: Randomize lat lon so that it stays inside the city
+        return new MCPData("[address]", Random.Range(0f, 1f), 0f, 0f);
+    }
 }

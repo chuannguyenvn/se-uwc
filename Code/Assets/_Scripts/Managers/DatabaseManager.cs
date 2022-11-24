@@ -15,7 +15,7 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
     private void Start()
     {
         allStaffs = DatabaseLoader.Instance.LoadAllStaffData();
-        allMCPs = DatabaseLoader.Instance.LoadAllMCPData();
+        allMCPs = DatabaseLoader.Instance.LoadAllMCPsData();
         allVehicles = DatabaseLoader.Instance.LoadAllVehicleData();
         allMessages = DatabaseLoader.Instance.LoadAllMessageData();
         allTasks = DatabaseLoader.Instance.LoadAllTaskData();

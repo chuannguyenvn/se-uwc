@@ -25,9 +25,21 @@ public class DatabaseLoader : PersistentSingleton<DatabaseLoader>
         };
     }
 
-    public List<MCPData> LoadAllMCPData()
+    public List<MCPData> LoadAllMCPsData()
     {
-        return new List<MCPData>() { };
+        return new List<MCPData>()
+        {
+            MockDataGenerator.Instance.GetMockMCPData(),
+            MockDataGenerator.Instance.GetMockMCPData(),
+            MockDataGenerator.Instance.GetMockMCPData(),
+            MockDataGenerator.Instance.GetMockMCPData(),
+            MockDataGenerator.Instance.GetMockMCPData(),
+            MockDataGenerator.Instance.GetMockMCPData(),
+            MockDataGenerator.Instance.GetMockMCPData(),
+            MockDataGenerator.Instance.GetMockMCPData(),
+            MockDataGenerator.Instance.GetMockMCPData(),
+            MockDataGenerator.Instance.GetMockMCPData(),
+        };
     }
 
     public List<VehicleData> LoadAllVehicleData()
