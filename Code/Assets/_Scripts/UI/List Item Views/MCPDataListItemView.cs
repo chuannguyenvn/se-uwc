@@ -1,4 +1,4 @@
-public class MCPListItemView : ListItemView<MCPData>
+public class MCPDataListItemView : DataListItemView<MCPData>
 {
     public override void SetData(MCPData data)
     {

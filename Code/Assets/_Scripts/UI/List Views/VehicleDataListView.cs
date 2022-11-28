@@ -1,4 +1,4 @@
-﻿public class VehicleListView : ListView<VehicleData>
+﻿public class VehicleDataListView : DataListView<VehicleData>
 {
     private void Start()
     {
@@ -7,12 +7,12 @@
 
     public override void Init()
     {
-        prefab = ResourceManager.Instance.VehicleListItemView;
+        prefab = ResourceManager.Instance.vehicleDataListItemView;
 
         var allVehicles = DatabaseLoader.Instance.LoadAllVehicleData();
         foreach (var vehicleData in allVehicles)
         {
-            AddItem(vehicleData);
+            AddDataItem(vehicleData);
         }
     }
 }

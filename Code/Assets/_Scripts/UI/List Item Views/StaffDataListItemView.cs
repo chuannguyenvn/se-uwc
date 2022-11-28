@@ -1,4 +1,4 @@
-﻿public class StaffListItemView : ListItemView<StaffData>
+﻿public class StaffDataListItemView : DataListItemView<StaffData>
 {
     public override void SetData(StaffData data)
     {

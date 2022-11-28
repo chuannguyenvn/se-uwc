@@ -1,31 +1,32 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class ListView<T> : MonoBehaviour where T : Data
+
+public class ListView : MonoBehaviour
 {
     [SerializeField] protected ScrollRect scrollRect;
-    
-    protected Dictionary<T, ListItemView<T>> items = new();
-    protected ListItemView<T> prefab;
+    protected List<ListItemView> itemViews = new();
 
-    
-    public abstract void Init();
+    private const float VERTICAL_SPACING = 10f;
 
-    public virtual void AddItem(T data)
+    public virtual void AddItem(ListItemView itemView)
     {
-        var itemView = Instantiate(prefab, scrollRect.content.transform)
-            .GetComponent<ListItemView<T>>();
-
-        itemView.SetPosition(new Vector2(0, -(items.Count * (prefab.Height + 10))));
-        itemView.SetData(data);
-
-        items.Add(data, itemView);
-        UpdateScrollRect(prefab.Height);
+        var totalHeight = itemViews.Sum(i => i.Height);
+        float yPos = 0;
+        if (itemViews.Count != 0) yPos = -(totalHeight + itemViews.Count * VERTICAL_SPACING);
+        itemView.SetPosition(new Vector2(0, yPos));
+        
+        itemViews.Add(itemView);
+        
+        UpdateScrollRect();
     }
 
-    protected void UpdateScrollRect(float itemViewHeight)
+    protected void UpdateScrollRect()
     {
-        scrollRect.content.sizeDelta = new Vector2(0, items.Count * (itemViewHeight + 10));
+        var totalHeight = itemViews.Sum(i => i.Height);
+        var newScrollRectSize = new Vector2(0, totalHeight + (itemViews.Count - 1) * VERTICAL_SPACING);
+        scrollRect.content.sizeDelta = newScrollRectSize;
     }
 }

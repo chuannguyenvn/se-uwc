@@ -112,7 +112,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6706799842239823765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23af49fe97084980b275f31463ef456d, type: 3}
+  m_Script: {fileID: 11500000, guid: daf4900afe1e1be488c68fc101c58c58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scrollRect: {fileID: 6706799842239823770}
@@ -136,7 +136,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7592908592611997812, guid: 60f3ad4039a968c4fa12deac64362269, type: 3}
       propertyPath: m_Name
-      value: MCPs View Group
+      value: MCPs View Group Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7592908592611997813, guid: 60f3ad4039a968c4fa12deac64362269, type: 3}
       propertyPath: m_Pivot.x

@@ -1,11 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class ResourceManager : PersistentSingleton<ResourceManager>
 {
-    [Header("World Annotations")] public RoutePolyline RoutePolyline;
+    // @formatter:off
+    
+    [Header("World Annotations")]
+    public RoutePolyline RoutePolyline;
+    
     [Header("Item Views")] 
-    public StaffListItemView StaffListItemView;
-    public MCPListItemView MCPListItemView;
-    public VehicleListItemView VehicleListItemView;
+    [FormerlySerializedAs("StaffListItemView")]
+    public StaffDataListItemView staffDataListItemView;
+    
+    public MCPDataListItemView mcpDataListItemView;
+    
+    [FormerlySerializedAs("VehicleListItemView")]
+    public VehicleDataListItemView vehicleDataListItemView;
+    
+    public SettingSectionHeader SettingSectionHeader;
+    
+    // @formatter:on
 }

@@ -1,4 +1,4 @@
-﻿public class StaffListView : ListView<StaffData>
+﻿public class StaffDataListView : DataListView<StaffData>
 {
     private void Start()
     {
@@ -7,12 +7,12 @@
 
     public override void Init()
     {
-        prefab = ResourceManager.Instance.StaffListItemView;
+        prefab = ResourceManager.Instance.staffDataListItemView;
 
         var allStaff = DatabaseLoader.Instance.LoadAllStaffData();
         foreach (var staffData in allStaff)
         {
-            AddItem(staffData);
+            AddDataItem(staffData);
         }
     }
 }

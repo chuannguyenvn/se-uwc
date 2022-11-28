@@ -1,4 +1,4 @@
-﻿public class VehicleListItemView : ListItemView<VehicleData>
+﻿public class VehicleDataListItemView : DataListItemView<VehicleData>
 {
     public override void SetData(VehicleData data)
     {
