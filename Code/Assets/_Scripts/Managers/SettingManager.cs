@@ -9,6 +9,7 @@ public class SettingManager : PersistentSingleton<SettingManager>
     [Header("Interface Settings")]
     public ThemeOption ThemeOption;
     public ToggleOption DarkThemeOption;
+    public ToggleOption ColorblindOption;
     public ToggleOption ReducedMotion;
     public LanguageOption LanguageOption;
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PrimarySidebar : Singleton<PrimarySidebar>
@@ -26,13 +27,19 @@ public class PrimarySidebar : Singleton<PrimarySidebar>
 
     private void Start()
     {
-        OnViewChanged(ViewType.MapOverview);
+        StartCoroutine(NextFrameCall_CO());
     }
 
     public void OnViewChanged(ViewType viewType)
     {
         currentViewType = viewType;
         ViewChanged?.Invoke(viewType);
+    }
+
+    private IEnumerator NextFrameCall_CO()
+    {
+        yield return null;
+        OnViewChanged(ViewType.MapOverview);
     }
 }
 

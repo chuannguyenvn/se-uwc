@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 
 public class ResourceManager : PersistentSingleton<ResourceManager>
@@ -19,6 +20,9 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
     public VehicleDataListItemView vehicleDataListItemView;
     
     public SettingSectionHeader SettingSectionHeader;
+    [FormerlySerializedAs("SettingListItemView")]
+    public GameObject BlankSettingListItemView;
+    public Button Button;
     
     // @formatter:on
 }

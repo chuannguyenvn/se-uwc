@@ -5,19 +5,25 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingSectionHeader : MonoBehaviour
+public class SettingSectionHeader : ListItemView, ITMPDeferrable
 {
+    private const float LINE_MARGIN_LEFT = 10f;
+
     [SerializeField] private TMP_Text header;
     [SerializeField] private RectTransform lineRectTransform;
 
-    private const float LINE_MARGIN_LEFT = 10f;
+    private float totalWidth;
 
-
-    public void Init(string header, float totalWidth)
+    public void Init(string headerText, float totalWidth)
     {
-        this.header.text = header;
-        this.header.ForceMeshUpdate();
-        var newWidth = totalWidth - this.header.textBounds.size.x - LINE_MARGIN_LEFT;
+        header.text = headerText;
+        header.ForceMeshUpdate();
+        this.totalWidth = totalWidth;
+    }
+
+    public void ExecuteDeferredWork()
+    {
+        var newWidth = totalWidth - header.textBounds.size.x - LINE_MARGIN_LEFT;
         lineRectTransform.sizeDelta = new Vector2(newWidth, lineRectTransform.sizeDelta.y);
     }
 }
