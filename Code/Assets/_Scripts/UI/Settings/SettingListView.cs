@@ -15,7 +15,7 @@ public class SettingListView : ListView
     {
         rectTransform = GetComponent<RectTransform>();
         var headerPrefab = ResourceManager.Instance.SettingSectionHeader;
-        var itemPrefab = ResourceManager.Instance.BlankSettingListItemView;
+        var itemPrefab = ResourceManager.Instance.SettingListItemView;
         var SM = SettingManager.Instance;
 
         #region InterfaceSettings
@@ -54,6 +54,8 @@ public class SettingListView : ListView
         AddItem(languageOption);
 
         #endregion
+
+        #region NotificationSettings
 
         var notificationHeader = Instantiate(headerPrefab).GetComponent<SettingSectionHeader>();
         notificationHeader.Init("Notification setting",
@@ -120,6 +122,7 @@ public class SettingListView : ListView
 
         AddItem(softwareUpdateAvailableNotificationOption);
 
+        #endregion
 
         SettingManager.Instance.StartCoroutine(ExecuteDeferredWork());
     }

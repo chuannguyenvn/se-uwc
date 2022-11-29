@@ -1069,30 +1069,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1244077849399134187, guid: de6d3f1a119030443851514f6b00438a, type: 3}
-      propertyPath: Button
-      value: 
-      objectReference: {fileID: 3698261493187541774, guid: 02716099162d4ef4f80d6db1d02edfd0, type: 3}
-    - target: {fileID: 1244077849399134187, guid: de6d3f1a119030443851514f6b00438a, type: 3}
-      propertyPath: VehicleListItemView
-      value: 
-      objectReference: {fileID: 7133057977387643178, guid: 4fed4a9479c71f749b80033d810840be, type: 3}
-    - target: {fileID: 1244077849399134187, guid: de6d3f1a119030443851514f6b00438a, type: 3}
-      propertyPath: mcpDataListItemView
-      value: 
-      objectReference: {fileID: 794534301797327578, guid: aec04517cc38ba14b8f473c32dd835bb, type: 3}
-    - target: {fileID: 1244077849399134187, guid: de6d3f1a119030443851514f6b00438a, type: 3}
-      propertyPath: SettingSectionHeader
-      value: 
-      objectReference: {fileID: -2267228613275553751, guid: 6e0149c31b71b9b4d8eeef64c8db76c0, type: 3}
-    - target: {fileID: 1244077849399134187, guid: de6d3f1a119030443851514f6b00438a, type: 3}
-      propertyPath: vehicleDataListItemView
-      value: 
-      objectReference: {fileID: 7133057977387643178, guid: 4fed4a9479c71f749b80033d810840be, type: 3}
-    - target: {fileID: 1244077849399134187, guid: de6d3f1a119030443851514f6b00438a, type: 3}
-      propertyPath: BlankSettingListItemView
-      value: 
-      objectReference: {fileID: 9194201250070096155, guid: 5835b56659224ee4dbb51e94198d5790, type: 3}
     - target: {fileID: 2675084655724133704, guid: de6d3f1a119030443851514f6b00438a, type: 3}
       propertyPath: m_Name
       value: Resource Manager
@@ -1156,7 +1132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4742855826546504424, guid: 68cb154b254c2944cb0055aa520e3e0c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4742855826546504425, guid: 68cb154b254c2944cb0055aa520e3e0c, type: 3}
       propertyPath: m_Pivot.x
@@ -1640,7 +1616,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3592821139458880883, guid: 9378ac7f42523f945aed3e49f2b602b8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9378ac7f42523f945aed3e49f2b602b8, type: 3}
@@ -1741,7 +1717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3835376348152383673, guid: e28be0c712753304d99730102c76860c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 599467156, guid: e28be0c712753304d99730102c76860c, type: 3}

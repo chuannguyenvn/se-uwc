@@ -31,7 +31,7 @@ public class SettingListItemView : ListItemView, ITMPDeferrable
 
         foreach (var option in Enum.GetValues(e))
         {
-            var button = Instantiate(ResourceManager.Instance.Button, transform).GetComponent<Button>();
+            var button = Instantiate(ResourceManager.Instance.SettingOptionButton, transform).GetComponent<Button>();
 
             var buttonTMP_Text = button.GetComponentInChildren<TMP_Text>();
             buttonTMP_Text.text = option.ToString();

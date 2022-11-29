@@ -7,7 +7,7 @@
 
     public override void Init()
     {
-        prefab = ResourceManager.Instance.vehicleDataListItemView;
+        prefab = ResourceManager.Instance.VehicleDataListItemView;
 
         var allVehicles = DatabaseLoader.Instance.LoadAllVehicleData();
         foreach (var vehicleData in allVehicles)

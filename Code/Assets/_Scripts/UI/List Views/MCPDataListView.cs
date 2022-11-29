@@ -9,7 +9,7 @@ public class MCPDataListView : DataListView<MCPData>
 
     public override void Init()
     {
-        prefab = ResourceManager.Instance.mcpDataListItemView;
+        prefab = ResourceManager.Instance.MCPDataListItemView;
 
         var allMCPs = DatabaseLoader.Instance.LoadAllMCPsData();
         foreach (var mcpData in allMCPs)

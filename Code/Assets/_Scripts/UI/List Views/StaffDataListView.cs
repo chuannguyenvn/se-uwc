@@ -7,7 +7,7 @@
 
     public override void Init()
     {
-        prefab = ResourceManager.Instance.staffDataListItemView;
+        prefab = ResourceManager.Instance.StaffDataListItemView;
 
         var allStaff = DatabaseLoader.Instance.LoadAllStaffData();
         foreach (var staffData in allStaff)

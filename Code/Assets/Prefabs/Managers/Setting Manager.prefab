@@ -45,16 +45,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThemeOption: 0
-  DarkThemeOption: 0
-  ReducedMotion: 0
+  DarkThemeOption: 1
+  ColorblindOption: 1
+  ReducedMotion: 1
   LanguageOption: 0
-  MessageNotificationOption: 0
-  EmployeesLoggedInNotificationOption: 0
-  EmployeesLoggedOutNotificationOption: 0
-  MCPsFullyLoadedNotificationOption: 0
-  MCPsEmptiedNotificationOption: 0
-  MaintenanceLogsUpdatedNotificationOption: 0
-  SoftwareUpdateAvailableNotificationOption: 0
+  MessageNotificationOption: 1
+  EmployeesLoggedInNotificationOption: 1
+  EmployeesLoggedOutNotificationOption: 1
+  MCPsFullyLoadedNotificationOption: 1
+  MCPsEmptiedNotificationOption: 1
+  MaintenanceLogsUpdatedNotificationOption: 1
+  SoftwareUpdateAvailableNotificationOption: 1
   OnlineStatusOption: 0
-  AutomaticallyLogOutOption: 0
-  AutomaticallySendCrashLogsOption: 0
+  AutomaticallyLogOutOption: 1
+  AutomaticallySendCrashLogsOption: 1

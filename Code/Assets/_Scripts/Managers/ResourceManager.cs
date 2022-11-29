@@ -11,18 +11,12 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
     public RoutePolyline RoutePolyline;
     
     [Header("Item Views")] 
-    [FormerlySerializedAs("StaffListItemView")]
-    public StaffDataListItemView staffDataListItemView;
-    
-    public MCPDataListItemView mcpDataListItemView;
-    
-    [FormerlySerializedAs("VehicleListItemView")]
-    public VehicleDataListItemView vehicleDataListItemView;
-    
+    public StaffDataListItemView StaffDataListItemView;
+    public MCPDataListItemView MCPDataListItemView;
+    public VehicleDataListItemView VehicleDataListItemView;
     public SettingSectionHeader SettingSectionHeader;
-    [FormerlySerializedAs("SettingListItemView")]
-    public GameObject BlankSettingListItemView;
-    public Button Button;
+    public GameObject SettingListItemView;
+    public Button SettingOptionButton;
     
     // @formatter:on
 }
