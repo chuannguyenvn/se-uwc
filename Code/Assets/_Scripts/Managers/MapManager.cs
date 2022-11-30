@@ -9,6 +9,8 @@ public class MapManager : PersistentSingleton<MapManager>
     [SerializeField] private Transform mapTransform;
     [SerializeField] private MapWrapper mapWrapper;
 
+    public CollectorInformationPopup CollectorInformationPopup;
+
     private void Start()
     {
         foreach (var staffData in DatabaseManager.Instance.AllStaffs)
