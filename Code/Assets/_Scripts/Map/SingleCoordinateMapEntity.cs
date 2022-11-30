@@ -12,9 +12,26 @@ public abstract class SingleCoordinateMapEntity<T> : MapEntity where T : Data
     public virtual void AssignData(T data)
     {
         this.data = data;
+        data.ValueChanged += ValueChangedHandler;
+
+        ValueChangedHandler();
     }
 
-    public abstract void UpdateCoordinate(Vector2d coordinate);
+    protected virtual void OnDestroy()
+    {
+        data.ValueChanged -= ValueChangedHandler;
+    }
+
+    protected virtual void UpdateCoordinate(Vector2d coordinate)
+    {
+        this.coordinate = coordinate;
+        MapUpdatedHandler();
+    }
 
     public abstract void ValueChangedHandler();
+
+    protected override void MapUpdatedHandler()
+    {
+        transform.position = MapManager.Instance.GeoToWorldPosition(coordinate);
+    }
 }

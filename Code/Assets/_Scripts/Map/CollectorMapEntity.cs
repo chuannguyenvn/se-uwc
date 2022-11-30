@@ -1,25 +1,18 @@
 ﻿using Mapbox.Utils;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CollectorMapEntity : SingleCoordinateMapEntity<StaffData>
 {
-    public override void AssignData(StaffData data)
+    public void Init(StaffData data)
     {
-        throw new System.NotImplementedException();
-    }
-
-    public override void UpdateCoordinate(Vector2d coordinate)
-    {
-        throw new System.NotImplementedException();
+        AssignData(data);
+        UpdateCoordinate(new Vector2d(data.Latitude, data.Longitude));
+        MapWrapper.Instance.MapUpdated += MapUpdatedHandler;
     }
 
     public override void ValueChangedHandler()
     {
-        throw new System.NotImplementedException();
-    }
 
-    protected override void MapUpdatedHandler()
-    {
-        throw new System.NotImplementedException();
     }
 }

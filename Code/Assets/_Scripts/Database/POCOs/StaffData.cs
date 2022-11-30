@@ -16,12 +16,12 @@ public class StaffData : Data
     public Role Role { get; set; }
     public int Salary { get; set; }
 
-    public float Longitude { get; set; }
     public float Latitude { get; set; }
+    public float Longitude { get; set; }
 
     public StaffData(string id, string name, string photo, Gender gender, DateTime dateOfBirth,
         string homeAddress, string phoneNumber, string nationality, DateTime hiredOn, Role role,
-        int salary, float longitude, float latitude)
+        int salary, float latitude, float  longitude)
     {
         ID = id;
         Name = name;
@@ -34,8 +34,8 @@ public class StaffData : Data
         HiredOn = hiredOn;
         Role = role;
         Salary = salary;
-        Longitude = longitude;
         Latitude = latitude;
+        Longitude = longitude;
     }
 
     public override string ToString()

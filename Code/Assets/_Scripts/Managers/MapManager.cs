@@ -11,6 +11,27 @@ public class MapManager : PersistentSingleton<MapManager>
 
     private void Start()
     {
+        foreach (var staffData in DatabaseManager.Instance.AllStaffs)
+        {
+            if (staffData.Role == Role.Janitor)
+            {
+                var janitor = Instantiate(ResourceManager.Instance.JanitorMapEntity, mapTransform)
+                    .GetComponent<JanitorMapEntity>();
+
+                janitor.transform.SetParent(mapTransform);
+                janitor.Init(staffData);
+            }
+
+            if (staffData.Role == Role.Collector)
+            {
+                var collector = Instantiate(ResourceManager.Instance.CollectorMapEntity, mapTransform)
+                    .GetComponent<CollectorMapEntity>();
+
+                collector.transform.SetParent(mapTransform);
+                collector.Init(staffData);
+            }
+        }
+
         foreach (var mcpData in DatabaseManager.Instance.AllMCPs)
         {
             var mcp = Instantiate(ResourceManager.Instance.MCPMapEntity, mapTransform)
