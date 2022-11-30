@@ -12,7 +12,6 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
     {
         AssignData(data);
         UpdateCoordinate(new Vector2d(data.Latitude, data.Longitude));
-        MapWrapper.Instance.MapUpdated += MapUpdatedHandler;
     }
 
     public override void ValueChangedHandler()

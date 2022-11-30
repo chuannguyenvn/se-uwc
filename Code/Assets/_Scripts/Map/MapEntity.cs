@@ -6,7 +6,7 @@ public abstract class MapEntity : MonoBehaviour
 {
     protected virtual void OnEnable()
     {
-        MapWrapper.Instance.MapUpdated -= MapUpdatedHandler;
+        MapWrapper.Instance.MapUpdated += MapUpdatedHandler;
     }
 
     protected virtual void OnDisable()
