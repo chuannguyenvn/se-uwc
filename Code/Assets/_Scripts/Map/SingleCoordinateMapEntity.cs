@@ -1,10 +1,13 @@
 ﻿using Mapbox.Utils;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class SingleCoordinateMapEntity<T> : MapEntity where T : Data
 {
     protected T data;
-    [SerializeField] protected Vector2d coordinate;
+
+    [SerializeField] protected Button button;
+    protected Vector2d coordinate;
 
     public virtual void AssignData(T data)
     {
