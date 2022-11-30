@@ -84,7 +84,7 @@ public class MapWrapper : Singleton<MapWrapper>, IBeginDragHandler, IDragHandler
     {
         string head = "https://api.mapbox.com/directions/v5/mapbox/driving/";
         string tail =
-            "?geometries=geojson&access_token=pk.eyJ1IjoiY2h1YW5wcm8wMzAiLCJhIjoiY2xhcG51ZWg5MDFqbTNwb2FlaW52MXNvciJ9.kFN5GOg3C8cGlk2PN4Tleg";
+            "?geometries=geojson&access_token=" + SystemConstants.Map.MapboxAccessToken;
 
         return head + start + ";" + end + tail;
     }
