@@ -8,11 +8,11 @@ public class MapManager : PersistentSingleton<MapManager>
 
     private void Start()
     {
-        foreach (var mcpData in DatabaseManager.Instance.AllMCPs)
-        {
-            var mcp = Instantiate(ResourceManager.Instance.MCPMapEntity, MapTransform)
-                .GetComponent<MCPMapEntity>();
-            
-        }
+        // foreach (var mcpData in DatabaseManager.Instance.AllMCPs)
+        // {
+        //     var mcp = Instantiate(ResourceManager.Instance.MCPMapEntity, MapTransform)
+        //         .GetComponent<MCPMapEntity>();
+        //     
+        // }
     }
 }

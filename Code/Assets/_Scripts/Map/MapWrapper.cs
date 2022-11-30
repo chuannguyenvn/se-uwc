@@ -7,8 +7,9 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 using MapboxDirectionRequestResult;
+using UnityEngine.EventSystems;
 
-public class MapWrapper : Singleton<MapWrapper>
+public class MapWrapper : Singleton<MapWrapper>, IBeginDragHandler, IDragHandler
 {
     public event Action MapUpdated;
 
@@ -28,12 +29,13 @@ public class MapWrapper : Singleton<MapWrapper>
         abstractMap.OnUpdated -= OnMapUpdated;
     }
 
-    private void OnMouseDown()
+
+    public void OnBeginDrag(PointerEventData eventData)
     {
         prevMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
-    private void OnMouseDrag()
+    public void OnDrag(PointerEventData eventData)
     {
         var currentMousePos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var mouseDelta = prevMousePos - currentMousePos;
@@ -47,6 +49,7 @@ public class MapWrapper : Singleton<MapWrapper>
         abstractMap.UpdateMap(abstractMap.WorldToGeoPosition(mouseDelta));
         prevMousePos = currentMousePos;
     }
+
 
     private void Update()
     {
