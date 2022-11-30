@@ -12,7 +12,7 @@ using UnityEngine.EventSystems;
 public class MapWrapper : Singleton<MapWrapper>, IBeginDragHandler, IDragHandler
 {
     public event Action MapUpdated;
-    
+
     [SerializeField] private AbstractMap abstractMap;
 
     private Vector2 prevMousePos;
@@ -75,17 +75,12 @@ public class MapWrapper : Singleton<MapWrapper>, IBeginDragHandler, IDragHandler
                 start = abstractMap.WorldToGeoPosition(mousePos);
             }
         }
-
-        if (Input.GetMouseButtonDown(0))
-            Debug.Log(abstractMap.GeoToWorldPosition(new Vector2d(10.6, 106.7)));
     }
 
     private string BuildRequestURI(Vector2d start, Vector2d end)
     {
         string head = "https://api.mapbox.com/directions/v5/mapbox/driving/";
-        string tail =
-            "?geometries=geojson&access_token=" + SystemConstants.Map.MapboxAccessToken;
-
+        string tail = "?geometries=geojson&access_token=" + SystemConstants.Map.MapboxAccessToken;
         return head + start + ";" + end + tail;
     }
 
