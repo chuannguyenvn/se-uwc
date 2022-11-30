@@ -3,12 +3,10 @@ using Mapbox.Utils;
 using Shapes;
 using UnityEngine;
 
-public class RoutePolyline : MonoBehaviour
+public class RoutePolyline : MultipleCoordinatesMapEntity
 {
     [SerializeField] private Polyline polyline;
-
-    private List<Vector2d> coordinates = new();
-
+    
     public void Init(List<List<double>> coordinates)
     {
         foreach (var coordinate in coordinates)
@@ -19,18 +17,14 @@ public class RoutePolyline : MonoBehaviour
         MapWrapper.Instance.MapUpdated += MapUpdatedHandler;
     }
 
-    private void OnDestroy()
-    {
-        MapWrapper.Instance.MapUpdated -= MapUpdatedHandler;
-    }
-
-    private void MapUpdatedHandler()
+    protected override void MapUpdatedHandler()
     {
         List<Vector2> newPoints = new List<Vector2>();
         foreach (var coordinate in coordinates)
         {
             newPoints.Add(MapWrapper.Instance.GeoToWorldPoint(coordinate));
         }
+
         polyline.SetPoints(newPoints);
     }
 }
