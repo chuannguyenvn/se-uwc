@@ -7,13 +7,9 @@ public class RoutePolyline : MultipleCoordinatesMapEntity
 {
     [SerializeField] private Polyline polyline;
     
-    public void Init(List<List<double>> coordinates)
+    public override void Init(List<Vector2d> coordinates)
     {
-        foreach (var coordinate in coordinates)
-        {
-            this.coordinates.Add(new Vector2d(coordinate[1], coordinate[0]));
-        }
-
+        this.coordinates = coordinates;
         MapWrapper.Instance.MapUpdated += MapUpdatedHandler;
     }
 

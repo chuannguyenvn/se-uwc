@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Mapbox.Unity.Map;
 using Mapbox.Utils;
 using Newtonsoft.Json;
@@ -87,11 +88,17 @@ public class MapWrapper : Singleton<MapWrapper>
     {
         yield return request.SendWebRequest();
         var result = JsonConvert.DeserializeObject<Result>(request.downloadHandler.text);
-        var coordinates = result.routes[0].geometry.coordinates;
+        var rawCoordinates = result.routes[0].geometry.coordinates;
+
+        List<Vector2d> coordinateList = new();
+        foreach (var coordinate in rawCoordinates)
+        {
+            coordinateList.Add(new Vector2d(coordinate[1], coordinate[0]));
+        }
 
         Instantiate(ResourceManager.Instance.RoutePolyline)
             .GetComponent<RoutePolyline>()
-            .Init(coordinates);
+            .Init(coordinateList);
     }
 
     public void OnMapUpdated()
