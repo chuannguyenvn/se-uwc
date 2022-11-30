@@ -152,15 +152,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4867834046800562, guid: e6b749c6d877f4c19a5a5c3c0783d53b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.141
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4867834046800562, guid: e6b749c6d877f4c19a5a5c3c0783d53b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.000000018626451
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4867834046800562, guid: e6b749c6d877f4c19a5a5c3c0783d53b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.14100002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4867834046800562, guid: e6b749c6d877f4c19a5a5c3c0783d53b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -433,7 +433,7 @@ RectTransform:
   m_GameObject: {fileID: 468599026}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 740028678}
@@ -605,7 +605,7 @@ RectTransform:
   m_GameObject: {fileID: 740028677}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 323655611}
@@ -939,7 +939,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -952,8 +952,8 @@ RectTransform:
   m_GameObject: {fileID: 1768593910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 468599031}
   m_Father: {fileID: 0}
@@ -961,8 +961,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0141, y: -0.0141}
-  m_SizeDelta: {x: 17.777779, y: 10}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1777.7778, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1768593913
 MonoBehaviour:
@@ -1243,6 +1243,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1667931578}
     m_Modifications:
+    - target: {fileID: 1244077849399134187, guid: de6d3f1a119030443851514f6b00438a, type: 3}
+      propertyPath: MCPMapEntity
+      value: 
+      objectReference: {fileID: 1204344839811287500, guid: 9b6a9d79362a7014fa9f70c2262fb998, type: 3}
     - target: {fileID: 2675084655724133704, guid: de6d3f1a119030443851514f6b00438a, type: 3}
       propertyPath: m_Name
       value: Resource Manager
@@ -1961,9 +1965,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 1667931578}
     m_Modifications:
     - target: {fileID: 391135132516186571, guid: 2d520eb2aa9e5ed4d8a131da81b52214, type: 3}
+      propertyPath: mapWrapper
+      value: 
+      objectReference: {fileID: 468599028}
+    - target: {fileID: 391135132516186571, guid: 2d520eb2aa9e5ed4d8a131da81b52214, type: 3}
       propertyPath: MapTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1768593912}
+    - target: {fileID: 391135132516186571, guid: 2d520eb2aa9e5ed4d8a131da81b52214, type: 3}
+      propertyPath: mapTransform
+      value: 
+      objectReference: {fileID: 1768593912}
     - target: {fileID: 2201240740798021001, guid: 2d520eb2aa9e5ed4d8a131da81b52214, type: 3}
       propertyPath: m_RootOrder
       value: 4

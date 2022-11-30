@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class MultipleCoordinatesMapEntity : MapEntity
 {
-    protected List<Vector2d> coordinates = new();
+    [SerializeField] protected List<Vector2d> coordinates = new();
 
-    public abstract void Init(List<Vector2d> coordinates);
+    public abstract void UpdateCoordinates(List<Vector2d> coordinates);
 }

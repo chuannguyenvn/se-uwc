@@ -7,7 +7,7 @@ public class RoutePolyline : MultipleCoordinatesMapEntity
 {
     [SerializeField] private Polyline polyline;
     
-    public override void Init(List<Vector2d> coordinates)
+    public override void UpdateCoordinates(List<Vector2d> coordinates)
     {
         this.coordinates = coordinates;
         MapWrapper.Instance.MapUpdated += MapUpdatedHandler;
@@ -18,7 +18,7 @@ public class RoutePolyline : MultipleCoordinatesMapEntity
         List<Vector2> newPoints = new List<Vector2>();
         foreach (var coordinate in coordinates)
         {
-            newPoints.Add(MapWrapper.Instance.GeoToWorldPoint(coordinate));
+            newPoints.Add(MapManager.Instance.GeoToWorldPosition(coordinate));
         }
 
         polyline.SetPoints(newPoints);
