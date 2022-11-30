@@ -9,11 +9,8 @@ public class MapManager : PersistentSingleton<MapManager>
     [SerializeField] private Transform mapTransform;
     [SerializeField] private MapWrapper mapWrapper;
 
-    private async void Start()
+    private void Start()
     {
-        while (Mathf.Approximately(mapWrapper.GeoToWorldPosition(new Vector2d(10, 10)).x, 0f))
-            await Task.Delay(1000);
-
         foreach (var mcpData in DatabaseManager.Instance.AllMCPs)
         {
             var mcp = Instantiate(ResourceManager.Instance.MCPMapEntity, mapTransform)
@@ -28,6 +25,7 @@ public class MapManager : PersistentSingleton<MapManager>
     {
         return mapWrapper.WorldToGeoPosition(coordinate);
     }
+
     public Vector2 GeoToWorldPosition(Vector2d coordinate)
     {
         return mapWrapper.GeoToWorldPosition(coordinate);
