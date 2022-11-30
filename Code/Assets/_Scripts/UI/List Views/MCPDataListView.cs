@@ -11,7 +11,7 @@ public class MCPDataListView : DataListView<MCPData>
     {
         prefab = ResourceManager.Instance.MCPDataListItemView;
 
-        var allMCPs = DatabaseLoader.Instance.LoadAllMCPsData();
+        var allMCPs = DatabaseManager.Instance.AllMCPs;
         foreach (var mcpData in allMCPs)
         {
             AddDataItem(mcpData);

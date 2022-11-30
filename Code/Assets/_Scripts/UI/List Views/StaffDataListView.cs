@@ -9,8 +9,8 @@
     {
         prefab = ResourceManager.Instance.StaffDataListItemView;
 
-        var allStaff = DatabaseLoader.Instance.LoadAllStaffData();
-        foreach (var staffData in allStaff)
+        var allStaffs = DatabaseManager.Instance.AllStaffs;
+        foreach (var staffData in allStaffs)
         {
             AddDataItem(staffData);
         }

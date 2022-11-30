@@ -9,7 +9,7 @@
     {
         prefab = ResourceManager.Instance.VehicleDataListItemView;
 
-        var allVehicles = DatabaseLoader.Instance.LoadAllVehicleData();
+        var allVehicles = DatabaseManager.Instance.AllVehicles;
         foreach (var vehicleData in allVehicles)
         {
             AddDataItem(vehicleData);

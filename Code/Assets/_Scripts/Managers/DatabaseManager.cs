@@ -3,20 +3,21 @@
 
 public class DatabaseManager : PersistentSingleton<DatabaseManager>
 {
-    private List<StaffData> allStaffs;
-    private List<MCPData> allMCPs;
-    private List<VehicleData> allVehicles;
-    private List<MessageData> allMessages;
-    private List<TaskData> allTasks;
-    private List<MaintenanceLogData> allMaintenanceLogs;
+    public List<StaffData> AllStaffs;
+    public List<MCPData> AllMCPs;
+    public List<VehicleData> AllVehicles;
+    public List<MessageData> AllMessages;
+    public List<TaskData> AllTasks;
+    public List<MaintenanceLogData> AllMaintenanceLogs;
 
-    private void Start()
+    protected override void Awake()
     {
-        allStaffs = DatabaseLoader.Instance.LoadAllStaffData();
-        allMCPs = DatabaseLoader.Instance.LoadAllMCPsData();
-        allVehicles = DatabaseLoader.Instance.LoadAllVehicleData();
-        allMessages = DatabaseLoader.Instance.LoadAllMessageData();
-        allTasks = DatabaseLoader.Instance.LoadAllTaskData();
-        allMaintenanceLogs = DatabaseLoader.Instance.LoadAllMaintenanceLogData();
+        base.Awake();
+        AllStaffs = DatabaseLoader.Instance.LoadAllStaffData();
+        AllMCPs = DatabaseLoader.Instance.LoadAllMCPsData();
+        AllVehicles = DatabaseLoader.Instance.LoadAllVehicleData();
+        AllMessages = DatabaseLoader.Instance.LoadAllMessageData();
+        AllTasks = DatabaseLoader.Instance.LoadAllTaskData();
+        AllMaintenanceLogs = DatabaseLoader.Instance.LoadAllMaintenanceLogData();
     }
 }
