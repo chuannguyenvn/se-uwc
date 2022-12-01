@@ -1309,35 +1309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc81bdf49b190a04face1d940f61417b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2142693724 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6706799842239823765, guid: e28be0c712753304d99730102c76860c, type: 3}
-  m_PrefabInstance: {fileID: 6658167795835349733}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2142693727 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6706799842239823770, guid: e28be0c712753304d99730102c76860c, type: 3}
-  m_PrefabInstance: {fileID: 6658167795835349733}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142693724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2142693730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142693724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daf4900afe1e1be488c68fc101c58c58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollRect: {fileID: 2142693727}
 --- !u!1001 &159640538521677549
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1967,10 +1938,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6482627449697683345, guid: 9378ac7f42523f945aed3e49f2b602b8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.000061035156
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9378ac7f42523f945aed3e49f2b602b8, type: 3}
 --- !u!1001 &6658167795835349733
@@ -2068,16 +2035,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: MCPs View Group
       objectReference: {fileID: 0}
-    - target: {fileID: 3835376348152383673, guid: e28be0c712753304d99730102c76860c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6706799843435596475, guid: e28be0c712753304d99730102c76860c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.000061035156
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 599467156, guid: e28be0c712753304d99730102c76860c, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e28be0c712753304d99730102c76860c, type: 3}
 --- !u!1001 &7002957316027336959
 PrefabInstance:

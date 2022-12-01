@@ -7,6 +7,8 @@ public class MCPDataListItemView : DataListItemView<MCPData>
 
         ChangeIconColor(data.Capacity);
         UpdateView();
+
+        button.onClick.AddListener(() => MCPInformationPanel.Instance.Show(data));
     }
 
     private void ChangeIconColor(float capacity)
