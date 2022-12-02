@@ -10,6 +10,7 @@ public class MessageDataListView : DataListView<MessageData>
 
     public override void Init()
     {
+        VERTICAL_SPACING = 20f;
         prefab = ResourceManager.Instance.MessageDataListItemView;
 
         ListViewManager.Instance.InboxListView.InboxChosen += InboxChosenHandler;

@@ -9,7 +9,7 @@ public class ListView : MonoBehaviour
     [SerializeField] protected ScrollRect scrollRect;
     protected List<ListItemView> itemViews = new();
 
-    private const float VERTICAL_SPACING = 10f;
+    protected static float VERTICAL_SPACING = 10f;
 
     public virtual void AddItem(ListItemView itemView)
     {
@@ -24,7 +24,7 @@ public class ListView : MonoBehaviour
         UpdateScrollRect();
     }
 
-    protected void UpdateScrollRect()
+    protected virtual void UpdateScrollRect()
     {
         var totalHeight = itemViews.Sum(i => i.Height);
         var newScrollRectSize = new Vector2(0, totalHeight + (itemViews.Count - 1) * VERTICAL_SPACING);

@@ -15,7 +15,7 @@ public abstract class DataListItemView<T> : ListItemView where T : Data
 
     public abstract void SetData(T data);
 
-    protected void UpdateView()
+    protected virtual void UpdateView()
     {
         primaryText_TMP.text = PrimaryText;
         secondaryText_TMP.text = SecondaryText;
