@@ -8,7 +8,7 @@ public class MessageDataListItemView : DataListItemView<MessageData>
 
     public override void SetData(MessageData data)
     {
-        PrimaryText = data.Content + " " + data.SenderID;
+        PrimaryText = data.Content;
         SecondaryText = data.Timestamp.ToString("hh:mm:ss dd/MM/yy");
 
         if (data.SenderID == AccountManager.Instance.AccountID)
