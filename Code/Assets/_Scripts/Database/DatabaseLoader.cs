@@ -55,7 +55,7 @@ public class DatabaseLoader : PersistentSingleton<DatabaseLoader>
     {
         List<MessageData> messageDataList = new();
 
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 100; i++)
         {
             messageDataList.Add(MockDataGenerator.Instance.GetMockMessageData());
         }

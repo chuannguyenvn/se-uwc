@@ -24,6 +24,8 @@ public class MessageDataListView : DataListView<MessageData>
         {
             AddDataItem(messageData);
         }
+
+        scrollRect.content.anchoredPosition = new Vector2(0, scrollRect.content.sizeDelta.y - 600);
     }
 
     private void OnDestroy()

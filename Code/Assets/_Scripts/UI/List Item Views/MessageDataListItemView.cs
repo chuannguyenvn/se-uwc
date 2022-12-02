@@ -31,18 +31,16 @@ public class MessageDataListItemView : DataListItemView<MessageData>
         primaryText_TMP.ForceMeshUpdate();
         secondaryText_TMP.ForceMeshUpdate();
 
-        {
-            var width = Mathf.Clamp(primaryText_TMP.preferredWidth, 0f, 800f);
-            var textSizeDelta = primaryText_TMP.rectTransform.sizeDelta;
 
-            rectTransform.sizeDelta = new Vector2(width - textSizeDelta.x, 0);
+        var width = Mathf.Clamp(primaryText_TMP.preferredWidth, 0f, 800f);
+        var textSizeDelta = primaryText_TMP.rectTransform.sizeDelta;
 
-            primaryText_TMP.ForceMeshUpdate();
+        rectTransform.sizeDelta = new Vector2(width - textSizeDelta.x, 0);
 
-            var height = primaryText_TMP.preferredHeight;
+        primaryText_TMP.ForceMeshUpdate();
 
-            rectTransform.sizeDelta =
-                new Vector2(width - textSizeDelta.x, height + 20 - textSizeDelta.y);
-        }
+        var height = primaryText_TMP.preferredHeight;
+
+        rectTransform.sizeDelta = new Vector2(width - textSizeDelta.x, height + 20 - textSizeDelta.y);
     }
 }
