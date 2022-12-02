@@ -5,13 +5,18 @@ public class AccountManager : PersistentSingleton<AccountManager>
 {
     public string AccountID { get; private set; }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.Data);
+    }
+    
     // Debug //
 
     [SerializeField] private string debugAccountID;
 
-    protected override void Awake()
+    private void Init()
     {
-        base.Awake();
         AccountID = debugAccountID;
     }
 

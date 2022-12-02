@@ -1,11 +1,6 @@
 ﻿public class StaffDataListView : DataListView<StaffData>
 {
-    private void Start()
-    {
-        Init();
-    }
-
-    public override void Init()
+    protected override void Init()
     {
         prefab = ResourceManager.Instance.StaffDataListItemView;
 

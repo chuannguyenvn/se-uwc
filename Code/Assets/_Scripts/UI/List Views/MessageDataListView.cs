@@ -3,12 +3,7 @@ using UnityEngine;
 
 public class MessageDataListView : DataListView<MessageData>
 {
-    private void Start()
-    {
-        Init();
-    }
-
-    public override void Init()
+    protected override void Init()
     {
         VERTICAL_SPACING = 20f;
         prefab = ResourceManager.Instance.MessageDataListItemView;

@@ -10,7 +10,7 @@ public class InboxListItemView : DataListItemView<Inbox>
 
         UpdateView();
 
-        secondaryText_TMP.ForceMeshUpdate();
+        secondaryText_TMP.ForceMeshUpdate(true);
 
         var characterInfos = secondaryText_TMP.textInfo.characterInfo;
         var lastVisibleCharIndex = 0;
@@ -23,8 +23,10 @@ public class InboxListItemView : DataListItemView<Inbox>
             }
         }
 
-        if (lastVisibleCharIndex != 0)
+        if (lastVisibleCharIndex > 0)
         {
+            Debug.Log(secondaryText_TMP.text);
+            Debug.Log(lastVisibleCharIndex + " vs " + latestMessage.Content.Length);
             SecondaryText = latestMessage.Content[..lastVisibleCharIndex] + "...";
             UpdateView();
         }

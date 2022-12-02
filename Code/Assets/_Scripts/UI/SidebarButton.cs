@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,12 @@ public class SidebarButton : MonoBehaviour
     [SerializeField] private ViewType viewType;
     public ViewType ViewType => viewType;
 
-    private void Start()
+    private void Awake()
+    {
+        ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.UI);
+    }
+
+    private void Init()
     {
         button.onClick.AddListener(() => PrimarySidebar.Instance.OnViewChanged(viewType));
         PrimarySidebar.Instance.ViewChanged += ViewChangedHandler;

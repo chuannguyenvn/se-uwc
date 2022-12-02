@@ -30,7 +30,12 @@ public class CollectorInformationPopup : MapEntity
     private RectTransform rectTransform;
     private Vector2d coordinate;
 
-    private void Start()
+    private void Awake()
+    {
+        ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.UI);
+    }
+
+    private void Init()
     {
         rectTransform = GetComponent<RectTransform>();
         AdjustBox(TaskLeftCount);

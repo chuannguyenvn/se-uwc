@@ -14,7 +14,11 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
     protected override void Awake()
     {
         base.Awake();
+        ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.Data);
+    }
 
+    private void Init()
+    {
         AllStaffs = DatabaseLoader.Instance.LoadAllStaffData();
 
         AllMCPs = DatabaseLoader.Instance.LoadAllMCPsData();
@@ -57,7 +61,7 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
 
         if (!InboxesByID.ContainsKey(otherPersonId))
             InboxesByID.Add(otherPersonId, new Inbox(otherPersonId, GetStaffNameByID(otherPersonId)));
-        
+
         InboxesByID[otherPersonId].Messages.Add(messageData);
     }
 }

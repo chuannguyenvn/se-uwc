@@ -13,6 +13,11 @@ public class SettingListView : ListView
 
     private void Awake()
     {
+        ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.UI);
+    }
+
+    protected override void Init()
+    {
         rectTransform = GetComponent<RectTransform>();
         var headerPrefab = ResourceManager.Instance.SettingSectionHeader;
         var itemPrefab = ResourceManager.Instance.SettingListItemView;

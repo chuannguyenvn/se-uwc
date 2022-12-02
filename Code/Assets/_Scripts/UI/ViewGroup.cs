@@ -6,7 +6,9 @@ public class ViewGroup : MonoBehaviour
 
     private void Awake()
     {
-        PrimarySidebar.Instance.ViewChanged += ViewChangedHandler;
+        ApplicationManager.Instance.AddInitWork(
+            () => PrimarySidebar.Instance.ViewChanged += ViewChangedHandler,
+            ApplicationManager.InitState.Map);
     }
 
     private void OnDestroy()

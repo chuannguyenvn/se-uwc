@@ -11,7 +11,13 @@ public class MapManager : PersistentSingleton<MapManager>
 
     public CollectorInformationPopup CollectorInformationPopup;
 
-    private void Start()
+    protected override void Awake()
+    {
+        base.Awake();
+        ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.Map);
+    }
+
+    private void Init()
     {
         foreach (var staffData in DatabaseManager.Instance.AllStaffs)
         {

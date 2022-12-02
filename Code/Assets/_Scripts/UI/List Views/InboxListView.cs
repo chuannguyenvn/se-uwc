@@ -4,12 +4,7 @@ public class InboxListView : DataListView<Inbox>
 {
     public event Action<Inbox> InboxChosen;
 
-    private void Start()
-    {
-        Init();
-    }
-
-    public override void Init()
+    protected override void Init()
     {
         prefab = ResourceManager.Instance.InboxListItemView;
 

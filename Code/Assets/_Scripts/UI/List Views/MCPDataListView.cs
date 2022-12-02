@@ -2,12 +2,7 @@
 
 public class MCPDataListView : DataListView<MCPData>
 {
-    private void Start()
-    {
-        Init();
-    }
-
-    public override void Init()
+    protected override void Init()
     {
         prefab = ResourceManager.Instance.MCPDataListItemView;
 

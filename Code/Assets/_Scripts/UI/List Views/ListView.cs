@@ -1,15 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-public class ListView : MonoBehaviour
+public abstract class ListView : MonoBehaviour
 {
     [SerializeField] protected ScrollRect scrollRect;
     protected List<ListItemView> itemViews = new();
 
     protected static float VERTICAL_SPACING = 10f;
+
+    private void Awake()
+    {
+        ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.UI);
+    }
+
+    protected abstract void Init();
 
     public virtual void AddItem(ListItemView itemView)
     {

@@ -6,7 +6,13 @@ public abstract class InformationPanel<T> : Singleton<InformationPanel<T>> where
 {
     [SerializeField] protected Button backButton;
 
-    protected virtual void Start()
+    protected override void Awake()
+    {
+        base.Awake();
+        ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.UI);
+    }
+
+    protected void Init()
     {
         PrimarySidebar.Instance.ViewChanged += ViewChangedHandler;
         Hide();

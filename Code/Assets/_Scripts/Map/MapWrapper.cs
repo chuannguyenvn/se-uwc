@@ -19,12 +19,19 @@ public class MapWrapper : Singleton<MapWrapper>, IBeginDragHandler, IDragHandler
     private Vector2d start;
     private bool firstPointChosen = false;
 
-    private void Start()
+    protected override void Awake()
+    {
+        base.Awake();
+        ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.Map);
+        ApplicationManager.Instance.AddTerminateWork(Terminate, ApplicationManager.TerminateState.Map);
+    }
+
+    private void Init()
     {
         abstractMap.OnUpdated += OnMapUpdated;
     }
 
-    private void OnDestroy()
+    private void Terminate()
     {
         abstractMap.OnUpdated -= OnMapUpdated;
     }
