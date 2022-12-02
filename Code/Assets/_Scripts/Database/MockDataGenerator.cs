@@ -93,7 +93,11 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
 
     public MessageData GetMockMessageData()
     {
-        return new MessageData(AccountManager.Instance.AccountID, GetRandomStaffID(),
-            GetRandomDateTime(), "[message content]");
+        if (Random.Range(0, 2) == 0)
+            return new MessageData(AccountManager.Instance.AccountID, GetRandomStaffID(),
+                GetRandomDateTime(), "[message content]");
+        else
+            return new MessageData(GetRandomStaffID(), AccountManager.Instance.AccountID,
+                GetRandomDateTime(), "[message content]");
     }
 }

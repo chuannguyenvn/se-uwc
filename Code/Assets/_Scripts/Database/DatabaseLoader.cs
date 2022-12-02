@@ -14,14 +14,6 @@ public class DatabaseLoader : PersistentSingleton<DatabaseLoader>
             MockDataGenerator.Instance.GetMockStaffData(),
             MockDataGenerator.Instance.GetMockStaffData(),
             MockDataGenerator.Instance.GetMockStaffData(),
-            MockDataGenerator.Instance.GetMockStaffData(),
-            MockDataGenerator.Instance.GetMockStaffData(),
-            MockDataGenerator.Instance.GetMockStaffData(),
-            MockDataGenerator.Instance.GetMockStaffData(),
-            MockDataGenerator.Instance.GetMockStaffData(),
-            MockDataGenerator.Instance.GetMockStaffData(),
-            MockDataGenerator.Instance.GetMockStaffData(),
-            MockDataGenerator.Instance.GetMockStaffData(),
         };
     }
 
@@ -61,30 +53,14 @@ public class DatabaseLoader : PersistentSingleton<DatabaseLoader>
 
     public List<MessageData> LoadAllMessageData()
     {
-        return new List<MessageData>()
+        List<MessageData> messageDataList = new();
+
+        for (int i = 0; i < 50; i++)
         {
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-            MockDataGenerator.Instance.GetMockMessageData(),
-        };
+            messageDataList.Add(MockDataGenerator.Instance.GetMockMessageData());
+        }
+
+        return messageDataList;
     }
 
     public List<TaskData> LoadAllTaskData()

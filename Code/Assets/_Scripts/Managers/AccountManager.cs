@@ -9,8 +9,9 @@ public class AccountManager : PersistentSingleton<AccountManager>
 
     [SerializeField] private string debugAccountID;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         AccountID = debugAccountID;
     }
 

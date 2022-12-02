@@ -26,11 +26,7 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
         var allMessageData = DatabaseLoader.Instance.LoadAllMessageData();
         foreach (var messageData in allMessageData)
         {
-            if (!InboxesByID.ContainsKey(messageData.ReceiverID))
-                InboxesByID.Add(messageData.ReceiverID,
-                    new Inbox(messageData.ReceiverID, GetStaffNameByID(messageData.ReceiverID)));
-
-            InboxesByID[messageData.ReceiverID].Messages.Add(messageData);
+            AddMessageToInbox(messageData);
         }
 
         foreach (var (id, inbox) in InboxesByID)
@@ -51,5 +47,17 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
         }
 
         throw new Exception();
+    }
+
+    private void AddMessageToInbox(MessageData messageData)
+    {
+        string otherPersonId = messageData.ReceiverID == AccountManager.Instance.AccountID
+            ? messageData.SenderID
+            : messageData.ReceiverID;
+
+        if (!InboxesByID.ContainsKey(otherPersonId))
+            InboxesByID.Add(otherPersonId, new Inbox(otherPersonId, GetStaffNameByID(otherPersonId)));
+        
+        InboxesByID[otherPersonId].Messages.Add(messageData);
     }
 }
