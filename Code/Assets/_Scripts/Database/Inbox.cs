@@ -6,7 +6,13 @@ public class Inbox : Data
 
     public string RecipientName;
 
-    public List<MessageData> Messages;
+    public List<MessageData> Messages = new();
+
+    public Inbox(string recipientID, string recipientName)
+    {
+        RecipientID = recipientID;
+        RecipientName = recipientName;
+    }
 
     public void SortMessages()
     {

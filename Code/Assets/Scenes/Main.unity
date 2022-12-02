@@ -273,37 +273,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8950488042731255678, guid: 1c5e88aa7757ff94fa58cfe424991821, type: 3}
   m_PrefabInstance: {fileID: 8950488044142793795}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &243149438
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 243149439}
-  m_Layer: 0
-  m_Name: Account Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &243149439
+--- !u!4 &243149439 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 676726348262469350, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
+  m_PrefabInstance: {fileID: 676726348024824985}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 243149438}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1667931578}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &267235923 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4742855826546504425, guid: 68cb154b254c2944cb0055aa520e3e0c, type: 3}
@@ -1049,19 +1023,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 105208665095099631, guid: 5c6f8288c8c985c44a1b4837b264b393, type: 3}
   m_PrefabInstance: {fileID: 918804216}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1721249987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1721249985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7477b0939c89f3a469d9a3b2b5eb30b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollRect: {fileID: 1721249988}
 --- !u!114 &1721249988 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 105208665095099616, guid: 5c6f8288c8c985c44a1b4837b264b393, type: 3}
@@ -1073,6 +1034,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1721249992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721249985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c35402fb5b924e0c91ed7f5d187403c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollRect: {fileID: 1721249988}
 --- !u!1 &1768593910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1398,6 +1372,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aad1f15e83745f4eaae4c56bd22a61f, type: 3}
+--- !u!1001 &676726348024824985
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1667931578}
+    m_Modifications:
+    - target: {fileID: 676726348262469350, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 676726348262469350, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676726348262469350, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676726348262469350, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676726348262469350, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 676726348262469350, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676726348262469350, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676726348262469350, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676726348262469350, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676726348262469350, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676726348262469350, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676726348262469351, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
+      propertyPath: m_Name
+      value: Account Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
 --- !u!1001 &1548216048820581591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1413,6 +1444,10 @@ PrefabInstance:
       propertyPath: JanitorMapEntity
       value: 
       objectReference: {fileID: -3910094146263711721, guid: 585a7f03e226e6345bf5e4ddbec3b450, type: 3}
+    - target: {fileID: 1244077849399134187, guid: de6d3f1a119030443851514f6b00438a, type: 3}
+      propertyPath: InboxListItemView
+      value: 
+      objectReference: {fileID: 4792924157461828066, guid: 582539b7c7201dc498dfcbb3d59b9e9e, type: 3}
     - target: {fileID: 1244077849399134187, guid: de6d3f1a119030443851514f6b00438a, type: 3}
       propertyPath: CollectorMapEntity
       value: 
