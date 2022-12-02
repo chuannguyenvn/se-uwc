@@ -22,8 +22,9 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
         return (VehicleCategory)values.GetValue(index);
     }
 
-    private char GetRandomLetter()
+    private char GetRandomLetter(bool isUpper)
     {
+        if (!isUpper) return (char)Random.Range('a', 'z' + 1);
         return (char)Random.Range('A', 'Z' + 1);
     }
 
@@ -34,7 +35,7 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
 
     private string GetRandomLicensePlate()
     {
-        return "" + GetRandomLetter() + GetRandomLetter() + GetRandomLetter() + " - " +
+        return "" + GetRandomLetter(true) + GetRandomLetter(true) + GetRandomLetter(true) + " - " +
                GetRandomNumber() + GetRandomNumber() + GetRandomNumber() + "." + GetRandomNumber() +
                GetRandomNumber();
     }
@@ -44,7 +45,7 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
         string model = "";
         for (int i = 0; i < 5; i++)
         {
-            if (Random.Range(0, 2) == 1) model += GetRandomLetter();
+            if (Random.Range(0, 2) == 1) model += GetRandomLetter(true);
             else model += GetRandomNumber();
         }
 
@@ -66,6 +67,32 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
     private string GetRandomStaffID()
     {
         return staffIds[Random.Range(0, staffIds.Count)];
+    }
+
+    private string GetRandomMessage()
+    {
+        string message = "";
+        var randomLength = Random.Range(1, 200);
+
+        for (int i = 0; i < randomLength; i++)
+        {
+            if (Random.Range(0, 4) == 0)
+            {
+                if (Random.Range(0, 10) == 0) message += ".";
+                else message += " ";
+            }
+            else
+            {
+                if (message.Length == 0)
+                    message += GetRandomLetter(true);
+                else if (message[^1] == '.')
+                    message += " " + GetRandomLetter(true);
+                else
+                    message += GetRandomLetter(false);
+            }
+        }
+
+        return message[0] + message[1..].ToLower() + ".";
     }
 
     public StaffData GetMockStaffData()
@@ -95,9 +122,9 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
     {
         if (Random.Range(0, 2) == 0)
             return new MessageData(AccountManager.Instance.AccountID, GetRandomStaffID(),
-                GetRandomDateTime(), "[message content]");
+                GetRandomDateTime(), GetRandomMessage());
         else
             return new MessageData(GetRandomStaffID(), AccountManager.Instance.AccountID,
-                GetRandomDateTime(), "[message content]");
+                GetRandomDateTime(), GetRandomMessage());
     }
 }
