@@ -6,5 +6,7 @@
         SecondaryText = data.Role + " - currently at " + data.HomeAddress;
 
         UpdateView();
+        
+        button.onClick.AddListener(() => StaffInformationPanel.Instance.Show(data));
     }
 }
