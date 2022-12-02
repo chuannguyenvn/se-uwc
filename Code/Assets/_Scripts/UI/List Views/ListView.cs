@@ -30,4 +30,14 @@ public class ListView : MonoBehaviour
         var newScrollRectSize = new Vector2(0, totalHeight + (itemViews.Count - 1) * VERTICAL_SPACING);
         scrollRect.content.sizeDelta = newScrollRectSize;
     }
+
+    protected void RemoveAllItemViews()
+    {
+        foreach (var itemView in itemViews)
+        {
+            Destroy(itemView.gameObject);
+        }
+
+        itemViews = new();
+    }
 }

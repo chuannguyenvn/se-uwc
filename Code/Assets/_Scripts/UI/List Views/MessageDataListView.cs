@@ -17,7 +17,8 @@ public class MessageDataListView : DataListView<MessageData>
 
     private void InboxChosenHandler(Inbox inbox)
     {
-        Debug.Log("yo");
+        RemoveAllItemViews();
+
         foreach (var messageData in inbox.Messages)
         {
             AddDataItem(messageData);
