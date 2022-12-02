@@ -12,7 +12,7 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
 
     private DateTime GetRandomDateTime()
     {
-        return DateTime.Today.AddDays(-Random.Range(100, 1000));
+        return DateTime.Today.AddDays(-Random.Range(100, 1000)).AddSeconds(Random.Range(0, 100000));
     }
 
     private VehicleCategory GetRandomVehicleCategory()
