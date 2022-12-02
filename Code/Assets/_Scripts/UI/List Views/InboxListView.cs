@@ -1,5 +1,9 @@
-﻿public class InboxListView : DataListView<Inbox>
+﻿using System;
+
+public class InboxListView : DataListView<Inbox>
 {
+    public event Action<Inbox> InboxChosen;
+
     private void Start()
     {
         Init();
@@ -14,5 +18,10 @@
         {
             AddDataItem(inbox);
         }
+    }
+
+    public void OnInboxChosen(Inbox inbox)
+    {
+        InboxChosen?.Invoke(inbox);
     }
 }

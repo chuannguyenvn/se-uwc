@@ -19,6 +19,7 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
     public MCPDataListItemView MCPDataListItemView;
     public VehicleDataListItemView VehicleDataListItemView;
     public InboxListItemView InboxListItemView;
+    public MessageDataListItemView MessageDataListItemView;
     
     public SettingSectionHeader SettingSectionHeader;
     public GameObject SettingListItemView;

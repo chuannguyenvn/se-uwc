@@ -8,7 +8,7 @@ public class InboxListItemView : DataListItemView<Inbox>
         var latestMessage = data.Messages[0];
         SecondaryText = latestMessage.Content + " · " + latestMessage.Timestamp;
         UpdateView();
-        
-        button.onClick.AddListener(() => { });
+
+        button.onClick.AddListener(() => ListViewManager.Instance.InboxListView.OnInboxChosen(data));
     }
 }
