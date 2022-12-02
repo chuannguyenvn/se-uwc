@@ -1934,10 +1934,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vehicles View Group
       objectReference: {fileID: 0}
-    - target: {fileID: 3592821139458880883, guid: 9378ac7f42523f945aed3e49f2b602b8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9378ac7f42523f945aed3e49f2b602b8, type: 3}
 --- !u!1001 &6658167795835349733

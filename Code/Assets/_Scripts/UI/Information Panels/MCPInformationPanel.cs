@@ -13,7 +13,7 @@ public class MCPInformationPanel : InformationPanel<MCPData>
 
     public override void Show(MCPData data)
     {
-        gameObject.SetActive(true);
+        base.Show(data);
 
         address.text = data.Address;
         capacityBar.transform.localScale = new Vector3(data.Capacity, 1, 1);
@@ -22,10 +22,5 @@ public class MCPInformationPanel : InformationPanel<MCPData>
 
         var mcpColor = VisualManager.Instance.GetMCPColor(data.Capacity);
         capacityBar.color = capacityTextBackground.color = mcpColor;
-    }
-
-    public override void Hide()
-    {
-        gameObject.SetActive(false);
     }
 }

@@ -6,5 +6,7 @@
         SecondaryText = data.Category.ToString();
 
         UpdateView();
+        
+        button.onClick.AddListener(() => VehicleInformationPanel.Instance.Show(data));
     }
 }

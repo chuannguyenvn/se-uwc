@@ -5,6 +5,13 @@ public abstract class InformationPanel<T> : Singleton<InformationPanel<T>> where
 {
     [SerializeField] protected Button backButton;
 
-    public abstract void Show(T data);
-    public abstract void Hide();
+    public virtual void Show(T data)
+    {
+        gameObject.SetActive(true);
+    }
+
+    public virtual void Hide()
+    {
+        gameObject.SetActive(false);
+    }
 }
