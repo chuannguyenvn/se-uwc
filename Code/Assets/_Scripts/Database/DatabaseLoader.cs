@@ -61,7 +61,30 @@ public class DatabaseLoader : PersistentSingleton<DatabaseLoader>
 
     public List<MessageData> LoadAllMessageData()
     {
-        return new List<MessageData>() { };
+        return new List<MessageData>()
+        {
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+            MockDataGenerator.Instance.GetMockMessageData(),
+        };
     }
 
     public List<TaskData> LoadAllTaskData()

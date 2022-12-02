@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,6 +7,8 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
 {
     private static readonly Vector2 STAFF_COORDINATE_MIN = new Vector2(10.754185f, 106.631181f);
     private static readonly Vector2 STAFF_COORDINATE_MAX = new Vector2(10.793629f, 106.693502f);
+
+    private List<string> staffIds = new();
 
     private DateTime GetRandomDateTime()
     {
@@ -60,12 +63,17 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
         }
     }
 
+    private string GetRandomStaffID()
+    {
+        return staffIds[Random.Range(0, staffIds.Count)];
+    }
+
     public StaffData GetMockStaffData()
     {
-        return new StaffData(Random.Range(0, 1000).ToString(), GetRandomName(), "[photo]", Gender.Male,
-            GetRandomDateTime(), "[address]", Random.Range(1000000000, 999999999).ToString(), "Vietnam",
-            GetRandomDateTime(), Random.Range(0, 2) == 0 ? Role.Collector : Role.Janitor,
-            Random.Range(1000000, 10000000),
+        staffIds.Add(Random.Range(0, 1000).ToString());
+        return new StaffData(staffIds[^1], GetRandomName(), "[photo]", Gender.Male, GetRandomDateTime(),
+            "[address]", Random.Range(1000000000, 999999999).ToString(), "Vietnam", GetRandomDateTime(),
+            Random.Range(0, 2) == 0 ? Role.Collector : Role.Janitor, Random.Range(1000000, 10000000),
             Random.Range(STAFF_COORDINATE_MIN.x, STAFF_COORDINATE_MAX.x),
             Random.Range(STAFF_COORDINATE_MIN.y, STAFF_COORDINATE_MAX.y));
     }
@@ -81,5 +89,11 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
     {
         return new VehicleData(GetRandomLicensePlate(), GetRandomVehicleCategory(), GetRandomModel(),
             Random.Range(1000f, 10000f), Random.Range(1000f, 10000f), Random.Range(1000f, 10000f));
+    }
+
+    public MessageData GetMockMessageData()
+    {
+        return new MessageData(AccountManager.Instance.AccountID, GetRandomStaffID(),
+            GetRandomDateTime(), "[message content]");
     }
 }
