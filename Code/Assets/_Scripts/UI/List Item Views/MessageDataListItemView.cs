@@ -26,8 +26,6 @@ public class MessageDataListItemView : DataListItemView<MessageData>
 
     protected override void UpdateView()
     {
-        base.UpdateView();
-
         primaryText_TMP.ForceMeshUpdate();
         secondaryText_TMP.ForceMeshUpdate();
 

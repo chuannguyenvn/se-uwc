@@ -26,4 +26,10 @@ public class MCPDataListItemView : DataListItemView<MCPData>
             image.color = VisualManager.Instance.MCPFullyLoadedColor;
         }
     }
+    
+    protected override void UpdateView()
+    {
+        primaryText_TMP.text = PrimaryText;
+        secondaryText_TMP.text = SecondaryText;
+    }
 }

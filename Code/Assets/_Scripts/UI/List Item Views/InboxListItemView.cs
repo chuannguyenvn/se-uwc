@@ -33,4 +33,10 @@ public class InboxListItemView : DataListItemView<Inbox>
 
         button.onClick.AddListener(() => ListViewManager.Instance.InboxListView.OnInboxChosen(data));
     }
+
+    protected override void UpdateView()
+    {
+        primaryText_TMP.text = PrimaryText;
+        secondaryText_TMP.text = SecondaryText;
+    }
 }
