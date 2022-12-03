@@ -74,6 +74,7 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
 
     public List<TaskData> FilterStaffsTasksByDate(StaffData staffData, DateTime dateTime)
     {
-        return AllTasks.FindAll(task => task.Timestamp.Date == dateTime.Date);
+        return AllTasks.FindAll(task =>
+            task.EmployeeID == staffData.ID && task.Timestamp.Date == dateTime.Date);
     }
 }
