@@ -22,17 +22,21 @@ public class SettingListView : ListView
         var headerPrefab = ResourceManager.Instance.SettingSectionHeader;
         var itemPrefab = ResourceManager.Instance.SettingListItemView;
         var SM = SettingManager.Instance;
-
+        var settingTitle = "";
+        
         #region InterfaceSettings
 
         var interfaceHeader = Instantiate(headerPrefab).GetComponent<SettingSectionHeader>();
-        interfaceHeader.Init("Interface setting", rectTransform.rect.width - HORIZONTAL_MARGIN * 2);
+        settingTitle = LanguageTranslation.GetText(LanguageTranslation.TextType.Setting_Interface_Setting,
+            LanguageTranslation.ReturnTextOption.Title_Case);
+        interfaceHeader.Init(settingTitle, rectTransform.rect.width - HORIZONTAL_MARGIN * 2);
 
         AddItem(interfaceHeader);
 
-
+        settingTitle = LanguageTranslation.GetText(LanguageTranslation.TextType.Setting_Dark_Theme,
+            LanguageTranslation.ReturnTextOption.Sentence_case);
         var darkThemeOption = Instantiate(itemPrefab).GetComponent<SettingListItemView>();
-        darkThemeOption.Init("Dark theme:", () => SM.DarkThemeOption,
+        darkThemeOption.Init(settingTitle + ": ", () => SM.DarkThemeOption,
             e => SM.DarkThemeOption = (ToggleOption)e, typeof(ToggleOption));
 
         AddItem(darkThemeOption);
