@@ -38,7 +38,6 @@ public class SettingListView : ListView
         var darkThemeOption = Instantiate(itemPrefab).GetComponent<SettingListItemView>();
         darkThemeOption.Init(settingTitle + ": ", () => SM.DarkThemeOption,
             e => SM.DarkThemeOption = (ToggleOption)e, typeof(ToggleOption));
-
         AddItem(darkThemeOption);
 
 
