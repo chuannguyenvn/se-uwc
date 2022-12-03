@@ -7,8 +7,8 @@
     public float Capacity { get; set; }
     public float FuelConsumption { get; set; }
 
-    public VehicleData(string licensePlate, VehicleCategory category, string model, float weight,
-        float capacity, float fuelConsumption)
+    public VehicleData(string id, string licensePlate, VehicleCategory category, string model,
+        float weight, float capacity, float fuelConsumption) : base(id)
     {
         LicensePlate = licensePlate;
         Category = category;

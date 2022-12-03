@@ -7,8 +7,9 @@ public class MessageData : Data
 
     public DateTime Timestamp { get; set; }
     public string Content { get; set; }
-    
-    public MessageData(string senderID, string receiverID, DateTime timestamp, string content)
+
+    public MessageData(string id, string senderID, string receiverID, DateTime timestamp,
+        string content) : base(id)
     {
         SenderID = senderID;
         ReceiverID = receiverID;

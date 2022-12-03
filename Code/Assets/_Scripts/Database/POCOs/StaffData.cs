@@ -21,9 +21,8 @@ public class StaffData : Data
 
     public StaffData(string id, string name, string photo, Gender gender, DateTime dateOfBirth,
         string homeAddress, string phoneNumber, string nationality, DateTime hiredOn, Role role,
-        int salary, float latitude, float  longitude)
+        int salary, float latitude, float  longitude) : base(id)
     {
-        ID = id;
         Name = name;
         Photo = photo;
         Gender = gender;

@@ -8,7 +8,7 @@ public class Inbox : Data
 
     public List<MessageData> Messages = new();
 
-    public Inbox(string recipientID, string recipientName)
+    public Inbox(string recipientID, string recipientName) : base("")
     {
         RecipientID = recipientID;
         RecipientName = recipientName;

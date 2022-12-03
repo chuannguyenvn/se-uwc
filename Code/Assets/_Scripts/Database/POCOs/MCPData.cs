@@ -18,7 +18,7 @@
     public float Latitude { get; private set; }
     public float Longitude { get; private set; }
 
-    public MCPData(string address, float capacity, float latitude, float longitude)
+    public MCPData(string id, string address, float capacity, float latitude, float longitude) : base(id)
     {
         Address = address;
         Capacity = capacity;
