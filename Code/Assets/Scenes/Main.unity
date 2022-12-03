@@ -2920,6 +2920,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 291617131957121066, guid: 553b04c6d2fa8bf4eafcefff74669a45, type: 3}
     - target: {fileID: 1244077849399134187, guid: de6d3f1a119030443851514f6b00438a, type: 3}
+      propertyPath: TaskDataListItemView
+      value: 
+      objectReference: {fileID: 7819903169011382665, guid: 2f80dee7bb424234ea8645366f2f86c5, type: 3}
+    - target: {fileID: 1244077849399134187, guid: de6d3f1a119030443851514f6b00438a, type: 3}
       propertyPath: MessageDataListItemView
       value: 
       objectReference: {fileID: 7486744971134653159, guid: 461d1512a237c3944a994f912da912db, type: 3}
@@ -3984,6 +3988,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1768593912}
     m_Modifications:
+    - target: {fileID: 3527839572220494607, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527839572220494607, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527839572220494607, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527839572220494607, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3580745264573186804, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3580745264573186804, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7908072926437088388, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4068,12 +4096,47 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7908072926437088389, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
+      propertyPath: taskDataListView
+      value: 
+      objectReference: {fileID: 7908072928402232149}
     - target: {fileID: 7908072926437088411, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
       propertyPath: m_Name
       value: Collector Information Popup
       objectReference: {fileID: 0}
+    - target: {fileID: 7908072927874448686, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908072928324116639, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
+      propertyPath: m_Name
+      value: Task List View
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788952425178846260, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788952425178846260, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788952425178846260, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
+--- !u!114 &7908072928402232149 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1305792002672210118, guid: b430e1576f3e3b24295bb20df591e985, type: 3}
+  m_PrefabInstance: {fileID: 7908072928402232148}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2739af26424107b5c5178642c0d4f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8209036552666598434
 PrefabInstance:
   m_ObjectHideFlags: 0
