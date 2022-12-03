@@ -65,8 +65,14 @@ public class DatabaseLoader : PersistentSingleton<DatabaseLoader>
 
     public List<TaskData> LoadAllTaskData()
     {
-        return new List<TaskData>() { };
-    }
+        List<TaskData> taskDataList = new();
+
+        for (int i = 0; i < 100; i++)
+        {
+            taskDataList.Add(MockDataGenerator.Instance.GetMockTaskData());
+        }
+
+        return taskDataList;    }
 
     public List<MaintenanceLogData> LoadAllMaintenanceLogData()
     {

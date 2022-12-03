@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,6 +10,10 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
     private static readonly Vector2 STAFF_COORDINATE_MAX = new Vector2(10.793629f, 106.693502f);
 
     private List<string> staffIds = new();
+    private List<string> mcpIds = new();
+    private List<string> vehicleIds = new();
+    private List<string> messageIds = new();
+    private List<string> taskIds = new();
 
     private DateTime GetRandomDateTime()
     {
@@ -69,6 +74,11 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
         return staffIds[Random.Range(0, staffIds.Count)];
     }
 
+    private string GetRandomMCPID()
+    {
+        return mcpIds[Random.Range(0, mcpIds.Count)];
+    }
+
     private string GetRandomMessage()
     {
         string message = "";
@@ -95,6 +105,19 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
         return message[0] + message[1..].ToLower() + ".";
     }
 
+    public string GetRandomAddress()
+    {
+        string address = "";
+        var randomLength = Random.Range(10, 20);
+
+        for (int i = 0; i < randomLength; i++)
+        {
+            address += GetRandomLetter(false);
+        }
+
+        return GetRandomLetter(true) + address;
+    }
+
     public StaffData GetMockStaffData()
     {
         staffIds.Add(Random.Range(0, 1000).ToString());
@@ -107,24 +130,35 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
 
     public MCPData GetMockMCPData()
     {
-        return new MCPData("[address]", Random.Range(0f, 1f),
+        mcpIds.Add(Random.Range(0, 1000).ToString());
+        return new MCPData(mcpIds[^1], GetRandomAddress(), Random.Range(0f, 1f),
             Random.Range(STAFF_COORDINATE_MIN.x, STAFF_COORDINATE_MAX.x),
             Random.Range(STAFF_COORDINATE_MIN.y, STAFF_COORDINATE_MAX.y));
     }
 
     public VehicleData GetMockVehicleData()
     {
-        return new VehicleData(GetRandomLicensePlate(), GetRandomVehicleCategory(), GetRandomModel(),
-            Random.Range(1000f, 10000f), Random.Range(1000f, 10000f), Random.Range(1000f, 10000f));
+        vehicleIds.Add(Random.Range(0, 1000).ToString());
+        return new VehicleData(vehicleIds[^1], GetRandomLicensePlate(), GetRandomVehicleCategory(),
+            GetRandomModel(), Random.Range(1000f, 10000f), Random.Range(1000f, 10000f),
+            Random.Range(1000f, 10000f));
     }
 
     public MessageData GetMockMessageData()
     {
+        messageIds.Add(Random.Range(0, 1000).ToString());
         if (Random.Range(0, 2) == 0)
-            return new MessageData(AccountManager.Instance.AccountID, GetRandomStaffID(),
+            return new MessageData(messageIds[^1], AccountManager.Instance.AccountID, GetRandomStaffID(),
                 GetRandomDateTime(), GetRandomMessage());
         else
-            return new MessageData(GetRandomStaffID(), AccountManager.Instance.AccountID,
+            return new MessageData(messageIds[^1], GetRandomStaffID(), AccountManager.Instance.AccountID,
                 GetRandomDateTime(), GetRandomMessage());
+    }
+
+    public TaskData GetMockTaskData()
+    {
+        taskIds.Add(Random.Range(0, 1000).ToString());
+        return new TaskData(taskIds[^1], GetRandomStaffID(), GetRandomMCPID(), DateTime.Today, false,
+            false);
     }
 }
