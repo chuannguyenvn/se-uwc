@@ -32,18 +32,21 @@ public class SettingListView : ListView
         interfaceHeader.Init(settingTitle, rectTransform.rect.width - HORIZONTAL_MARGIN * 2);
 
         AddItem(interfaceHeader);
+        
 
         settingTitle = LanguageTranslation.GetText(LanguageTranslation.TextType.Setting_Dark_Theme,
             LanguageTranslation.ReturnTextOption.Sentence_case);
         var darkThemeOption = Instantiate(itemPrefab).GetComponent<SettingListItemView>();
-        darkThemeOption.Init(settingTitle + ": ", () => SM.DarkThemeOption,
+        darkThemeOption.Init(settingTitle + ":", () => SM.DarkThemeOption,
             e => SM.DarkThemeOption = (ToggleOption)e, typeof(ToggleOption));
 
         AddItem(darkThemeOption);
 
 
+        settingTitle = LanguageTranslation.GetText(LanguageTranslation.TextType.Setting_Colorblind_Mode,
+            LanguageTranslation.ReturnTextOption.Sentence_case);
         var colorblindModeOption = Instantiate(itemPrefab).GetComponent<SettingListItemView>();
-        colorblindModeOption.Init("Colorblind mode:", () => SM.ColorblindOption,
+        colorblindModeOption.Init(settingTitle + ":", () => SM.ColorblindOption,
             e => SM.ColorblindOption = (ToggleOption)e, typeof(ToggleOption));
 
         AddItem(colorblindModeOption);

@@ -6,14 +6,22 @@ public static class LanguageTranslation
 {
     public enum TextType
     {
-        Role_Collector,
-        Role_Janitor,
+        Staff_Role_Collector,
+        Staff_Role_Janitor,
+        Staff_Currently_At,
+        Staff_Is_Driving,
+
         Major_Collecting_Point,
         MCP_Not_Full,
         MCP_Almost_Full,
         MCP_Fully_Loaded,
-        Staff_Currently_At,
-        
+
+        Vehicle_Vehicle,
+        Vehicle_Model,
+        Vehicle_Weight,
+        Vehicle_Capacity,
+        Vehicle_Fuel_Consumption,
+
         Setting_On,
         Setting_Off,
         Setting_English,
@@ -40,13 +48,19 @@ public static class LanguageTranslation
             LanguageOption.English,
             new Dictionary<TextType, string>
             {
-                {TextType.Role_Collector, "collector"},
-                {TextType.Role_Janitor, "janitor"},
+                {TextType.Staff_Role_Collector, "collector"},
+                {TextType.Staff_Role_Janitor, "janitor"},
+                {TextType.Staff_Currently_At, "currently at"},
+                {TextType.Staff_Is_Driving, "is driving"},
                 {TextType.Major_Collecting_Point, "major collecting point"},
                 {TextType.MCP_Not_Full, "not full"},
                 {TextType.MCP_Almost_Full, "almost full"},
                 {TextType.MCP_Fully_Loaded, "fully loaded"},
-                {TextType.Staff_Currently_At, "currently at"},
+                {TextType.Vehicle_Vehicle, "vehicle"},
+                {TextType.Vehicle_Model, "model"},
+                {TextType.Vehicle_Weight, "weight"},
+                {TextType.Vehicle_Capacity, "capacity"},
+                {TextType.Vehicle_Fuel_Consumption, "fuel consumption"},
                 {TextType.Setting_On, "on"},
                 {TextType.Setting_Off, "off"},
                 {TextType.Setting_English, "english"},
@@ -71,8 +85,8 @@ public static class LanguageTranslation
             LanguageOption.Vietnamese,
             new Dictionary<TextType, string>
             {
-                {TextType.Role_Collector, "người thu gom"},
-                {TextType.Role_Janitor, "lao công"},
+                {TextType.Staff_Role_Collector, "người thu gom"},
+                {TextType.Staff_Role_Janitor, "lao công"},
                 {TextType.Major_Collecting_Point, "điểm thu gom chính"},
             }
         }
