@@ -1,4 +1,4 @@
-const MaintainLog = require('../models/maintainlog');
+const MaintainLog = require('../models/maintainLog');
 
 async function addMaintainLog(req, res) {
     const log = req.body;
