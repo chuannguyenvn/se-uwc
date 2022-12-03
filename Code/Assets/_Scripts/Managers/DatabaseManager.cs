@@ -64,4 +64,16 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
 
         InboxesByID[otherPersonId].Messages.Add(messageData);
     }
+
+    public MCPData GetMCPDataByID(string mcpId)
+    {
+        var index = AllMCPs.FindIndex(mcp => mcp.ID == mcpId);
+        if (index == -1) throw new Exception("MCP ID not found.");
+        return AllMCPs[index];
+    }
+
+    public List<TaskData> FilterStaffsTasksByDate(StaffData staffData, DateTime dateTime)
+    {
+        return AllTasks.FindAll(task => task.Timestamp.Date == dateTime.Date);
+    }
 }
