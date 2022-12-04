@@ -26,20 +26,28 @@ async function addMCP(mcp) {
 }
 
 async function getMCPById(id) {
-    return await query(conn, "SELECT * FROM mcp WHERE ?", { id });
+    const res = await query(conn, "SELECT * FROM mcp WHERE ?", { id });
+    return res.length ? res[0] : null;
 }
 
 async function getMCPByCoordinate(latitude, longitude) {
-    return await query(conn, "SELECT * FROM mcp WHERE ?", { longitude, latitude });
+    const res = await query(conn, "SELECT * FROM mcp WHERE longitude = ? AND latitude = ?", [longitude, latitude]);
+    return res.length ? res[0] : null;
 }
 
 async function updateMCPCurrent(id, current) {
     await query(conn, "UPDATE mcpstatus SET current = ? WHERE id = ?", [current, id]);
 }
 
+async function getMCPCurrent(id) {
+    const res = await query(conn, "SELECT * FROM mcpstatus WHERE ?", { id });
+    return res.length ? res[0] : null;
+}
+
 module.exports = {
     addMCP,
     getMCPById,
     getMCPByCoordinate,
-    updateMCPCurrent
+    updateMCPCurrent,
+    getMCPCurrent
 }

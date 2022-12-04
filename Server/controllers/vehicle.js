@@ -14,7 +14,7 @@ async function addVehicle(req, res) {
 async function getVehicleById(req, res) {
     try {
         const result = await Vehicle.getVehicleById(req.params.id);
-        if(result.length == 0) res.status(404).send("Vehicle not found");
+        if(!result) res.status(404).send("Vehicle not found");
         res.send(result);
     } catch(err) {
         console.log(err);

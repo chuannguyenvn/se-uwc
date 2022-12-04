@@ -14,7 +14,7 @@ async function addTask(req, res) {
 async function getTaskById(req, res) {
     try {
         const result = await Task.getTaskById(req.params.id);
-        if(result.length == 0) res.status(404).send("Task not found");
+        if(!result) res.status(404).send("Task not found");
         res.send(result);
     } catch(err) {
         console.log(err);

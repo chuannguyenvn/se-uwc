@@ -1,5 +1,6 @@
 const conn = require('../db/conn');
 const query = require('../db/query');
+const crypto = require('crypto');
 
 async function addTask(task) {
     // generate id and check for duplication
@@ -10,37 +11,23 @@ async function addTask(task) {
         findDuplicate = await query(conn, "SELECT id FROM employee WHERE ?", { id });
     }
     
-    if(task.createdAt) {
-        const q = "INSERT INTO task(id, employee_id, mcp_id, vehicle_id, createdAt, content, checkin, checkout) VALUES (?,?,?,?,?,?,?,?)";
-        const params = [
-            id,
-            task.employee_id,
-            task.mcp_id,
-            task.vehicle_id,
-            task.createdAt,
-            task.content,
-            task.checkin,
-            task.checkout
-        ];
-        await query(conn, q, params);
-    }
-    else {
-        const q = "INSERT INTO task(id, employee_id, mcp_id, vehicle_id, content, checkin, checkout) VALUES (?,?,?,?,?,?,?)";
-        const params = [
-            id,
-            task.employee_id,
-            task.mcp_id,
-            task.vehicle_id,
-            task.content,
-            task.checkin,
-            task.checkout
-        ];
-        await query(conn, q, params);
-    }
+    const q = "INSERT INTO task(id, employee_id, mcp_id, vehicle_id, timeToDo, content, checkin, checkout) VALUES (?,?,?,?,?,?,?,?)";
+    const params = [
+        id,
+        task.employee_id,
+        task.mcp_id,
+        task.vehicle_id,
+        task.timeToDo,
+        task.content,
+        task.checkin,
+        task.checkout
+    ];
+    await query(conn, q, params);
 }
 
 async function getTaskById(id) {
-    return await query(conn, "SELECT * FROM task WHERE ?", { id });
+    const result = await query(conn, "SELECT * FROM task WHERE ?", { id });
+    return result.length ? result[0] : null;
 }
 
 async function getTaskByEmployee(id) {

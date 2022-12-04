@@ -1,5 +1,6 @@
 const conn = require('../db/conn');
 const query = require('../db/query');
+const crypto = require('crypto');
 
 async function addMaintainLog(maintainLog) {
     // generate id and check for duplication
@@ -34,7 +35,8 @@ async function addMaintainLog(maintainLog) {
 }
 
 async function getMaintainLogById(id) {
-    return await query(conn, "SELECT * FROM maintainLog WHERE ?", { id });
+    const res = await query(conn, "SELECT * FROM maintainLog WHERE ?", { id });
+    return res.length ? res[0] : null;
 }
 
 async function getMaintainLogByVehicle(id) {
