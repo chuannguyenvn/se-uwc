@@ -4,7 +4,8 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class InformationPanel<T> : Singleton<InformationPanel<T>> where T : Data
+public abstract class InformationPanel<T> : Singleton<InformationPanel<T>>, IShowHideAnimatable
+    where T : Data
 {
     [SerializeField] protected Button backButton;
     private float initialX;
@@ -24,11 +25,11 @@ public abstract class InformationPanel<T> : Singleton<InformationPanel<T>> where
     }
 
     protected abstract void SetData(T data);
-    
+
     public async void Show(T data)
     {
         gameObject.SetActive(true);
-        
+
         await AnimateHide();
         SetData(data);
         await AnimateShow();
@@ -37,18 +38,18 @@ public abstract class InformationPanel<T> : Singleton<InformationPanel<T>> where
     public async void Hide()
     {
         await AnimateHide();
-        
+
         gameObject.SetActive(false);
     }
 
-    private Task AnimateShow()
+    public Task AnimateShow()
     {
         return gameObject.transform.DOMoveX(initialX, VisualManager.Instance.ListAndPanelTime)
             .SetEase(Ease.OutCubic)
             .AsyncWaitForCompletion();
     }
 
-    private Task AnimateHide()
+    public Task AnimateHide()
     {
         return gameObject.transform.DOMoveX(initialX + 30f, VisualManager.Instance.ListAndPanelTime)
             .SetEase(Ease.InCubic)
