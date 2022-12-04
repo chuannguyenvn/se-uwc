@@ -10,12 +10,7 @@ public class SettingListView : ListView
 
     private RectTransform rectTransform;
     private List<ITMPDeferrable> deferrables = new();
-
-    protected override void Awake()
-    {
-        base.Awake();
-        ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.UI);
-    }
+    
 
     protected override void Init()
     {
