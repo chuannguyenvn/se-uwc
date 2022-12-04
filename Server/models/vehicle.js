@@ -14,7 +14,8 @@ async function addVehicle(vehicle) {
 }
 
 async function getVehicleById(id) {
-    return await query(conn, "SELECT * FROM vehicle WHERE ?", { id });
+    const result = await query(conn, "SELECT * FROM vehicle WHERE ?", { id });
+    return result.length ? result[0] : null;
 }
 
 module.exports = {

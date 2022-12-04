@@ -29,6 +29,12 @@ Request type and format for the api:
     "password": "password"
   }
   ```
+- Log out: DELETE `/api/auth/logout`
+  ```json
+  {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBvZW0ubTE5NzYiLCJyb2xlIjoiQ29sbGVjdG9yIiwiaWF0IjoxNjcwMTU4NjAwfQ.tay1TeFpxdwsImSeKN_gB-UN5aiUVmwMyI-XCc5LiBI"
+  }
+  ```
 
 ### Map
 
@@ -59,20 +65,8 @@ Request type and format for the api:
   }
   ```
 - Get info of an MCP by MCP_id: GET `/api/mcp/:id` (Ex: GET `/api/mcp/1bde7f5293`)
-- Get info of MCP by coordinate: POST `/api/mcp/`
-  ```json
-  {
-    "latitude": 10.7660997698857,
-    "longitude": 106.665916767231
-  }
-  ```
-- Update current state of an MCP: PUT `/api/mcp/updateCurrent`
-  ```json
-  {
-    "id": "1bde7f5293",
-    "current": 68
-  }
-  ```
+- Get current state of MCP: GET `/api/mcp/current/:id` (Ex: GET `/api/mcp/current/1bde7f5293`)
+- Get current state of MCP (in %): GET `/api/mcp/current/percentage/:id` (Ex: GET `/api/mcp/current/percentage/1bde7f5293`)
 
 ### Vehicle
 
@@ -87,7 +81,7 @@ Request type and format for the api:
     "fuel_consumption": 3
   }
   ```
-- Get info of vehicle by id: GET `/api/vehicle/:id` (Ex: GET `/api/vehicle/51F-627.24`)
+- Get info of vehicle by id: GET `/api/vehicle/info/:id` (Ex: GET `/api/vehicle/info/51F-627.24`)
 
 ### Maintenance log
 
@@ -100,7 +94,7 @@ Request type and format for the api:
     "cost": 2000
   }
   ```
-- Get detailed info of a log by id: GET `/api/maintainLog/:id` (Ex: GET `/api/maintainLog/edb45a238f`)
+- Get detailed info of a log by id: GET `/api/maintainLog/info/:id` (Ex: GET `/api/maintainLog/info/edb45a238f`)
 - Get log of a vehicle by its id: GET `/api/maintainLog/vehicle/:id` (Ex: GET `/api/maintainLog/vehicle/51F-627.24`)
 
 ### Task
@@ -111,14 +105,14 @@ Request type and format for the api:
     "employee_id": "1a2b3c4d5e",
     "mcp_id": "1bde7f5293",
     "vehicle_id": "51F-627.24",
-    "createdAt": "2022/12/04 08:47:45 (field này có cũng được, ko có thì DB tự động thêm ở thời điểm insert vào)",
+    "timeToDo": "2022/12/04 08:47:45",
     "content": "Collect the trash",
-    "checkin": true,
-    "checkout": false
+    "checkin": 1,
+    "checkout": 0
   }
   ```
-- Get info of a task: GET `/api/task/:taskId` (Ex: GET `/api/task/5d425ea987aeb09`)
-- Get info of tasks of an employee: GET `/api/task/employee/:id` (Ex: GET `/api/task/employee/1a2b3c4d5e`)
+- Get info of a task: GET `/api/task/info/:taskId` (Ex: GET `/api/task/info/5d425ea987aeb09`)
+- Get info of tasks of an employee: GET `/api/task/info/employee/:id` (Ex: GET `/api/task/info/employee/1a2b3c4d5e`)
 - Delete a task from DB: DELETE `/api/task/remove/:taskId`(Ex: DELETE `/api/task/remove/5d425ea987aeb09`)
 
 ### Setting
@@ -144,8 +138,8 @@ Request type and format for the api:
     "auto_send_crash_log": 0
   }
   ```
-- Get setting info of an employee: GET `/api/setting/:employeeId` (Ex: GET `/api/setting/1a2b3c4d5e`)
-- Update setting: PUT `/api/setting/:employeeId` (Ex: PUT `/api/setting/1a2b3c4d5e`)
+- Get setting info of an employee: GET `/api/setting/config/:employeeId` (Ex: GET `/api/setting/config/1a2b3c4d5e`)
+- Update setting: PUT `/api/setting/config/:employeeId` (Ex: PUT `/api/setting/config/1a2b3c4d5e`)
   - Sửa cái gì thì để field đó trong json payload thôi
     ```json
     {
@@ -168,7 +162,8 @@ Request type and format for the api:
 - Get all message of 2 accounts: POST `/api/message`
   ```json
   {
-    "sender_id": "1a2b3c4d5e",
-    "receiver_id": "3d452b69a7"
+    "user1": "1a2b3c4d5e",
+    "user2": "3d452b69a7"
   }
   ```
+  - user1, user2 để theo thứ tự nào cũng được

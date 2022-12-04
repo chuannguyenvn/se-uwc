@@ -14,7 +14,7 @@ async function addMaintainLog(req, res) {
 async function getMaintainLogById(req, res) {
     try {
         const result = await MaintainLog.getMaintainLogById(req.params.id);
-        if(result.length == 0) res.status(404).send("Log not found");
+        if(!result) res.status(404).send("Log not found");
         res.send(result);
     } catch(err) {
         console.log(err);
@@ -25,7 +25,7 @@ async function getMaintainLogById(req, res) {
 async function getMaintainLogByVehicle(req, res) {
     try {
         const result = await MaintainLog.getMaintainLogByVehicle(req.params.id);
-        if(result.length == 0) res.status(404).send("Vehicle's log not found");
+        if(!result) res.status(404).send("Vehicle's log not found");
         res.send(result);
     } catch(err) {
         console.log(err);

@@ -3,6 +3,7 @@ require('dotenv').config();
 const User = require('../models/user');
 const RefreshToken = require('../models/refreshToken');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 function generateAccessToken(user) {
     // generate JWT from given user
@@ -26,6 +27,7 @@ async function createAccount(req, res) {
 async function login(req, res) {
     // search for user in db
     const user = await User.getEmployeeByUsername(req.body.username);
+    if(!user) res.status(404).send("User not found");
 
     try{
         // check for correct password

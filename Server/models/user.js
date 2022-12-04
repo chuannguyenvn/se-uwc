@@ -35,15 +35,17 @@ async function createAccount(user) {
 }
 
 async function getEmployeeById(id) {
-    const q = "SELECT id, name, gender, dob, address, phone, nationality, hired_on, role, salary, username FROM employee WHERE ?";
+    const q = "SELECT * FROM employee WHERE ?";
     const params = { id: id };
-    return await query(conn, q, params);
+    const result = await query(conn, q, params);
+    return result.length ? result[0] : null;
 }
 
 async function getEmployeeByUsername(username) {
-    const q = "SELECT id, name, gender, dob, address, phone, nationality, hired_on, role, salary, username FROM employee WHERE ?";
+    const q = "SELECT * FROM employee WHERE ?";
     const params = { username: username };
-    return await query(conn, q, params);
+    const result = await query(conn, q, params);
+    return result.length ? result[0] : null;
 }
 
 module.exports = {

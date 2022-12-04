@@ -14,7 +14,7 @@ async function addSetting(req, res) {
 async function getSettingByUser(req, res) {
     try{
         const result = await Setting.getSettingByUser(req.params.id);
-        if(result.length == 0) res.send("Setting not found");
+        if(!result) res.send("Setting not found");
         res.send(result);
     } catch(err) {
         console.log(err);
@@ -25,7 +25,7 @@ async function getSettingByUser(req, res) {
 async function updateSetting(req, res) {
     try {
         const id = req.params.id;
-        const update = req.body.update;
+        const update = req.body;
         await Setting.updateSetting(id, update);
         res.send("Setting updated")
     } catch(err) {

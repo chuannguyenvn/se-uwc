@@ -25,11 +25,12 @@ async function addSetting(setting) {
 }
 
 async function getSettingByUser(id) {
-    return await query(conn, "SELECT * FROM setting WHERE ?", { user_id: id });
+    const result = await query(conn, "SELECT * FROM setting WHERE ?", { user_id: id });
+    return result.length ? result[0] : null;
 }
 
 async function updateSetting(id, update) {
-    return await query(conn, `UPDATE setting SET ? WHERE user_id = ${id}`, update);
+    return await query(conn, `UPDATE setting SET ? WHERE user_id = \'${id}\'`, update);
 }
 
 module.exports = {

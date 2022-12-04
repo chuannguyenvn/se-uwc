@@ -2,8 +2,8 @@ const router = require('express').Router();
 const taskController = require('../controllers/task');
 
 router.post('/add', taskController.addTask);
-router.get('/:id', taskController.getTaskById);
-router.get('/employee/:id', taskController.getTaskByEmployee);
+router.get('/info/:id', taskController.getTaskById);
+router.get('/info/employee/:id', taskController.getTaskByEmployee);
 router.delete('/remove/:id', taskController.removeTaskById);
 
 module.exports = router;
