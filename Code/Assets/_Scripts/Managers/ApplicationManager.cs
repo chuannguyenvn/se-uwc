@@ -22,10 +22,15 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>
 
     private void Start()
     {
+        MapWrapper.Instance.abstractMap.OnInitialized += Init;
+    }
+
+    private void Init()
+    {
         InitEventFlow?.Invoke(InitState.MockDataGeneration);
         InitEventFlow?.Invoke(InitState.Data);
         InitEventFlow?.Invoke(InitState.Map);
-        InitEventFlow?.Invoke(InitState.UI);
+        InitEventFlow?.Invoke(InitState.UI);  
     }
 
     private void Terminate()

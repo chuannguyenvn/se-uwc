@@ -13,7 +13,7 @@ public class MapWrapper : Singleton<MapWrapper>, IBeginDragHandler, IDragHandler
 {
     public event Action MapUpdated;
 
-    [SerializeField] private AbstractMap abstractMap;
+    [SerializeField] public AbstractMap abstractMap;
 
     private Vector2 prevMousePos;
     private Vector2d start;

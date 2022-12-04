@@ -6,8 +6,8 @@ public abstract class MapEntity : MonoBehaviour
 {
     private void Awake()
     {
-        ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.Map);
-        ApplicationManager.Instance.AddTerminateWork(Terminate, ApplicationManager.TerminateState.Map);
+        ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.UI);
+        ApplicationManager.Instance.AddTerminateWork(Terminate, ApplicationManager.TerminateState.UI);
     }
 
     protected virtual void Init()
