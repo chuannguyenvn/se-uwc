@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,11 @@ public class TaskDataListView : DataListView<TaskData>
     
     private List<TaskData> taskData;
 
+    public void ShowTodayTasksOf(StaffData staffData)
+    {
+        Init(DatabaseManager.Instance.FilterStaffsTasksByDate(staffData, DateTime.Today));
+    }
+    
     public void Init(List<TaskData> taskData)
     {
         base.Init();

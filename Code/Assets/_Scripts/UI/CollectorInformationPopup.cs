@@ -43,7 +43,7 @@ public class CollectorInformationPopup : MapEntity
 
         transform.SetSiblingIndex(transform.parent.childCount - 1);
 
-        taskDataListView.Init(DatabaseManager.Instance.FilterStaffsTasksByDate(data, DateTime.Today));
+        taskDataListView.ShowTodayTasksOf(data);
 
         MapUpdatedHandler();
     }
