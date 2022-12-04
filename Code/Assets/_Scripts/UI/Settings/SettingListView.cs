@@ -54,8 +54,8 @@ public class SettingListView : ListView
         settingTitle = LanguageTranslation.GetText(LanguageTranslation.TextType.Setting_Reduced_Motion,
             LanguageTranslation.ReturnTextOption.Sentence_case);
         var reducedMotionOption = Instantiate(itemPrefab).GetComponent<SettingListItemView>();
-        reducedMotionOption.Init(settingTitle + ":", () => SM.ReducedMotion,
-            e => SM.ReducedMotion = (ToggleOption)e, typeof(ToggleOption));
+        reducedMotionOption.Init(settingTitle + ":", () => SM.ReducedMotionOption,
+            e => SM.ReducedMotionOption = (ToggleOption)e, typeof(ToggleOption));
 
         AddItem(reducedMotionOption);
 

@@ -1,16 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SettingManager : PersistentSingleton<SettingManager>
 {
+
     // @formatter:off
     
     [Header("Interface Settings")]
     public ThemeOption ThemeOption;
     public ToggleOption DarkThemeOption;
     public ToggleOption ColorblindOption;
-    public ToggleOption ReducedMotion;
+    public ToggleOption ReducedMotionOption;
     public LanguageOption LanguageOption;
 
     [Header("Notification Settings")]
