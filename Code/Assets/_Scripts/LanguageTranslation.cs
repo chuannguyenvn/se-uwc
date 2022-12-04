@@ -87,7 +87,6 @@ public static class LanguageTranslation
             {
                 {TextType.Staff_Role_Collector, "người thu gom"},
                 {TextType.Staff_Role_Janitor, "lao công"},
-                {TextType.Major_Collecting_Point, "điểm thu gom chính"},
                 {TextType.Major_Collecting_Point, "điểm tập trung rác"},
                 {TextType.MCP_Not_Full, "chưa đầy"},
                 {TextType.MCP_Almost_Full, "sắp đầy"},
