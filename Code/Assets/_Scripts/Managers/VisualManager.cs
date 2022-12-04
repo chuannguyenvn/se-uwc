@@ -19,6 +19,9 @@ public class VisualManager : PersistentSingleton<VisualManager>
     public Color MCPNotFullColor;
     public Color MCPAlmostFullColor;
     public Color MCPFullyLoadedColor;
+    
+    [Header("Animations")]
+    public float ListAndPanelTime;
 
     // @formatter:on
 

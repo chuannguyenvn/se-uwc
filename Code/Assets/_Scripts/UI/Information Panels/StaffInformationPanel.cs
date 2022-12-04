@@ -9,10 +9,9 @@ public class StaffInformationPanel : InformationPanel<StaffData>
     [SerializeField] private TMP_Text genderAndAge;
     [SerializeField] private TMP_Text address;
     [SerializeField] private TMP_Text phoneNumber;
-    public override void Show(StaffData data)
+
+    protected override void SetData(StaffData data)
     {
-        base.Show(data);
-        
         staffName.text = data.Name;
         role.text = data.Role.ToString();
         genderAndAge.text = data.Gender + ", " + (DateTime.Today - data.DateOfBirth).Days / 365;

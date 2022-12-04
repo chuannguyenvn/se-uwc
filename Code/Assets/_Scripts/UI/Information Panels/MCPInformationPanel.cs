@@ -11,16 +11,13 @@ public class MCPInformationPanel : InformationPanel<MCPData>
     [SerializeField] private TMP_Text status;
     [SerializeField] private TMP_Text capacityPercentage;
 
-    public override void Show(MCPData data)
+    protected override void SetData(MCPData data)
     {
-        base.Show(data);
-
         address.text = data.Address;
         capacityBar.transform.localScale = new Vector3(data.Capacity, 1, 1);
         status.text = VisualManager.Instance.GetMCPStatusText(data.Capacity);
         capacityPercentage.text = Mathf.CeilToInt(data.Capacity * 100) + "%";
 
         var mcpColor = VisualManager.Instance.GetMCPColor(data.Capacity);
-        capacityBar.color = capacityTextBackground.color = mcpColor;
-    }
+        capacityBar.color = capacityTextBackground.color = mcpColor;    }
 }

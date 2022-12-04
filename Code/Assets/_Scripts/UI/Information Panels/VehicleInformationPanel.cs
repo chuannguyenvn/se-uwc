@@ -10,10 +10,8 @@ public class VehicleInformationPanel : InformationPanel<VehicleData>
     [SerializeField] private TMP_Text capacity;
     [SerializeField] private TMP_Text fuelConsumption;
 
-    public override void Show(VehicleData data)
+    protected override void SetData(VehicleData data)
     {
-        base.Show(data);
-
         vehicleCategory.text = data.Category.ToString();
         plate.text = data.LicensePlate;
         model.text = "Model: " + data.Model;
