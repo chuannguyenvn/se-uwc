@@ -7,8 +7,7 @@ public class SidebarButton : MonoBehaviour
     [SerializeField] private Button button;
     [SerializeField] private Image buttonIcon;
     [SerializeField] private ViewType viewType;
-    public ViewType ViewType => viewType;
-
+    
     private void Awake()
     {
         ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.UI);
@@ -25,9 +24,9 @@ public class SidebarButton : MonoBehaviour
         PrimarySidebar.Instance.ViewChanged -= ViewChangedHandler;
     }
 
-    private void ViewChangedHandler(ViewType viewType)
+    private void ViewChangedHandler(ViewType changeTo)
     {
-        if (this.viewType == viewType)
+        if (viewType == changeTo)
         {
             buttonIcon.color = buttonIcon.color.SetAlpha(1f);
         }

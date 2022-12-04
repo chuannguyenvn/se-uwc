@@ -25,8 +25,6 @@ public class InboxListItemView : DataListItemView<Inbox>
 
         if (lastVisibleCharIndex > 0)
         {
-            Debug.Log(secondaryText_TMP.text);
-            Debug.Log(lastVisibleCharIndex + " vs " + latestMessage.Content.Length);
             SecondaryText = latestMessage.Content[..lastVisibleCharIndex] + "...";
             UpdateView();
         }

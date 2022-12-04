@@ -6,6 +6,8 @@ public class InboxListView : DataListView<Inbox>
 
     protected override void Init()
     {
+        base.Init();
+
         prefab = ResourceManager.Instance.InboxListItemView;
 
         var inboxesByID = DatabaseManager.Instance.InboxesByID;

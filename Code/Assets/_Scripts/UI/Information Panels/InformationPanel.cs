@@ -56,7 +56,7 @@ public abstract class InformationPanel<T> : Singleton<InformationPanel<T>>, ISho
             .AsyncWaitForCompletion();
     }
 
-    private void ViewChangedHandler(ViewType viewType)
+    private void ViewChangedHandler(ViewType changeTo)
     {
         Hide();
     }

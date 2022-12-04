@@ -1,40 +1,77 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class ViewGroup : MonoBehaviour
+public class ViewGroup : MonoBehaviour, IShowHideAnimatable
 {
     [SerializeField] private ViewType viewType;
 
+    [SerializeField] private GameObject listView;
+    [SerializeField] private GameObject informationPanel;
+
+    private List<IShowHideAnimatable> animatables = new();
+
     private void Awake()
     {
-        ApplicationManager.Instance.AddInitWork(
-            () => PrimarySidebar.Instance.ViewChanged += ViewChangedHandler,
-            ApplicationManager.InitState.Map);
+        ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.UI);
+        ApplicationManager.Instance.AddTerminateWork(Terminate, ApplicationManager.TerminateState.UI);
     }
 
-    private void OnDestroy()
+    private void Init()
+    {
+        PrimarySidebar.Instance.ViewChanged += ViewChangedHandler;
+
+        if (listView != null)
+        {
+            animatables.Add(listView.GetComponent<IShowHideAnimatable>());
+        }
+
+        if (informationPanel != null)
+        {
+            animatables.Add(informationPanel.GetComponent<IShowHideAnimatable>());
+        }
+
+        AnimateHide();
+    }
+
+    private void Terminate()
     {
         PrimarySidebar.Instance.ViewChanged -= ViewChangedHandler;
     }
 
-    private void ViewChangedHandler(ViewType viewType)
+    private void ViewChangedHandler(ViewType changeTo)
     {
-        if (this.viewType == viewType)
+        if (viewType == changeTo)
         {
-            Show();
+            PrimarySidebar.Instance.ShowAnimation = AnimateShow();
         }
-        else
+        else if (viewType == PrimarySidebar.Instance.CurrentViewType)
         {
-            Hide();
+            PrimarySidebar.Instance.HideAnimation = AnimateHide();
         }
     }
 
-    private void Show()
+    public Task AnimateShow()
     {
-        gameObject.SetActive(true);
+        List<Task> showTasks = new();
+
+        foreach (var animatable in animatables)
+        {
+            showTasks.Add(animatable.AnimateShow());
+        }
+
+        return Task.WhenAll(showTasks);
     }
 
-    private void Hide()
+    public Task AnimateHide()
     {
-        gameObject.SetActive(false);
+        List<Task> hideTasks = new();
+
+        foreach (var animatable in animatables)
+        {
+            hideTasks.Add(animatable.AnimateHide());
+        }
+
+        return Task.WhenAll(hideTasks);
     }
 }

@@ -14,6 +14,7 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>
     public enum TerminateState
     {
         Map,
+        UI,
     }
 
     public event Action<InitState> InitEventFlow;

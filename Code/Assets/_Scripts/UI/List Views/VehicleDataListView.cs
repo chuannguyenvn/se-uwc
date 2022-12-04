@@ -2,6 +2,8 @@
 {
     protected override void Init()
     {
+        base.Init();
+
         prefab = ResourceManager.Instance.VehicleDataListItemView;
 
         var allVehicles = DatabaseManager.Instance.AllVehicles;

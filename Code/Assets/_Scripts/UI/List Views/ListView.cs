@@ -1,23 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-public abstract class ListView : MonoBehaviour
+public abstract class ListView : MonoBehaviour, IShowHideAnimatable
 {
     [SerializeField] protected ScrollRect scrollRect;
     protected List<ListItemView> itemViews = new();
 
     protected static float VERTICAL_SPACING = 10f;
 
+    private float initialX;
+
     private void Awake()
     {
+        initialX = transform.position.x;
         ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.UI);
     }
 
-    protected abstract void Init();
+    protected virtual void Init()
+    {
+    }
 
     public virtual void AddItem(ListItemView itemView)
     {
@@ -47,5 +54,19 @@ public abstract class ListView : MonoBehaviour
         }
 
         itemViews = new();
+    }
+
+    public Task AnimateShow()
+    {
+        return gameObject.transform.DOMoveX(initialX, VisualManager.Instance.ListAndPanelTime)
+            .SetEase(Ease.OutCubic)
+            .AsyncWaitForCompletion();
+    }
+
+    public Task AnimateHide()
+    {
+        return gameObject.transform.DOMoveX(initialX - 30f, VisualManager.Instance.ListAndPanelTime)
+            .SetEase(Ease.InCubic)
+            .AsyncWaitForCompletion();
     }
 }

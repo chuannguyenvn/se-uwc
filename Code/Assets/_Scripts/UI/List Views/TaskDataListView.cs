@@ -12,6 +12,8 @@ public class TaskDataListView : DataListView<TaskData>
 
     public void Init(List<TaskData> taskData)
     {
+        base.Init();
+
         VERTICAL_SPACING = 0f;
 
         this.taskData = taskData;

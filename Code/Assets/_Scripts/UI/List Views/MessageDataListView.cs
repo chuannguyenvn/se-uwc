@@ -8,9 +8,11 @@ public class MessageDataListView : DataListView<MessageData>
     [SerializeField] private Image profilePicture;
     [SerializeField] private TMP_Text accountName;
     [SerializeField] private TMP_Text status;
-    
+
     protected override void Init()
     {
+        base.Init();
+
         VERTICAL_SPACING = 20f;
         prefab = ResourceManager.Instance.MessageDataListItemView;
 
