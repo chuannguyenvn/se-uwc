@@ -14,9 +14,9 @@ public abstract class ListView : MonoBehaviour, IShowHideAnimatable
 
     protected static float VERTICAL_SPACING = 10f;
 
-    private float initialX;
+    protected float initialX;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         initialX = transform.position.x;
         ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.UI);
@@ -56,14 +56,14 @@ public abstract class ListView : MonoBehaviour, IShowHideAnimatable
         itemViews = new();
     }
 
-    public Task AnimateShow()
+    public virtual Task AnimateShow()
     {
         return gameObject.transform.DOMoveX(initialX, VisualManager.Instance.ListAndPanelTime)
             .SetEase(Ease.OutCubic)
             .AsyncWaitForCompletion();
     }
 
-    public Task AnimateHide()
+    public virtual Task AnimateHide()
     {
         return gameObject.transform.DOMoveX(initialX - 30f, VisualManager.Instance.ListAndPanelTime)
             .SetEase(Ease.InCubic)

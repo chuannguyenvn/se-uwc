@@ -1,13 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class ViewGroup : MonoBehaviour, IShowHideAnimatable
+public class ViewGroup : MonoBehaviour
 {
     [SerializeField] private ViewType viewType;
-
-    [SerializeField] private GameObject listView;
-    [SerializeField] private GameObject informationPanel;
 
     private List<IShowHideAnimatable> animatables = new();
 
@@ -21,15 +19,7 @@ public class ViewGroup : MonoBehaviour, IShowHideAnimatable
     {
         PrimarySidebar.Instance.ViewChanged += ViewChangedHandler;
 
-        if (listView != null)
-        {
-            animatables.Add(listView.GetComponent<IShowHideAnimatable>());
-        }
-
-        if (informationPanel != null)
-        {
-            animatables.Add(informationPanel.GetComponent<IShowHideAnimatable>());
-        }
+        animatables = GetComponentsInChildren<IShowHideAnimatable>().ToList();
 
         AnimateHide();
     }

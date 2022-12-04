@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,5 +39,12 @@ public class MessageDataListView : DataListView<MessageData>
     {
         if (ListViewManager.Instance != null && ListViewManager.Instance.InboxListView != null)
             ListViewManager.Instance.InboxListView.InboxChosen -= InboxChosenHandler;
+    }
+    
+    public override Task AnimateHide()
+    {
+        return gameObject.transform.DOMoveX(initialX + 30f, VisualManager.Instance.ListAndPanelTime)
+            .SetEase(Ease.InCubic)
+            .AsyncWaitForCompletion();
     }
 }

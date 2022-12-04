@@ -11,8 +11,9 @@ public class SettingListView : ListView
     private RectTransform rectTransform;
     private List<ITMPDeferrable> deferrables = new();
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.UI);
     }
 
