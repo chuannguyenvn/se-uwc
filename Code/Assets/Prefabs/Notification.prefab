@@ -54,6 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notificationRectTransform: {fileID: 2502565035570980220}
+  icon: {fileID: 2502565035586865035}
   notificationType: {fileID: 2502565036352370140}
   contentText: {fileID: 2502565036574975036}
 --- !u!1 &2502565035586865033

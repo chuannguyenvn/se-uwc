@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class Notification : MonoBehaviour, IShowHideAnimatable
 {

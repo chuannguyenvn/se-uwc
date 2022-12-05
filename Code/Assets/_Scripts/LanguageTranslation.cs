@@ -6,6 +6,9 @@ public static class LanguageTranslation
 {
     public enum TextType
     {
+        Login_Unfilled_Fields,
+        Login_Failed,
+        
         Staff_Role_Collector,
         Staff_Role_Janitor,
         Staff_Currently_At,
@@ -48,6 +51,8 @@ public static class LanguageTranslation
             LanguageOption.English,
             new Dictionary<TextType, string>
             {
+                {TextType.Login_Unfilled_Fields, "some fields are not filled"},
+                {TextType.Login_Failed, "login failed"},
                 {TextType.Staff_Role_Collector, "collector"},
                 {TextType.Staff_Role_Janitor, "janitor"},
                 {TextType.Staff_Currently_At, "currently at"},

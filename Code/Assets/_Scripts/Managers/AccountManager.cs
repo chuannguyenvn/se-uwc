@@ -5,20 +5,10 @@ public class AccountManager : PersistentSingleton<AccountManager>
 {
     public string AccountID { get; private set; }
 
-    protected override void Awake()
+    private LoginToken loginToken;
+
+    public void SaveLoginCredentials(LoginToken loginToken)
     {
-        base.Awake();
-        ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.Data);
+        this.loginToken = loginToken;
     }
-    
-    // Debug //
-
-    [SerializeField] private string debugAccountID;
-
-    private void Init()
-    {
-        AccountID = debugAccountID;
-    }
-
-    // Debug //
 }
