@@ -29,6 +29,7 @@ public class MapWrapper : Singleton<MapWrapper>, IBeginDragHandler, IDragHandler
     private void Init()
     {
         abstractMap.OnUpdated += OnMapUpdated;
+        ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.Map);
     }
 
     private void Terminate()

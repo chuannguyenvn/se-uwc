@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ApplicationManager : PersistentSingleton<ApplicationManager>
@@ -19,20 +20,36 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>
         UI,
     }
 
+    private Dictionary<InitState, int> workCountByInitState = new()
+    {
+        {InitState.MockDataGeneration, 0},
+        {InitState.Data, 0},
+        {InitState.Map, 0},
+        {InitState.UI, 0},
+    };
+
     // Event used for important classes to subscribe their initialize works to.
     public event Action<InitState> InitEventFlow;
-    
+
     // Similar to InitEventFlow.
     public event Action<TerminateState> TerminateEventFlow;
 
     private void Start()
     {
+        // foreach (var state in Enum.GetValues(typeof(InitState)))
+        // {
+        //     workCountByInitState.Add((InitState)state, 0);
+        // }
+
         MapWrapper.Instance.abstractMap.OnInitialized += Init;
+        
+        Init();
     }
 
     private void Init()
     {
         InitEventFlow?.Invoke(InitState.MockDataGeneration);
+        CompleteWork(InitState.MockDataGeneration);
     }
 
     private void Terminate()
@@ -41,16 +58,23 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>
 
     public void CompleteWork(InitState state)
     {
+        Debug.Log("Com");
+        workCountByInitState[state]--;
+        if (workCountByInitState[state] > 0) return;
+
         switch (state)
         {
             case InitState.MockDataGeneration:
                 InitEventFlow?.Invoke(InitState.Data);
+                Debug.Log("Completed MockDataGeneration");
                 break;
             case InitState.Data:
                 InitEventFlow?.Invoke(InitState.Map);
+                Debug.Log("Completed Data");
                 break;
             case InitState.Map:
                 InitEventFlow?.Invoke(InitState.UI);
+                Debug.Log("Completed Map");
                 break;
             case InitState.UI:
                 break;
@@ -65,6 +89,8 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>
         {
             if (s == state) initWork?.Invoke();
         };
+
+        workCountByInitState[state]++;
     }
 
     public void AddTerminateWork(Action terminateWork, TerminateState state)

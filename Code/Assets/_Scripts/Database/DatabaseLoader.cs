@@ -19,10 +19,7 @@ public class DatabaseLoader : PersistentSingleton<DatabaseLoader>
 
     public List<MCPData> LoadAllMCPsData()
     {
-        return new List<MCPData>()
-        {
-
-        };
+        return new List<MCPData>() { };
     }
 
     public List<VehicleData> LoadAllVehicleData()
@@ -58,12 +55,9 @@ public class DatabaseLoader : PersistentSingleton<DatabaseLoader>
     {
         List<TaskData> taskDataList = new();
 
-        for (int i = 0; i < 100; i++)
-        {
-            taskDataList.Add(MockDataGenerator.Instance.GetMockTaskData());
-        }
 
-        return taskDataList;    }
+        return taskDataList;
+    }
 
     public List<MaintenanceLogData> LoadAllMaintenanceLogData()
     {

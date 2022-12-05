@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 
 public class DatabaseManager : PersistentSingleton<DatabaseManager>
@@ -22,7 +23,13 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
         AllStaffs = DatabaseLoader.Instance.LoadAllStaffData();
 
         //AllMCPs = DatabaseLoader.Instance.LoadAllMCPsData();
-        BackendCommunicator.Instance.MCP.GetAllMCP(((b, list) => { }));
+        BackendCommunicator.Instance.MCP.GetAllMCP(((b, list) =>
+        {
+            Debug.Log("a");
+            if (b == false) throw new Exception("fadfasaf");
+                AllMCPs = list;
+                ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.Data);
+        }));
         AllVehicles = DatabaseLoader.Instance.LoadAllVehicleData();
 
         InboxesByID = new();

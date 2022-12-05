@@ -26,22 +26,22 @@ public class BackendCommunicator : PersistentSingleton<BackendCommunicator>
     
     private void Start()
     {
-        void Callback(bool success, List<CollectorRouteData> list)
-        {
-            if (success)
-                foreach (var collectorRoute in list)
-                {
-                    Debug.Log(collectorRoute.Route[0]);
-                }
-            else
-            {
-                Debug.Log("fuck");
-            }
-        }
-
-        StartCoroutine(GetAllCollectorPosition(Callback));
-        StartCoroutine(AssignWaypointsToCollector("20b30c5b3c",
-            new List<Vector2d>() {new Vector2d(10.7d, 106.6),}));
+        // void Callback(bool success, List<CollectorRouteData> list)
+        // {
+        //     if (success)
+        //         foreach (var collectorRoute in list)
+        //         {
+        //             Debug.Log(collectorRoute.Route[0]);
+        //         }
+        //     else
+        //     {
+        //         Debug.Log("fuck");
+        //     }
+        // }
+        //
+        // StartCoroutine(GetAllCollectorPosition(Callback));
+        // StartCoroutine(AssignWaypointsToCollector("20b30c5b3c",
+        //     new List<Vector2d>() {new Vector2d(10.7d, 106.6),}));
     }
 
 
