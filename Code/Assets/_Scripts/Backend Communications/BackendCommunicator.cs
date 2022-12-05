@@ -24,6 +24,8 @@ public class BackendCommunicator : PersistentSingleton<BackendCommunicator>
     public MCPDatabaseCommunicator MCPDatabaseCommunicator;
     public VehicleDatabaseCommunicator VehicleDatabaseCommunicator;
 
+    public MapAPICommunicator MapAPICommunicator;
+    
     private void Start()
     {
         // void Callback(bool success, List<CollectorRouteData> list)

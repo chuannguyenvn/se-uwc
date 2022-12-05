@@ -10,7 +10,8 @@ public class MapManager : PersistentSingleton<MapManager>
     [SerializeField] private MapWrapper mapWrapper;
 
     public CollectorInformationPopup CollectorInformationPopup;
-
+    public MCPInformationPopup MCPInformationPopup;
+    
     protected override void Awake()
     {
         base.Awake();

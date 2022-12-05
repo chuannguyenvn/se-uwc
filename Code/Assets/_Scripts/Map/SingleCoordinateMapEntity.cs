@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public abstract class SingleCoordinateMapEntity<T> : MapEntity where T : Data
 {
     protected T data;
-
+    public T Data => data;
+    
     [SerializeField] protected Button button;
     protected Vector2d coordinate;
 

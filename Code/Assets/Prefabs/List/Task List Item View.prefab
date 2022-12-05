@@ -319,6 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052016ac62f943f0806c7f3bd67c214a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rectTransform: {fileID: 3169913332528689179}
   image: {fileID: 0}
   primaryText_TMP: {fileID: 4763753232102694733}
   secondaryText_TMP: {fileID: 0}

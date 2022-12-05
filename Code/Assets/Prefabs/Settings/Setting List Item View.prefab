@@ -185,4 +185,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bfe1fb62579ec4c9203eca83bb1ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rectTransform: {fileID: 8728682847349303324}
   optionText: {fileID: 5235758620851662899}

@@ -2,6 +2,8 @@ public class MCPDataListItemView : DataListItemView<MCPData>
 {
     public override void SetData(MCPData data)
     {
+        base.SetData(data);
+
         PrimaryText = data.Address;
         SecondaryText = (data.Capacity * 100).ToString("F0") + "%";
 

@@ -7,7 +7,10 @@ public class ViewGroup : MonoBehaviour
 {
     [SerializeField] private ViewType viewType;
 
-    private List<IShowHideAnimatable> animatables = new();
+    [SerializeField] private List<GameObject> showGameObjects;
+    [SerializeField] private List<GameObject> hideGameObjects;
+    private List<IShowAnimatable> showAnimatables = new();
+    private List<IHideAnimatable> hideAnimatables = new();
 
     private void Awake()
     {
@@ -19,7 +22,16 @@ public class ViewGroup : MonoBehaviour
     {
         PrimarySidebar.Instance.ViewChanged += ViewChangedHandler;
 
-        animatables = GetComponentsInChildren<IShowHideAnimatable>().ToList();
+        foreach (var showGameObject in showGameObjects)
+        {
+            showAnimatables.Add(showGameObject.GetComponent<IShowAnimatable>());
+        }
+
+        foreach (var hideGameObject in hideGameObjects)
+        {
+            hideAnimatables.Add(hideGameObject.GetComponent<IHideAnimatable>());
+        }
+
 
         AnimateHide();
     }
@@ -45,7 +57,7 @@ public class ViewGroup : MonoBehaviour
     {
         List<Task> showTasks = new();
 
-        foreach (var animatable in animatables)
+        foreach (var animatable in showAnimatables)
         {
             showTasks.Add(animatable.AnimateShow());
         }
@@ -57,7 +69,7 @@ public class ViewGroup : MonoBehaviour
     {
         List<Task> hideTasks = new();
 
-        foreach (var animatable in animatables)
+        foreach (var animatable in hideAnimatables)
         {
             hideTasks.Add(animatable.AnimateHide());
         }

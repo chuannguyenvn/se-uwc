@@ -8,13 +8,10 @@ public class SettingListView : ListView
 {
     private const float HORIZONTAL_MARGIN = 10f;
 
-    private RectTransform rectTransform;
     private List<ITMPDeferrable> deferrables = new();
-    
 
     protected override void Init()
     {
-        rectTransform = GetComponent<RectTransform>();
         var headerPrefab = ResourceManager.Instance.SettingSectionHeader;
         var itemPrefab = ResourceManager.Instance.SettingListItemView;
         var SM = SettingManager.Instance;

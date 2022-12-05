@@ -12,7 +12,9 @@ public class VehicleInformationPanel : InformationPanel<VehicleData>
 
     protected override void SetData(VehicleData data)
     {
-        vehicleCategory.text = data.Category.ToString();
+        base.SetData(data);
+
+        vehicleCategory.text = data.Category;
         plate.text = data.ID;
         model.text = "Model: " + data.Model;
         weight.text = "Weight: " + Mathf.CeilToInt(data.Weight) + "kgs";

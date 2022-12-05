@@ -8,6 +8,8 @@ public class MessageDataListItemView : DataListItemView<MessageData>
 
     public override void SetData(MessageData data)
     {
+        base.SetData(data);
+
         PrimaryText = data.Content;
         SecondaryText = data.Timestamp.ToString("hh:mm:ss dd/MM/yy");
 

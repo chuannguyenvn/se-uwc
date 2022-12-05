@@ -2,6 +2,8 @@
 {
     public override void SetData(VehicleData data)
     {
+        base.SetData(data);
+
         PrimaryText = data.ID;
         SecondaryText = data.Category;
 

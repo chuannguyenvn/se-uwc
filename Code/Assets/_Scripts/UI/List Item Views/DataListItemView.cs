@@ -10,9 +10,15 @@ public abstract class DataListItemView<T> : ListItemView where T : Data
     [SerializeField] protected TMP_Text secondaryText_TMP;
     [SerializeField] protected Button button;
 
+    public T Data { get; protected set; }
+    
     public string PrimaryText;
     public string SecondaryText;
 
-    public abstract void SetData(T data);
+    public virtual void SetData(T data)
+    {
+        Data = data;
+    }
+    
     protected abstract void UpdateView();
 }

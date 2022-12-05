@@ -18,15 +18,18 @@ public class StaffInformationPanel : InformationPanel<StaffData>
     [SerializeField] private TaskDataListView taskDataListView;
     [SerializeField] private Calendar calendar;
 
+    [SerializeField] private AssigningMCPListView assigningMcpListView;
     private void Start()
     {
-        
+        assignTaskButton.onClick.AddListener(EnterAssignMode);
     }
 
     protected override void SetData(StaffData data)
     {
+        base.SetData(data);
+
         staffName.text = data.Name;
-        role.text = data.Role.ToString();
+        role.text = data.Role;
         genderAndAge.text = data.Gender + ", " + (DateTime.Today - data.DateOfBirth).Days / 365;
         address.text = data.HomeAddress;
         phoneNumber.text = data.PhoneNumber;
@@ -36,5 +39,15 @@ public class StaffInformationPanel : InformationPanel<StaffData>
     private void ShowCalendar()
     {
         calendar.gameObject.SetActive(true);
+    }
+
+    private void EnterAssignMode()
+    {
+        MCPMapEntity.GroupingSelect = true;
+
+        assigningMcpListView.AnimateShow();
+
+        MCPMapEntity.ToggleStateChanged +=
+            (entity, isSelected) => assigningMcpListView.AddDataItem(entity.Data);
     }
 }

@@ -4,6 +4,8 @@ public class InboxListItemView : DataListItemView<Inbox>
 {
     public override void SetData(Inbox data)
     {
+        base.SetData(data);
+        
         PrimaryText = data.RecipientName;
         var latestMessage = data.Messages[^1];
         SecondaryText = latestMessage.Content;

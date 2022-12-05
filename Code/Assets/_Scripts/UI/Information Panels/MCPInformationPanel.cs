@@ -13,6 +13,8 @@ public class MCPInformationPanel : InformationPanel<MCPData>
 
     protected override void SetData(MCPData data)
     {
+        base.SetData(data);
+        
         address.text = data.Address;
         capacityBar.transform.localScale = new Vector3(data.Capacity, 1, 1);
         status.text = VisualManager.Instance.GetMCPStatusText(data.Capacity);

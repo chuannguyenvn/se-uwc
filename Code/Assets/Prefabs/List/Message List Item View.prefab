@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e915c083f84f477fad801411d1680360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rectTransform: {fileID: 7486744971134653156}
   image: {fileID: 7486744972697725588}
   primaryText_TMP: {fileID: 7486744971794565752}
   secondaryText_TMP: {fileID: 7486744972385321334}

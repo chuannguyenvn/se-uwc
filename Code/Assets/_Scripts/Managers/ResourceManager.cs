@@ -16,6 +16,7 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
     public RoutePolyline RoutePolyline;
     
     [Header("Map UI")]
+    public AssigningMCPListItemView AssigningMcpListItemView;
     
     [Header("Item Views")] 
     public StaffDataListItemView StaffDataListItemView;

@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf56879c55d466db2395885a0a1b243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rectTransform: {fileID: 6429856519757585534}
   image: {fileID: 4539471633384282462}
   primaryText_TMP: {fileID: 5594071864281172838}
   secondaryText_TMP: {fileID: 1976166184812234586}
