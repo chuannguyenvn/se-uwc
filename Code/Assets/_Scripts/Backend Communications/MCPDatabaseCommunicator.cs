@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class MCPCommunicator : MonoBehaviour
+public class MCPDatabaseCommunicator : MonoBehaviour
 {
     private const string GET_MCP_INFO_PATH = "/api/mcp/{0}";
     private const string GET_ALL_MCP_INFO_PATH = "/api/mcp/all";

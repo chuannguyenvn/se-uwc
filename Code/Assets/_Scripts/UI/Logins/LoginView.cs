@@ -31,7 +31,7 @@ public class LoginView : MonoBehaviour
             {
                 if (success)
                 {
-                    Debug.Log("Login Succeeded!");
+                    AccountManager.Instance.SaveLoginCredentials(token);
                 }
                 else
                 {
