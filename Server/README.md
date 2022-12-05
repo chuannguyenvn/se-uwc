@@ -36,7 +36,7 @@ Request type and format for the api:
   }
   ```
 
-### Map
+### Map (temporarily unavailable)
 
 - Input waypoints for a collector: POST `/api/map/waypoints`
   ```json
@@ -64,6 +64,8 @@ Request type and format for the api:
     "longitude": 106.665916767231
   }
   ```
+- Get all MCP: GET `/api/mcp/all`
+- Get all MCP current status: GET `/api/mcp/current/all`
 - Get info of an MCP by MCP_id: GET `/api/mcp/:id` (Ex: GET `/api/mcp/1bde7f5293`)
 - Get current state of MCP: GET `/api/mcp/current/:id` (Ex: GET `/api/mcp/current/1bde7f5293`)
 - Get current state of MCP (in %): GET `/api/mcp/current/percentage/:id` (Ex: GET `/api/mcp/current/percentage/1bde7f5293`)
@@ -81,6 +83,13 @@ Request type and format for the api:
     "fuel_consumption": 3
   }
   ```
+- Get all vehicles: GET `/api/vehicle/all`
+- Get vehicles by type: POST `/api/vehicle/type`
+  ```json
+  {
+    "type": "Trolley"
+  }
+  ```
 - Get info of vehicle by id: GET `/api/vehicle/info/:id` (Ex: GET `/api/vehicle/info/51F-627.24`)
 
 ### Maintenance log
@@ -94,6 +103,7 @@ Request type and format for the api:
     "cost": 2000
   }
   ```
+- Get all maintenance log: GET `/api/maintainLog/all`
 - Get detailed info of a log by id: GET `/api/maintainLog/info/:id` (Ex: GET `/api/maintainLog/info/edb45a238f`)
 - Get log of a vehicle by its id: GET `/api/maintainLog/vehicle/:id` (Ex: GET `/api/maintainLog/vehicle/51F-627.24`)
 
