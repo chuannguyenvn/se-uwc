@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEditorInternal.VersionControl;
 using UnityEngine;
 
 
@@ -32,7 +31,8 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
             ApplicationManager.InitState.Data);
         ApplicationManager.Instance.AddInitWork(RetrieveAllJanitorData,
             ApplicationManager.InitState.Data);
-        ApplicationManager.Instance.AddInitWork(RetrieveAllMCPData, ApplicationManager.InitState.Data);
+        ApplicationManager.Instance.AddInitWork(RetrieveAllMCPData, 
+            ApplicationManager.InitState.Data);
         ApplicationManager.Instance.AddInitWork(RetrieveAllVehicleData,
             ApplicationManager.InitState.Data);
     }
@@ -163,6 +163,7 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
 
     public List<TaskData> FilterStaffsTasksByDate(StaffData staffData, DateTime dateTime)
     {
+        return new List<TaskData>();
         return AllTasks.FindAll(task =>
             task.EmployeeID == staffData.ID && task.Timestamp.Date == dateTime.Date);
     }

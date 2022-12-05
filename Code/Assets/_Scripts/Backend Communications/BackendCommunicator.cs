@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Mapbox.Json;
 using Mapbox.Utils;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -55,7 +56,7 @@ public class BackendCommunicator : PersistentSingleton<BackendCommunicator>
 
         string json = JsonUtility.ToJson(user);
 
-        var request = CreatePostRequest(LOGIN_PATH, json);
+        var request = CreatePostRequest(LOGIN_PATH, json, false);
         yield return request.SendWebRequest();
 
         if (request.result != UnityWebRequest.Result.Success)
@@ -64,7 +65,7 @@ public class BackendCommunicator : PersistentSingleton<BackendCommunicator>
             yield break;
         }
 
-        var loginToken = JsonUtility.FromJson<LoginToken>(request.downloadHandler.text);
+        var loginToken = JsonConvert.DeserializeObject<LoginToken>(request.downloadHandler.text);
         callback?.Invoke(true, loginToken);
     }
 
@@ -113,7 +114,7 @@ public class BackendCommunicator : PersistentSingleton<BackendCommunicator>
         return request;
     }
 
-    public static UnityWebRequest CreatePostRequest(string apiPath, string json)
+    public static UnityWebRequest CreatePostRequest(string apiPath, string json, bool needToken = true)
     {
         Debug.Log("Creating request: " + MAIN_PATH + apiPath + "\nPayload: " + json);
         var request = new UnityWebRequest(MAIN_PATH + apiPath, "POST");
@@ -121,7 +122,9 @@ public class BackendCommunicator : PersistentSingleton<BackendCommunicator>
         request.uploadHandler = new UploadHandlerRaw(jsonToSend);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
-        request.SetRequestHeader("Authorization", "Bearer " + AccountManager.Instance.GetAccessToken());
+        if (needToken)
+            request.SetRequestHeader("Authorization",
+                "Bearer " + AccountManager.Instance.GetAccessToken());
         return request;
     }
 }

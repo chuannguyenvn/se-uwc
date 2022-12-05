@@ -28,9 +28,7 @@ public abstract class PersistentSingleton<T> : Singleton<T> where T : MonoBehavi
 {
     protected override void Awake()
     {
-#if !UNITY_EDITOR
         DontDestroyOnLoad(gameObject);
-#endif
         base.Awake();
     }
 }

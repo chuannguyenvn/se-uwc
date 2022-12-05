@@ -7,7 +7,6 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>
     // Initialize states. The program will start with the works tagged with the first state, then gradually move to the next state.
     public enum InitState
     {
-        MockDataGeneration,
         Data,
         Map,
         UI,
@@ -22,7 +21,6 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>
 
     private Dictionary<InitState, int> workCountByInitState = new()
     {
-        {InitState.MockDataGeneration, 0},
         {InitState.Data, 0},
         {InitState.Map, 0},
         {InitState.UI, 0},
@@ -41,8 +39,7 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>
 
     private void Init()
     {
-        InitEventFlow?.Invoke(InitState.MockDataGeneration);
-        CompleteWork(InitState.MockDataGeneration);
+        InitEventFlow?.Invoke(InitState.Data);
     }
 
     private void Terminate()
@@ -57,10 +54,6 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>
 
         switch (state)
         {
-            case InitState.MockDataGeneration:
-                InitEventFlow?.Invoke(InitState.Data);
-                Debug.Log("Completed MockDataGeneration");
-                break;
             case InitState.Data:
                 InitEventFlow?.Invoke(InitState.Map);
                 Debug.Log("Completed Data");

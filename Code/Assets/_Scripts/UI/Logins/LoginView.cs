@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LoginView : MonoBehaviour
@@ -32,6 +34,7 @@ public class LoginView : MonoBehaviour
                 if (success)
                 {
                     AccountManager.Instance.SaveLoginCredentials(token);
+                    SceneManager.LoadScene("Main");
                 }
                 else
                 {

@@ -2,8 +2,8 @@
 {
     public override void SetData(VehicleData data)
     {
-        PrimaryText = data.LicensePlate;
-        SecondaryText = data.Category.ToString();
+        PrimaryText = data.ID;
+        SecondaryText = data.Category;
 
         UpdateView();
         
