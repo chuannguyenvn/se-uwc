@@ -13,18 +13,18 @@ public class Calendar : MonoBehaviour
     [SerializeField] private List<Button> dateButtons;
     private List<TMP_Text> dateTexts = new();
 
-    private DateTime currentMonth = new (DateTime.Today.Year, DateTime.Today.Month, 1);
-    
+    private DateTime currentMonth = new(DateTime.Today.Year, DateTime.Today.Month, 1);
+
     private void Start()
     {
         for (int i = 0; i < 35; i++)
         {
             dateTexts.Add(dateButtons[i].GetComponentInChildren<TMP_Text>());
         }
-        
+
         prevMonthButton.onClick.AddListener(() => SwitchMonth(-1));
         nextMonthButton.onClick.AddListener(() => SwitchMonth(1));
-        
+
         SwitchMonth(0);
     }
 
@@ -32,7 +32,7 @@ public class Calendar : MonoBehaviour
     {
         currentMonth = currentMonth.AddMonths(monthOffset);
         currentMonthAndYear.text = currentMonth.ToString("MM, yyyy");
-        
+
         UpdateCalendar();
     }
 
@@ -48,6 +48,18 @@ public class Calendar : MonoBehaviour
         {
             dateTexts[i].text = startDate.Day.ToString();
             startDate = startDate.AddDays(1);
+        }
+    }
+
+    public void AssignAction(Action<DateTime> action)
+    {
+        for (int i = 0; i < dateButtons.Count; i++)
+        {
+            var assignedDate = currentMonth.AddDays(i);
+            dateButtons[i]
+                .onClick.AddListener((() =>
+                {
+                }));
         }
     }
 }

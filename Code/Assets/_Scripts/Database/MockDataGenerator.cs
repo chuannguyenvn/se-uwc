@@ -128,13 +128,13 @@ public class MockDataGenerator : PersistentSingleton<MockDataGenerator>
             Random.Range(STAFF_COORDINATE_MIN.y, STAFF_COORDINATE_MAX.y));
     }
 
-    public MCPData GetMockMCPData()
-    {
-        mcpIds.Add(Random.Range(0, 1000).ToString());
-        return new MCPData(mcpIds[^1], GetRandomAddress(), Random.Range(0f, 1f),
-            Random.Range(STAFF_COORDINATE_MIN.x, STAFF_COORDINATE_MAX.x),
-            Random.Range(STAFF_COORDINATE_MIN.y, STAFF_COORDINATE_MAX.y));
-    }
+    // public MCPData GetMockMCPData()
+    // {
+    //     mcpIds.Add(Random.Range(0, 1000).ToString());
+    //     return new MCPData(mcpIds[^1], GetRandomAddress(), Random.Range(0f, 1f),
+    //         Random.Range(STAFF_COORDINATE_MIN.x, STAFF_COORDINATE_MAX.x),
+    //         Random.Range(STAFF_COORDINATE_MIN.y, STAFF_COORDINATE_MAX.y));
+    // }
 
     public VehicleData GetMockVehicleData()
     {

@@ -21,16 +21,7 @@ public class DatabaseLoader : PersistentSingleton<DatabaseLoader>
     {
         return new List<MCPData>()
         {
-            MockDataGenerator.Instance.GetMockMCPData(),
-            MockDataGenerator.Instance.GetMockMCPData(),
-            MockDataGenerator.Instance.GetMockMCPData(),
-            MockDataGenerator.Instance.GetMockMCPData(),
-            MockDataGenerator.Instance.GetMockMCPData(),
-            MockDataGenerator.Instance.GetMockMCPData(),
-            MockDataGenerator.Instance.GetMockMCPData(),
-            MockDataGenerator.Instance.GetMockMCPData(),
-            MockDataGenerator.Instance.GetMockMCPData(),
-            MockDataGenerator.Instance.GetMockMCPData(),
+
         };
     }
 

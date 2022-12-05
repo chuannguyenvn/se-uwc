@@ -1,24 +1,35 @@
-﻿public class MCPData : Data
+﻿using Newtonsoft.Json;
+
+public class MCPData : Data
 {
-    public string Address { get; private set; }
+    [JsonProperty("name")]
+    public string Name { get; set; }
+    
+    [JsonProperty("address")]
+    public string Address { get;  set; }
 
+    
+    private int capacity;
 
-    private float capacity;
+    [JsonProperty("capacity")]
+    public int Capacity { get; set; }
+    // {
+    //     get => capacity;
+    //     set
+    //     {
+    //         capacity = value;
+    //         OnValueChanged();
+    //     }
+    // }
 
-    public float Capacity
-    {
-        get => capacity;
-        set
-        {
-            capacity = value;
-            OnValueChanged();
-        }
-    }
+    [JsonProperty("latitude")]
+    public double Latitude { get;  set; }
+    
+    
+    [JsonProperty("longitude")]
+    public double Longitude { get;  set; }
 
-    public float Latitude { get; private set; }
-    public float Longitude { get; private set; }
-
-    public MCPData(string id, string address, float capacity, float latitude, float longitude) : base(id)
+    public MCPData(string id, string address, int capacity, double latitude, double longitude) : base(id)
     {
         Address = address;
         Capacity = capacity;

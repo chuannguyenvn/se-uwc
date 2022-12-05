@@ -21,8 +21,8 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
     {
         AllStaffs = DatabaseLoader.Instance.LoadAllStaffData();
 
-        AllMCPs = DatabaseLoader.Instance.LoadAllMCPsData();
-
+        //AllMCPs = DatabaseLoader.Instance.LoadAllMCPsData();
+        BackendCommunicator.Instance.MCP.GetAllMCP(((b, list) => { }));
         AllVehicles = DatabaseLoader.Instance.LoadAllVehicleData();
 
         InboxesByID = new();

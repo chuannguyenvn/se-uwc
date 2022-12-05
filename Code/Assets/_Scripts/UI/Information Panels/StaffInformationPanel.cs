@@ -16,8 +16,13 @@ public class StaffInformationPanel : InformationPanel<StaffData>
     [SerializeField] private Button sendMessageButton;
     
     [SerializeField] private TaskDataListView taskDataListView;
+    [SerializeField] private Calendar calendar;
 
-    
+    private void Start()
+    {
+        
+    }
+
     protected override void SetData(StaffData data)
     {
         staffName.text = data.Name;
@@ -26,5 +31,10 @@ public class StaffInformationPanel : InformationPanel<StaffData>
         address.text = data.HomeAddress;
         phoneNumber.text = data.PhoneNumber;
         taskDataListView.ShowTodayTasksOf(data);
+    }
+
+    private void ShowCalendar()
+    {
+        calendar.gameObject.SetActive(true);
     }
 }
