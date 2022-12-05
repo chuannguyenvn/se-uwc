@@ -68,7 +68,6 @@ Các request dưới đây đều cần Authorization Bearer Token là access to
 - Insert a new MCP: POST `/api/mcp/add`
   ```json
   {
-    "name": "MCP Quận 10 No.1",
     "address": "262 Nguyễn Tiểu La, Quận 10",
     "capacity": 105,
     "latitude": 10.7660997698857,
@@ -125,9 +124,8 @@ Các request dưới đây đều cần Authorization Bearer Token là access to
   {
     "employee_id": "1a2b3c4d5e",
     "mcp_id": "1bde7f5293",
-    "vehicle_id": "51F-627.24",
+    "vehicle_id": "51F-627.24 (field này chỉ có khi nào có vehicle để assign nha)",
     "timeToDo": "2022/12/04 08:47:45",
-    "content": "Collect the trash",
     "checkin": 1,
     "checkout": 0
   }
