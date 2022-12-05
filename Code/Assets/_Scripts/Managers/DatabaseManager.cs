@@ -1,11 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEditorInternal.VersionControl;
 using UnityEngine;
 
 
 public class DatabaseManager : PersistentSingleton<DatabaseManager>
 {
-    public List<StaffData> AllStaffs;
+    public List<StaffData> AllStaffs
+    {
+        get
+        {
+            List<StaffData> list = new List<StaffData>();
+            list.AddRange(AllJanitors);
+            list.AddRange(AllCollectors);
+            return list;
+        }
+    }
+
+    public List<StaffData> AllJanitors;
+    public List<StaffData> AllCollectors;
     public List<MCPData> AllMCPs;
     public List<VehicleData> AllVehicles;
     public Dictionary<string, Inbox> InboxesByID;
@@ -15,39 +28,108 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
     protected override void Awake()
     {
         base.Awake();
-        ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.Data);
+        ApplicationManager.Instance.AddInitWork(RetrieveAllCollectorData,
+            ApplicationManager.InitState.Data);
+        ApplicationManager.Instance.AddInitWork(RetrieveAllJanitorData,
+            ApplicationManager.InitState.Data);
+        ApplicationManager.Instance.AddInitWork(RetrieveAllMCPData, ApplicationManager.InitState.Data);
+        ApplicationManager.Instance.AddInitWork(RetrieveAllVehicleData,
+            ApplicationManager.InitState.Data);
     }
 
     private void Init()
     {
-        AllStaffs = DatabaseLoader.Instance.LoadAllStaffData();
+        // InboxesByID = new();
+        //
+        // var allMessageData = DatabaseLoader.Instance.LoadAllMessageData();
+        // foreach (var messageData in allMessageData)
+        // {
+        //     AddMessageToInbox(messageData);
+        // }
+        //
+        // foreach (var (id, inbox) in InboxesByID)
+        // {
+        //     inbox.SortMessages();
+        // }
+        //
+        // AllTasks = DatabaseLoader.Instance.LoadAllTaskData();
+        //
+        // AllMaintenanceLogs = DatabaseLoader.Instance.LoadAllMaintenanceLogData();
 
-        //AllMCPs = DatabaseLoader.Instance.LoadAllMCPsData();
-        BackendCommunicator.Instance.MCP.GetAllMCP(((b, list) =>
+        //ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.Data);
+    }
+
+    private void RetrieveAllCollectorData()
+    {
+        BackendCommunicator.Instance.StaffDatabaseCommunicator.GetAllCollector((success, list) =>
         {
-            Debug.Log("a");
-            if (b == false) throw new Exception("fadfasaf");
+            Debug.Log("called");
+
+            if (success == false)
+            {
+                NotificationManager.Instance.EnqueueNotification(
+                    new NotificationData(NotificationType.Error, "Cannot retrieve staff data."));
+            }
+            else
+            {
+                AllCollectors = list;
+                ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.Data);
+            }
+        });
+    }
+
+    private void RetrieveAllJanitorData()
+    {
+        BackendCommunicator.Instance.StaffDatabaseCommunicator.GetAllJanitor((success, list) =>
+        {
+            Debug.Log("called");
+
+            if (success == false)
+            {
+                NotificationManager.Instance.EnqueueNotification(
+                    new NotificationData(NotificationType.Error, "Cannot retrieve staff data."));
+            }
+            else
+            {
+                AllJanitors = list;
+                ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.Data);
+            }
+        });
+    }
+
+    private void RetrieveAllMCPData()
+    {
+        BackendCommunicator.Instance.MCPDatabaseCommunicator.GetAllMCP((success, list) =>
+        {
+            if (success == false)
+            {
+                NotificationManager.Instance.EnqueueNotification(
+                    new NotificationData(NotificationType.Error, "Cannot retrieve MCP data."));
+            }
+            else
+            {
                 AllMCPs = list;
                 ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.Data);
-        }));
-        AllVehicles = DatabaseLoader.Instance.LoadAllVehicleData();
+            }
+        });
+    }
 
-        InboxesByID = new();
-
-        var allMessageData = DatabaseLoader.Instance.LoadAllMessageData();
-        foreach (var messageData in allMessageData)
+    private void RetrieveAllVehicleData()
+    {
+        BackendCommunicator.Instance.VehicleDatabaseCommunicator.GetAllVehicle((success, list) =>
         {
-            AddMessageToInbox(messageData);
-        }
+            if (success == false)
+            {
+                NotificationManager.Instance.EnqueueNotification(
+                    new NotificationData(NotificationType.Error, "Cannot retrieve vehicle data."));
+            }
 
-        foreach (var (id, inbox) in InboxesByID)
-        {
-            inbox.SortMessages();
-        }
-
-        AllTasks = DatabaseLoader.Instance.LoadAllTaskData();
-
-        AllMaintenanceLogs = DatabaseLoader.Instance.LoadAllMaintenanceLogData();
+            else
+            {
+                AllVehicles = list;
+                ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.Data);
+            }
+        });
     }
 
     public string GetStaffNameByID(string staffId)

@@ -14,16 +14,15 @@ public class BackendCommunicator : PersistentSingleton<BackendCommunicator>
     private const string LOGIN_PATH = "/api/auth/login";
     private const string LOGOUT_PATH = "/api/auth/logout";
 
-    private const string GET_EMPLOYEE_INFO_PATH = "/api/employee/info/{0}";
 
     private const string ASSIGN_WAYPOINTS_TO_COLLECTOR_PATH = "/api/map/waypoints";
     private const string GET_ALL_COLLECTOR_POSITION_PATH = "/api/map/allCurrentPosition";
 
-    private const string GET_VEHICLE_INFO_PATH = "/api/vehicle/info/{0}";
 
-    [SerializeField] private MCPCommunicator mcpCommunicator;
-    public MCPCommunicator MCP => mcpCommunicator;
-    
+    public StaffDatabaseCommunicator StaffDatabaseCommunicator;
+    public MCPDatabaseCommunicator MCPDatabaseCommunicator;
+    public VehicleDatabaseCommunicator VehicleDatabaseCommunicator;
+
     private void Start()
     {
         // void Callback(bool success, List<CollectorRouteData> list)
@@ -69,15 +68,6 @@ public class BackendCommunicator : PersistentSingleton<BackendCommunicator>
         callback?.Invoke(true, loginToken);
     }
 
-    private IEnumerator GetVehicleInfo_CO(string vehicleId)
-    {
-        var request = CreateGetRequest(string.Format(GET_VEHICLE_INFO_PATH, vehicleId));
-        yield return request.SendWebRequest();
-
-        if (request.result != UnityWebRequest.Result.Success) Debug.LogWarning("Request failed.");
-        Debug.Log(request.downloadHandler.text);
-    }
-
     private IEnumerator AssignWaypointsToCollector(string staffId, List<Vector2d> waypoints)
     {
         List<Coordinate> points = new();
@@ -109,25 +99,29 @@ public class BackendCommunicator : PersistentSingleton<BackendCommunicator>
 
         var collectorsRouteData =
             JsonUtility.FromJson<List<CollectorRouteData>>(request.downloadHandler.text);
-        
+
         callback?.Invoke(true, collectorsRouteData);
     }
 
     public static UnityWebRequest CreateGetRequest(string apiPath)
     {
+        Debug.Log("Creating request: " + MAIN_PATH + apiPath);
         var request = new UnityWebRequest(MAIN_PATH + apiPath, "GET");
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("Authorization", "Bearer " + AccountManager.Instance.GetAccessToken());
         return request;
     }
 
     public static UnityWebRequest CreatePostRequest(string apiPath, string json)
     {
+        Debug.Log("Creating request: " + MAIN_PATH + apiPath + "\nPayload: " + json);
         var request = new UnityWebRequest(MAIN_PATH + apiPath, "POST");
         byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
         request.uploadHandler = new UploadHandlerRaw(jsonToSend);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("Authorization", "Bearer " + AccountManager.Instance.GetAccessToken());
         return request;
     }
 }

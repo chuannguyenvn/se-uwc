@@ -42,5 +42,5 @@ public enum NotificationType
 {
     Info,
     Warning,
-    Prohibited,
+    Error,
 }

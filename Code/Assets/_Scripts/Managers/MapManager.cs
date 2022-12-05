@@ -48,7 +48,7 @@ public class MapManager : PersistentSingleton<MapManager>
             mcp.transform.SetParent(mapTransform);
             mcp.Init(mcpData);
         }
-        
+
         ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.Map);
     }
 

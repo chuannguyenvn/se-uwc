@@ -36,14 +36,7 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>
 
     private void Start()
     {
-        // foreach (var state in Enum.GetValues(typeof(InitState)))
-        // {
-        //     workCountByInitState.Add((InitState)state, 0);
-        // }
-
         MapWrapper.Instance.abstractMap.OnInitialized += Init;
-        
-        Init();
     }
 
     private void Init()
@@ -58,8 +51,8 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>
 
     public void CompleteWork(InitState state)
     {
-        Debug.Log("Com");
         workCountByInitState[state]--;
+        Debug.Log(state + ": " + workCountByInitState[state]);
         if (workCountByInitState[state] > 0) return;
 
         switch (state)
@@ -85,12 +78,12 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>
 
     public void AddInitWork(Action initWork, InitState state)
     {
+        workCountByInitState[state]++;
+
         InitEventFlow += (s) =>
         {
             if (s == state) initWork?.Invoke();
         };
-
-        workCountByInitState[state]++;
     }
 
     public void AddTerminateWork(Action terminateWork, TerminateState state)

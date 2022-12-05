@@ -10,11 +10,11 @@ public class InboxListView : DataListView<Inbox>
 
         prefab = ResourceManager.Instance.InboxListItemView;
 
-        var inboxesByID = DatabaseManager.Instance.InboxesByID;
-        foreach (var (id, inbox) in inboxesByID)
-        {
-            AddDataItem(inbox);
-        }
+        // var inboxesByID = DatabaseManager.Instance.InboxesByID;
+        // foreach (var (id, inbox) in inboxesByID)
+        // {
+        //     AddDataItem(inbox);
+        // }
     }
 
     public void OnInboxChosen(Inbox inbox)
