@@ -12,10 +12,9 @@ async function addMCP(mcp) {
     }
     
     // insert new MCP into db
-    const q = "INSERT INTO mcp(id, name, address, capacity, longitude, latitude) VALUES (?,?,?,?,?,?)";
+    const q = "INSERT INTO mcp(id, address, capacity, longitude, latitude) VALUES (?,?,?,?,?)";
     const params = [
         id, 
-        mcp.name,
         mcp.address,
         mcp.capacity,
         mcp.longitude,
@@ -44,10 +43,20 @@ async function getMCPCurrent(id) {
     return res.length ? res[0] : null;
 }
 
+async function getAllMCP() {
+    return await query(conn, "SELECT * FROM mcp", []);
+}
+
+async function getAllMCPCurrent() {
+    return await query(conn, "SELECT * FROM mcpstatus", []);
+}
+
 module.exports = {
     addMCP,
     getMCPById,
     getMCPByCoordinate,
     updateMCPCurrent,
-    getMCPCurrent
+    getMCPCurrent,
+    getAllMCP,
+    getAllMCPCurrent
 }

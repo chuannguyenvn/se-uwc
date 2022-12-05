@@ -29,14 +29,25 @@ Request type and format for the api:
     "password": "password"
   }
   ```
+  - Response trả về sẽ là access token và refresh token của lần đăng nhập này
 - Log out: DELETE `/api/auth/logout`
   ```json
   {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBvZW0ubTE5NzYiLCJyb2xlIjoiQ29sbGVjdG9yIiwiaWF0IjoxNjcwMTU4NjAwfQ.tay1TeFpxdwsImSeKN_gB-UN5aiUVmwMyI-XCc5LiBI"
   }
   ```
+  - Payload là refresh token được cấp khi log in
+- Ask for access token regrant: POST `/api/auth/token`
+  ```json
+  {
+    "token": "yadjhgsafgygfuasbvadfvadvfh"
+  }
+  ```
+  - Payload là refresh token được cấp khi log in
 
-### Map (temporarily unavailable)
+Các request dưới đây đều cần Authorization Bearer Token là access token được cấp khi log in để được nhận response
+
+### Map
 
 - Input waypoints for a collector: POST `/api/map/waypoints`
   ```json

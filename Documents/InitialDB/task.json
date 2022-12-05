@@ -5,7 +5,6 @@
         "mcp_id": "M.e8042868",
         "vehicle_id": "23D-696.21",
         "timeToDo": "2022/11/15 15:30:00",
-        "content": "Thu gom rác từ MCP",
         "checkin": 1,
         "checkout": 1
     },
@@ -15,7 +14,6 @@
         "mcp_id": "M.75c4a7e9",
         "vehicle_id": "63G-777.77",
         "timeToDo": "2022/11/14 13:00:00",
-        "content": "Thu gom rác từ MCP",
         "checkin": 1,
         "checkout": 1
     },
@@ -23,9 +21,8 @@
         "id": "09b457215d37aae6",
         "employee_id": "21187afea7",
         "mcp_id": "M.aa9cdefd",
-        "vehicle_id": "TR0002",
+        "vehicle_id": null,
         "timeToDo": "2022/11/15 04:30:00",
-        "content": "Thu dọn rác và đổ rác tại MCP",
         "checkin": 1,
         "checkout": 1
     },
@@ -33,9 +30,8 @@
         "id": "4e1ae51c5b94a948",
         "employee_id": "6cfd544465",
         "mcp_id": "M.7c125439",
-        "vehicle_id": "TR0001",
+        "vehicle_id": null,
         "timeToDo": "2022/11/15 22:00:00",
-        "content": "Thu dọn rác và đổ rác tại MCP",
         "checkin": 1,
         "checkout": 1
     },
@@ -45,7 +41,6 @@
         "mcp_id": "M.e8042868",
         "vehicle_id": "63G-777.77",
         "timeToDo": "2022/12/10 02:00:00",
-        "content": "Thu gom rác từ MCP",
         "checkin": 0,
         "checkout": 0
     }

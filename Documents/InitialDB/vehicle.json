@@ -1,7 +1,7 @@
 [
     {
         "id": "23D-696.21",
-        "category": "Truck",
+        "category": "Frontloader",
         "model": "BRUH-BRUH",
         "weight": 20000,
         "capacity": 8500,
@@ -25,7 +25,7 @@
     },
     {
         "id": "63G-777.77",
-        "category": "Truck",
+        "category": "Rearloader",
         "model": "CR7-SIUU",
         "weight": 21500,
         "capacity": 5200,
