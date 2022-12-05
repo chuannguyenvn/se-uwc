@@ -14,11 +14,11 @@ public abstract class ListView : MonoBehaviour, IShowHideAnimatable
 
     protected static float VERTICAL_SPACING = 10f;
 
-    protected float initialX;
+    protected RectTransform rectTransform;
 
     protected virtual void Awake()
     {
-        initialX = transform.position.x;
+        rectTransform = GetComponent<RectTransform>();
         ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.UI);
     }
 
@@ -58,14 +58,14 @@ public abstract class ListView : MonoBehaviour, IShowHideAnimatable
 
     public virtual Task AnimateShow()
     {
-        return gameObject.transform.DOMoveX(initialX, VisualManager.Instance.ListAndPanelTime)
+        return rectTransform.DOAnchorPosX(0, VisualManager.Instance.ListAndPanelTime)
             .SetEase(Ease.OutCubic)
             .AsyncWaitForCompletion();
     }
 
     public virtual Task AnimateHide()
     {
-        return gameObject.transform.DOMoveX(initialX - 30f, VisualManager.Instance.ListAndPanelTime)
+        return rectTransform.DOAnchorPosX(-1000, VisualManager.Instance.ListAndPanelTime)
             .SetEase(Ease.InCubic)
             .AsyncWaitForCompletion();
     }

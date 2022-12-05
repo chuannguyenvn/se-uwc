@@ -43,7 +43,7 @@ public class MessageDataListView : DataListView<MessageData>
     
     public override Task AnimateHide()
     {
-        return gameObject.transform.DOMoveX(initialX + 30f, VisualManager.Instance.ListAndPanelTime)
+        return rectTransform.DOAnchorPosX(2000, VisualManager.Instance.ListAndPanelTime)
             .SetEase(Ease.InCubic)
             .AsyncWaitForCompletion();
     }
