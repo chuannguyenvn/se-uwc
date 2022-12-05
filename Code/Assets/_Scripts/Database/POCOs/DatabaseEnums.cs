@@ -1,20 +1,20 @@
-﻿public enum Gender
+﻿public static class Gender
 {
-    Male,
-    Female,
-    Other,
+    public const string Male = "Male";
+    public const string Female = "Female";
+    public const string Other = "Other";
 }
 
-public enum Role
+public static class Role
 {
-    BackOfficer,
-    Janitor,
-    Collector,
+    public const string BackOfficer = "Back officer";
+    public const string Janitor = "Janitor";
+    public const string Collector = "Collector";
 }
 
-public enum VehicleCategory
+public static class VehicleCategory
 {
-    Frontloader,
-    Sideloader,
-    Rearloader
+    public const string Frontloader = "Frontloader";
+    public const string Sideloader = "Sideloader";
+    public const string Rearloader = "Rearloader";
 }

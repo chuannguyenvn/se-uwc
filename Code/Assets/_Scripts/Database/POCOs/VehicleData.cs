@@ -1,20 +1,16 @@
-﻿public class VehicleData : Data
+﻿using Mapbox.Json;
+
+public class VehicleData : Data
 {
     public string LicensePlate { get; set; }
-    public VehicleCategory Category { get; set; }
-    public string Model { get; set; }
-    public float Weight { get; set; }
-    public float Capacity { get; set; }
-    public float FuelConsumption { get; set; }
 
-    public VehicleData(string id, string licensePlate, VehicleCategory category, string model,
-        float weight, float capacity, float fuelConsumption) : base(id)
-    {
-        LicensePlate = licensePlate;
-        Category = category;
-        Model = model;
-        Weight = weight;
-        Capacity = capacity;
-        FuelConsumption = fuelConsumption;
-    }
+    [JsonProperty("category")] public string Category { get; set; }
+
+    [JsonProperty("model")] public string Model { get; set; }
+
+    [JsonProperty("weight")] public int Weight { get; set; }
+
+    [JsonProperty("capacity")] public int Capacity { get; set; }
+
+    [JsonProperty("fuel_consumption")] public int FuelConsumption { get; set; }
 }

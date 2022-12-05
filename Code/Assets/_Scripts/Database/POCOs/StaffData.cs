@@ -1,48 +1,28 @@
 ﻿using System;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class StaffData : Data
 {
-    public string Name { get; set; }
-    public string Photo { get; set; }
+    [JsonProperty("name")] public string Name { get; set; }
 
-    public Gender Gender { get; set; }
-    public DateTime DateOfBirth { get; set; }
-    public string HomeAddress { get; set; }
-    public string PhoneNumber { get; set; }
-    public string Nationality { get; set; }
+    [JsonProperty("image")] public object Image { get; set; }
 
-    public DateTime HiredOn { get; set; }
-    public Role Role { get; set; }
-    public int Salary { get; set; }
+    [JsonProperty("gender")] public string Gender { get; set; }
 
-    public float Latitude { get; set; }
-    public float Longitude { get; set; }
+    [JsonProperty("dob")] public DateTime DateOfBirth { get; set; }
 
-    public StaffData(string id, string name, string photo, Gender gender, DateTime dateOfBirth,
-        string homeAddress, string phoneNumber, string nationality, DateTime hiredOn, Role role,
-        int salary, float latitude, float  longitude) : base(id)
-    {
-        Name = name;
-        Photo = photo;
-        Gender = gender;
-        DateOfBirth = dateOfBirth;
-        HomeAddress = homeAddress;
-        PhoneNumber = phoneNumber;
-        Nationality = nationality;
-        HiredOn = hiredOn;
-        Role = role;
-        Salary = salary;
-        Latitude = latitude;
-        Longitude = longitude;
-    }
+    [JsonProperty("address")] public string HomeAddress { get; set; }
 
-    public override string ToString()
-    {
-        return "ID: " + ID + " | " + "Name: " + Name + " | " + "Photo: " + Photo + " | " + "Gender: " +
-               Gender + " | " + "DateOfBirth: " + DateOfBirth + " | " + "HomeAddress: " + HomeAddress +
-               " | " + "PhoneNumber: " + PhoneNumber + " | " + "Nationality: " + Nationality + " | " +
-               "HiredOn: " + HiredOn + " | " + "Role: " + Role + " | " + "Salary: " + Salary + " | " +
-               "CurrentCoordinate: (" + Longitude + ", " + Latitude + ")";
-    }
+    [JsonProperty("phone")] public string PhoneNumber { get; set; }
+
+    [JsonProperty("nationality")] public string Nationality { get; set; }
+
+    [JsonProperty("hired_on")] public DateTime HiredOn { get; set; }
+
+    [JsonProperty("role")] public string Role { get; set; }
+
+    [JsonProperty("salary")] public int Salary { get; set; }
+
+    [JsonProperty("username")] public string Username { get; set; }
 }
