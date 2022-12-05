@@ -1,0 +1,82 @@
+[
+    {
+        "id": "M.7c125439",
+        "name": "MCP Quận 10 No.1",
+        "address": "262 Nguyễn Tiểu La, Quận 10",
+        "capacity": 105,
+        "latitude": 10.7660997698857,
+        "longitude": 106.665916767231
+    },
+    {
+        "id": "M.c8eec611",
+        "name": "MCP Quận 10 No.2",
+        "address": "580 Bà Hạt, Quận 10",
+        "capacity": 127,
+        "latitude": 10.7647293589828,
+        "longitude": 106.663266154958
+    },
+    {
+        "id": "M.aa9cdefd",
+        "name": "MCP Quận 10 No.3",
+        "address": "77 3 Tháng 2, Quận 10",
+        "capacity": 153,
+        "latitude": 10.7676350901469,
+        "longitude": 106.66719339267
+    },
+    {
+        "id": "M.09c2ec4b",
+        "name": "MCP Quận 10 No.4",
+        "address": "500 Nguyễn Tri Phương, Quận 10",
+        "capacity": 82,
+        "latitude": 10.7675037535589,
+        "longitude": 106.667284093661
+    },
+    {
+        "id": "M.a051fe51",
+        "name": "MCP Quận 11 No.1",
+        "address": "968 3 Tháng 2, Quận 11",
+        "capacity": 142,
+        "latitude": 10.7629567124463,
+        "longitude": 106.656977523526
+    },
+    {
+        "id": "M.e8042868",
+        "name": "MCP Quận Tân Bình No.1",
+        "address": "300 Lý Thường Kiệt, Quận Tân Bình",
+        "capacity": 98,
+        "latitude": 10.7815403101810,
+        "longitude": 106.655190599178
+    },
+    {
+        "id": "M.859c3a1d",
+        "name": "MCP Quận 10 No.5",
+        "address": "334 Tô Hiến Thành, Quận 10",
+        "capacity": 62,
+        "latitude": 10.7771799685277,
+        "longitude": 106.660531841364
+    },
+    {
+        "id": "M.29b36fe5",
+        "name": "MCP Quận 10 No.6",
+        "address": "54 Thành Thái, Quận 10",
+        "capacity": 128,
+        "latitude": 10.7712254318066,
+        "longitude": 106.665784313171
+    },
+    {
+        "id": "M.75c4a7e9",
+        "name": "MCP Quận 10 No.7",
+        "address": "300 Lý Thường Kiệt, Quận 10",
+        "capacity": 89,
+        "latitude": 10.7668398628915,
+        "longitude": 106.659288627832
+    },
+    {
+        "id": "M.faa08b3e",
+        "name": "MCP Quận 10 No.8",
+        "address": "93 Lý Thường Kiệt, Quận 10",
+        "capacity": 140,
+        "latitude": 10.7612361354330,
+        "longitude": 106.660882740958
+    }
+]
