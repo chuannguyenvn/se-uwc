@@ -40,27 +40,27 @@
         "fuel_consumption": 31
     },
     {
-        "id": "TR0001",
-        "category": "Trolley",
+        "id": "45A-194.23",
+        "category": "Rearloader",
         "model": "MU-VO-DOI",
-        "weight": 130,
-        "capacity": 200,
-        "fuel_consumption": 0
+        "weight": 30000,
+        "capacity": 4750,
+        "fuel_consumption": 28
     },
     {
-        "id": "TR0002",
-        "category": "Trolley",
+        "id": "51B-910.43",
+        "category": "Frontloader",
         "model": "CHU-TICH-M3P",
-        "weight": 100,
-        "capacity": 180,
-        "fuel_consumption": 0
+        "weight": 26180,
+        "capacity": 2810,
+        "fuel_consumption": 25
     },
     {
-        "id": "TR0003",
-        "category": "Trolley",
-        "model": "MU-VO-DOI",
-        "weight": 130,
-        "capacity": 200,
-        "fuel_consumption": 0
+        "id": "41U-819.32",
+        "category": "Rearloader",
+        "model": "LAKAKA",
+        "weight": 31130,
+        "capacity": 3200,
+        "fuel_consumption": 30
     }
 ]
