@@ -30,5 +30,7 @@ public class ResourceManager : PersistentSingleton<ResourceManager>
     public GameObject SettingListItemView;
     public Button SettingOptionButton;
     
+    public Notification Notification;
+    
     // @formatter:on
 }
