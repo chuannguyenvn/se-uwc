@@ -14,11 +14,12 @@ public class StaffInformationPanel : InformationPanel<StaffData>
     [SerializeField] private Button assignTaskButton;
     [SerializeField] private Button viewCalendarButton;
     [SerializeField] private Button sendMessageButton;
-    
+
     [SerializeField] private TaskDataListView taskDataListView;
     [SerializeField] private Calendar calendar;
 
     [SerializeField] private AssigningMCPListView assigningMcpListView;
+
     private void Start()
     {
         assignTaskButton.onClick.AddListener(EnterAssignMode);
@@ -47,7 +48,12 @@ public class StaffInformationPanel : InformationPanel<StaffData>
 
         assigningMcpListView.AnimateShow();
 
-        MCPMapEntity.ToggleStateChanged +=
-            (entity, isSelected) => assigningMcpListView.AddDataItem(entity.Data);
+        MCPMapEntity.ToggleStateChanged += (entity, isSelected) =>
+        {
+            if (isSelected)
+                assigningMcpListView.AddDataItem(entity.Data);
+            else 
+                assigningMcpListView.RemoveDataItem(entity.Data);
+        };
     }
 }
