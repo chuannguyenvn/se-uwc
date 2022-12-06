@@ -13,12 +13,20 @@ public class MapAPICommunicator : MonoBehaviour
 
     public void SetCollectorWaypoints(CollectorRouteData routeData, Action<bool> callback)
     {
-        StartCoroutine(SetCollectorWaypoints_CO(routeData, callback));
+        GetCollectorPosition(routeData.CollectorId, (isSucceeded, coordinate) =>
+        {
+            if (isSucceeded)
+            {
+                routeData.Route.Insert(0, coordinate);
+                StartCoroutine(SetCollectorWaypoints_CO(routeData, callback));
+            }
+        });
     }
 
     private IEnumerator SetCollectorWaypoints_CO(CollectorRouteData routeData, Action<bool> callback)
     {
         string routeDataJson = JsonConvert.SerializeObject(routeData);
+
 
         var request = BackendCommunicator.CreatePostRequest(SET_COLLECTOR_WAYPOINTS_PATH, routeDataJson);
         yield return request.SendWebRequest();
