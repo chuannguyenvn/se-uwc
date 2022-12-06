@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a84a39362442b589481482ac0ffe28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backButton: {fileID: 0}
+  backButton: {fileID: 8072653664431219282}
   address: {fileID: 9204480930000170255}
   capacityBar: {fileID: 9204480929327570464}
   capacityTextBackground: {fileID: 9204480928565645078}
@@ -912,11 +912,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4982840793391718862, guid: 52e0b9849c942104da9d25315413d5ec, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 125
+      value: 176.5581
       objectReference: {fileID: 0}
     - target: {fileID: 4982840793391718862, guid: 52e0b9849c942104da9d25315413d5ec, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 125
+      value: 176.5581
       objectReference: {fileID: 0}
     - target: {fileID: 4982840793391718862, guid: 52e0b9849c942104da9d25315413d5ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -968,6 +968,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52e0b9849c942104da9d25315413d5ec, type: 3}
+--- !u!114 &8072653664431219282 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4982840793391718863, guid: 52e0b9849c942104da9d25315413d5ec, type: 3}
+  m_PrefabInstance: {fileID: 3828421360470573981}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8072653664431219283 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4982840793391718862, guid: 52e0b9849c942104da9d25315413d5ec, type: 3}

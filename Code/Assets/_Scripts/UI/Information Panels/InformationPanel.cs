@@ -23,6 +23,7 @@ public abstract class InformationPanel<T> : Singleton<InformationPanel<T>>, ISho
         initialX = transform.position.x;
         transform.position += Vector3.right * 30f;
         PrimarySidebar.Instance.ViewChanged += ViewChangedHandler;
+        backButton.onClick.AddListener(() => AnimateHide());
         Hide();
     }
 
