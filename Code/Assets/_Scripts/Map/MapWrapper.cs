@@ -9,7 +9,7 @@ using UnityEngine.Networking;
 using MapboxDirectionRequestResult;
 using UnityEngine.EventSystems;
 
-public class MapWrapper : Singleton<MapWrapper>, IBeginDragHandler, IDragHandler
+public class MapWrapper : Singleton<MapWrapper>, IBeginDragHandler, IDragHandler, IScrollHandler
 {
     public event Action MapUpdated;
 
@@ -57,32 +57,10 @@ public class MapWrapper : Singleton<MapWrapper>, IBeginDragHandler, IDragHandler
         prevMousePos = currentMousePos;
     }
 
-
-    private void Update()
+    public void OnScroll(PointerEventData eventData)
     {
-        var newZoomValue = Mathf.Clamp(abstractMap.Zoom + Input.mouseScrollDelta.y / 5, 12, 20);
+        var newZoomValue = Mathf.Clamp(abstractMap.Zoom + Input.mouseScrollDelta.y / 5f, 12, 20);
         abstractMap.UpdateMap(newZoomValue);
-
-        // if (Input.GetMouseButtonDown(1))
-        // {
-        //     if (firstPointChosen)
-        //     {
-        //         firstPointChosen = false;
-        //
-        //         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //         var end = abstractMap.WorldToGeoPosition(mousePos);
-        //
-        //         string uri = BuildRequestURI(start, end);
-        //         var request = UnityWebRequest.Get(uri);
-        //         StartCoroutine(ReadRequestResult(request));
-        //     }
-        //     else
-        //     {
-        //         firstPointChosen = true;
-        //         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //         start = abstractMap.WorldToGeoPosition(mousePos);
-        //     }
-        // }
     }
 
     public void GetRoute(List<Vector2d> route, Action<bool, List<Vector2d>> callback)
