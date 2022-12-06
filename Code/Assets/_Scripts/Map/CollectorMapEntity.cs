@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Mapbox.Utils;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CollectorMapEntity : SingleCoordinateMapEntity<StaffData>
 {
-    private CollectorCurrentPositionData currentPositionData;
-
     private Vector3 lastTransformPos;
     private Vector2d lastCoordinate;
 
@@ -15,9 +11,18 @@ public class CollectorMapEntity : SingleCoordinateMapEntity<StaffData>
     {
         AssignData(data);
 
-        button.onClick.AddListener(() => MapManager.Instance.CollectorInformationPopup.Show(data,
-            new Vector2d(currentPositionData.Coordinate.Latitude,
-                currentPositionData.Coordinate.Longitude)));
+        button.onClick.AddListener(() =>
+        {
+            BackendCommunicator.Instance.MapAPICommunicator.GetCollectorPosition(data.ID,
+                (isSucceeded, coordinate) =>
+                {
+                    if (isSucceeded)
+                        MapManager.Instance.CollectorInformationPopup.Show(data,
+                            new Vector2d(coordinate.Latitude, coordinate.Longitude));
+                });
+            
+            BackendCommunicator.Instance.MapAPICommunicator.get
+        });
 
         StartCoroutine(UpdatePosition_CO());
     }
@@ -38,8 +43,8 @@ public class CollectorMapEntity : SingleCoordinateMapEntity<StaffData>
                         var currentCoordinate = new Vector2d(coordinate.Latitude, coordinate.Longitude);
                         UpdateCoordinate(currentCoordinate);
 
-                        transform.rotation = Quaternion.Euler(0, 0,(float)
-                            Vector2d.Angle(Vector2d.up, currentCoordinate - lastCoordinate));
+                        transform.rotation = Quaternion.Euler(0, 0,
+                            (float)Vector2d.Angle(Vector2d.up, currentCoordinate - lastCoordinate));
                         lastCoordinate = currentCoordinate;
                     }
                 });
