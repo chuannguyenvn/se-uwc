@@ -8,10 +8,11 @@ public abstract class InformationPanel<T> : Singleton<InformationPanel<T>>, ISho
     where T : Data
 {
     [SerializeField] protected Button backButton;
+    [SerializeField] private ViewType viewType = ViewType.None;
     private float initialX;
-    
+
     public T Data { get; protected set; }
-    
+
     protected override void Awake()
     {
         base.Awake();
@@ -64,7 +65,7 @@ public abstract class InformationPanel<T> : Singleton<InformationPanel<T>>, ISho
 
     private void ViewChangedHandler(ViewType changeTo)
     {
-        Hide();
+        if (viewType != changeTo) Hide();
     }
 
     private void OnDestroy()

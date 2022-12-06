@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 25, y: 65}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 501.74, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &413839070
 CanvasRenderer:
@@ -171,7 +171,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 25, y: 105}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 501.74, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &1395544067
 CanvasRenderer:
@@ -306,7 +306,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 25, y: 145}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 501.74, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &1922840700
 CanvasRenderer:
@@ -441,7 +441,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 25, y: 25}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 501.74, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &1934663109
 CanvasRenderer:
@@ -825,6 +825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backButton: {fileID: 1171569604075623037}
+  viewType: 3
   vehicleCategory: {fileID: 8497297114539142475}
   plate: {fileID: 8497297114519253781}
   model: {fileID: 1922840699}
