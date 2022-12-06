@@ -60,41 +60,60 @@ public class MapWrapper : Singleton<MapWrapper>, IBeginDragHandler, IDragHandler
 
     private void Update()
     {
-        var newZoomValue = Mathf.Clamp(abstractMap.Zoom + Input.mouseScrollDelta.y / 5, 10, 20);
+        var newZoomValue = Mathf.Clamp(abstractMap.Zoom + Input.mouseScrollDelta.y / 5, 12, 20);
         abstractMap.UpdateMap(newZoomValue);
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (firstPointChosen)
-            {
-                firstPointChosen = false;
-
-                var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                var end = abstractMap.WorldToGeoPosition(mousePos);
-
-                string uri = BuildRequestURI(start, end);
-                var request = UnityWebRequest.Get(uri);
-                StartCoroutine(ReadRequestResult(request));
-            }
-            else
-            {
-                firstPointChosen = true;
-                var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                start = abstractMap.WorldToGeoPosition(mousePos);
-            }
-        }
+        // if (Input.GetMouseButtonDown(1))
+        // {
+        //     if (firstPointChosen)
+        //     {
+        //         firstPointChosen = false;
+        //
+        //         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //         var end = abstractMap.WorldToGeoPosition(mousePos);
+        //
+        //         string uri = BuildRequestURI(start, end);
+        //         var request = UnityWebRequest.Get(uri);
+        //         StartCoroutine(ReadRequestResult(request));
+        //     }
+        //     else
+        //     {
+        //         firstPointChosen = true;
+        //         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //         start = abstractMap.WorldToGeoPosition(mousePos);
+        //     }
+        // }
     }
 
-    private string BuildRequestURI(Vector2d start, Vector2d end)
+    public void GetRoute(List<Vector2d> route, Action<bool, List<Vector2d>> callback)
+    {
+        StartCoroutine(ReadRequestResult(route, callback));
+    }
+
+    private string BuildRequestURI(List<Vector2d> route)
     {
         string head = "https://api.mapbox.com/directions/v5/mapbox/driving/";
         string tail = "?geometries=geojson&access_token=" + SystemConstants.Map.MapboxAccessToken;
-        return head + start + ";" + end + tail;
+
+        string uri = head;
+        for (int i = 0; i < route.Count - 1; i++)
+        {
+            uri += route[i] + ";";
+        }
+
+        uri += route[^1] + tail;
+
+        return uri;
     }
 
-    private IEnumerator ReadRequestResult(UnityWebRequest request)
+    private IEnumerator ReadRequestResult(List<Vector2d> route, Action<bool, List<Vector2d>> callback)
     {
+        var request = UnityWebRequest.Get(BuildRequestURI(route));
+        Debug.Log(request.uri);
+
         yield return request.SendWebRequest();
+        Debug.Log(request.downloadHandler.text);
+
         var result = JsonConvert.DeserializeObject<Result>(request.downloadHandler.text);
         var rawCoordinates = result.routes[0].geometry.coordinates;
 
@@ -104,9 +123,8 @@ public class MapWrapper : Singleton<MapWrapper>, IBeginDragHandler, IDragHandler
             coordinateList.Add(new Vector2d(coordinate[1], coordinate[0]));
         }
 
-        Instantiate(ResourceManager.Instance.RoutePolyline)
-            .GetComponent<RoutePolyline>()
-            .UpdateCoordinates(coordinateList);
+        if (request.result == UnityWebRequest.Result.Success) callback?.Invoke(true, coordinateList);
+        else callback?.Invoke(false, null);
     }
 
     public void OnMapUpdated()
