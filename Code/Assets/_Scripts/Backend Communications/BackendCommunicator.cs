@@ -15,7 +15,6 @@ public class BackendCommunicator : PersistentSingleton<BackendCommunicator>
     private const string LOGIN_PATH = "/api/auth/login";
     private const string LOGOUT_PATH = "/api/auth/logout";
 
-
     private const string ASSIGN_WAYPOINTS_TO_COLLECTOR_PATH = "/api/map/waypoints";
     private const string GET_ALL_COLLECTOR_POSITION_PATH = "/api/map/allCurrentPosition";
 
@@ -23,29 +22,10 @@ public class BackendCommunicator : PersistentSingleton<BackendCommunicator>
     public StaffDatabaseCommunicator StaffDatabaseCommunicator;
     public MCPDatabaseCommunicator MCPDatabaseCommunicator;
     public VehicleDatabaseCommunicator VehicleDatabaseCommunicator;
-
+    public TaskDatabaseCommunicator TaskDatabaseCommunicator;
+    
     public MapAPICommunicator MapAPICommunicator;
     public MCPAPICommunicator MCPAPICommunicator;
-    private void Start()
-    {
-        // void Callback(bool success, List<CollectorRouteData> list)
-        // {
-        //     if (success)
-        //         foreach (var collectorRoute in list)
-        //         {
-        //             Debug.Log(collectorRoute.Route[0]);
-        //         }
-        //     else
-        //     {
-        //         Debug.Log("fuck");
-        //     }
-        // }
-        //
-        // StartCoroutine(GetAllCollectorPosition(Callback));
-        // StartCoroutine(AssignWaypointsToCollector("20b30c5b3c",
-        //     new List<Vector2d>() {new Vector2d(10.7d, 106.6),}));
-    }
-
 
     public void RequestLogin(string username, string password, Action<bool, LoginToken> callback)
     {

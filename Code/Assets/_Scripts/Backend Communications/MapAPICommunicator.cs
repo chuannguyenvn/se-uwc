@@ -51,8 +51,9 @@ public class MapAPICommunicator : MonoBehaviour
             yield break;
         }
 
-        var coordinate = JsonConvert.DeserializeObject<Coordinate>(request.downloadHandler.text);
-        callback?.Invoke(true, coordinate);
+        var routeTraversedData =
+            JsonConvert.DeserializeObject<CollectorRouteTraversedData>(request.downloadHandler.text);
+        callback?.Invoke(true, routeTraversedData.CurrentPos);
     }
 
     public void GetAllCollectorPosition(Action<bool, List<CollectorCurrentPositionData>> callback)

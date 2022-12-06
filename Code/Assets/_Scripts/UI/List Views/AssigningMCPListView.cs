@@ -12,7 +12,9 @@ public class AssigningMCPListView : DataListView<MCPData>
     protected override void Init()
     {
         base.Init();
+        
         prefab = ResourceManager.Instance.AssigningMcpListItemView;
+        
         AnimateHide();
 
         confirmButton.onClick.AddListener(() =>
