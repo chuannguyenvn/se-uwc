@@ -17,7 +17,7 @@ public class MapAPICommunicator : MonoBehaviour
         {
             if (isSucceeded)
             {
-                routeData.Route.Insert(0, coordinate);
+                routeData.Route.Insert(0, coordinate.CurrentPos);
                 StartCoroutine(SetCollectorWaypoints_CO(routeData, callback));
             }
         });
@@ -40,12 +40,12 @@ public class MapAPICommunicator : MonoBehaviour
         callback?.Invoke(true);
     }
 
-    public void GetCollectorPosition(string collectorId, Action<bool, Coordinate> callback)
+    public void GetCollectorPosition(string collectorId, Action<bool, CollectorRouteTraversedData> callback)
     {
         StartCoroutine(GetCollectorPosition_CO(collectorId, callback));
     }
 
-    private IEnumerator GetCollectorPosition_CO(string collectorId, Action<bool, Coordinate> callback)
+    private IEnumerator GetCollectorPosition_CO(string collectorId, Action<bool, CollectorRouteTraversedData> callback)
     {
         var request =
             BackendCommunicator.CreateGetRequest(string.Format(GET_COLLECTOR_POSITION_PATH,
@@ -61,7 +61,7 @@ public class MapAPICommunicator : MonoBehaviour
 
         var routeTraversedData =
             JsonConvert.DeserializeObject<CollectorRouteTraversedData>(request.downloadHandler.text);
-        callback?.Invoke(true, routeTraversedData.CurrentPos);
+        callback?.Invoke(true, routeTraversedData);
     }
 
     public void GetAllCollectorPosition(Action<bool, List<CollectorCurrentPositionData>> callback)
