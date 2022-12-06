@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Mapbox.Utils;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,8 @@ public class AssigningMCPListView : DataListView<MCPData>
         
         AnimateHide();
 
+        confirmButton.onClick.RemoveAllListeners();
+        
         confirmButton.onClick.AddListener(() =>
         {
             CollectorRouteData collectorRouteData = new();
@@ -71,5 +74,11 @@ public class AssigningMCPListView : DataListView<MCPData>
                     });
             });
         });
+    }
+
+    public override Task AnimateHide()
+    {
+        RemoveAllItem();
+        return base.AnimateHide();
     }
 }
