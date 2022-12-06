@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Mapbox.Utils;
 using UnityEngine;
 
@@ -11,16 +12,7 @@ public class CollectorMapEntity : SingleCoordinateMapEntity<StaffData>
     {
         AssignData(data);
 
-        button.onClick.AddListener(() =>
-        {
-            BackendCommunicator.Instance.MapAPICommunicator.GetCollectorPosition(data.ID,
-                (isSucceeded, coordinate) =>
-                {
-                    if (isSucceeded)
-                        MapManager.Instance.CollectorInformationPopup.Show(data,
-                            new Vector2d(coordinate.Latitude, coordinate.Longitude));
-                });
-        });
+        button.onClick.AddListener(() => { MapManager.Instance.ViewingCollectorID = data.ID; });
 
         StartCoroutine(UpdatePosition_CO());
     }
@@ -34,11 +26,12 @@ public class CollectorMapEntity : SingleCoordinateMapEntity<StaffData>
         while (true)
         {
             BackendCommunicator.Instance.MapAPICommunicator.GetCollectorPosition(data.ID,
-                (isSucceed, coordinate) =>
+                (isSucceed, routeTraversedData) =>
                 {
                     if (isSucceed)
                     {
-                        var currentCoordinate = new Vector2d(coordinate.Latitude, coordinate.Longitude);
+                        var currentCoordinate = new Vector2d(routeTraversedData.CurrentPos.Latitude,
+                            routeTraversedData.CurrentPos.Longitude);
                         UpdateCoordinate(currentCoordinate);
 
                         transform.rotation = Quaternion.Euler(0, 0,
