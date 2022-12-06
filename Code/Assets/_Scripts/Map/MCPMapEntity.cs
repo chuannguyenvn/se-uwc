@@ -44,16 +44,7 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
 
     public static Dictionary<MCPMapEntity, bool> ToggleStates = new();
     public static List<MCPMapEntity> ChosenEntities = new();
-
-    public static void ResetToggleState()
-    {
-        foreach (var key in new List<MCPMapEntity>(ToggleStates.Keys))
-        {
-            ToggleStates[key] = false;
-        }
-
-        ChosenEntities = new();
-    }
+    
 
     #endregion
 
@@ -100,6 +91,7 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
         {
             PrimarySidebar.Instance.OnViewChanged(ViewType.MCPsOverview);
             MCPInformationPanel.Instance.Show(data);
+            ToggleStates[this] = false;
         });
     }
 

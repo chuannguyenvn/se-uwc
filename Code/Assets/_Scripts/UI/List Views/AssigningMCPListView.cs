@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mapbox.Utils;
@@ -78,7 +79,6 @@ public class AssigningMCPListView : DataListView<MCPData>
                                             "."));
                                 }
 
-                                MCPMapEntity.ResetToggleState();
                                 AnimateHide();
                             });
                     });
@@ -89,6 +89,14 @@ public class AssigningMCPListView : DataListView<MCPData>
     public override Task AnimateHide()
     {
         RemoveAllItem();
+        StartCoroutine(DeferredCall_CO());
         return base.AnimateHide();
+    }
+
+    private IEnumerator DeferredCall_CO()
+    {
+        yield return null;
+        yield return new WaitForSeconds(1f);
+        MCPMapEntity.GroupingSelect = false;
     }
 }
