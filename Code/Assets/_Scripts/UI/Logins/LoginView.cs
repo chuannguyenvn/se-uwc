@@ -47,8 +47,14 @@ public class LoginView : MonoBehaviour
                     // Bug: Remove this in final build.
                     PlayerPrefs.SetString(PPPasswordKey, passwordField.text);
 
-                    AccountManager.Instance.SaveLoginCredentials(token);
                     SceneManager.LoadSceneAsync("Main");
+                    AccountManager.Instance.SaveLoginCredentials(token);
+
+                    BackendCommunicator.Instance.StaffDatabaseCommunicator.GetEmployeeByUsername(
+                        usernameField.text, (isSucceeded, data) =>
+                        {
+                            if (isSucceeded) AccountManager.Instance.AccountID = data.ID;
+                        });
                 }
                 else
                 {

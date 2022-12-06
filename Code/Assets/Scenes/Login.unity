@@ -358,6 +358,10 @@ PrefabInstance:
       propertyPath: token
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5652560900170596434, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
+      propertyPath: AccountID
+      value: a16231a6af
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
 --- !u!1 &411818052

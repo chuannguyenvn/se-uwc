@@ -798,6 +798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5cee0b6b895417a9e2a6d75c33bd41c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chatbox: {fileID: 7758201222061592203}
   profilePicture: {fileID: 466840482}
   accountName: {fileID: 74096919}
   status: {fileID: 909775808}
@@ -3852,8 +3853,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chatbox
       objectReference: {fileID: 0}
+    - target: {fileID: 7758201222160443606, guid: 5b2084efe72d8854a8b4a7490e0cf052, type: 3}
+      propertyPath: inputField
+      value: 
+      objectReference: {fileID: 7758201222061592202}
+    - target: {fileID: 7758201222160443606, guid: 5b2084efe72d8854a8b4a7490e0cf052, type: 3}
+      propertyPath: messageDataListView
+      value: 
+      objectReference: {fileID: 465077051}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b2084efe72d8854a8b4a7490e0cf052, type: 3}
+--- !u!114 &7758201222061592202 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7758201222160443605, guid: 5b2084efe72d8854a8b4a7490e0cf052, type: 3}
+  m_PrefabInstance: {fileID: 7758201222061592201}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435138356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7758201222061592203 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7758201222160443606, guid: 5b2084efe72d8854a8b4a7490e0cf052, type: 3}
+  m_PrefabInstance: {fileID: 7758201222061592201}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435138356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad3e9c358c34682af670c3365bacd9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7908072928402232148
 PrefabInstance:
   m_ObjectHideFlags: 0

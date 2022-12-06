@@ -22,6 +22,7 @@ public class MessageDatabaseCommunicator : MonoBehaviour
         var request = BackendCommunicator.CreatePostRequest(ADD_MESSAGE_PATH, messageDataJson);
         yield return request.SendWebRequest();
 
+        Debug.Log("Send message: " + request.downloadHandler.text);
         if (request.result != UnityWebRequest.Result.Success)
         {
             callback?.Invoke(false);
@@ -38,7 +39,7 @@ public class MessageDatabaseCommunicator : MonoBehaviour
 
     private IEnumerator GetMessage_CO(string accountId, Action<bool, List<MessageData>> callback)
     {
-        MessageRequestPayload payload = new() {User1 = "a16231a6af", User2 = accountId};
+        MessageRequestPayload payload = new() {User1 = accountId, User2 = accountId};
         var payloadJson = JsonConvert.SerializeObject(payload);
 
         var request = BackendCommunicator.CreatePostRequest(GET_MESSAGE_PATH, payloadJson);
