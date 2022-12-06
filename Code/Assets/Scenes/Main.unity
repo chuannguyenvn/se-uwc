@@ -1611,7 +1611,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5652560900170596434, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
       propertyPath: token
-      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImR1Yy5waEdsb2JhbCIsInJvbGUiOiJCYWNrT2ZmaWNlciIsImlhdCI6MTY3MDI5OTM1NSwiZXhwIjoxNjcwMzAxMTU1fQ.jFtviX9C7_CQIYDJe5asfq-GG011c2FVNIPz7YgcRU8
+      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImR1Yy5waEdsb2JhbCIsInJvbGUiOiJCYWNrT2ZmaWNlciIsImlhdCI6MTY3MDMwMTE3MiwiZXhwIjoxNjcwMzAyOTcyfQ.Ij8IGXbB7bHFGlR-O3cCTCCf0-U2lOxUStLCSke1Rnk
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd7868257257be44a8b2fbee23b67c48, type: 3}
@@ -3767,7 +3767,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2491945854748974179, guid: e23893e5ee19ba04096c9e0446a6272e, type: 3}
       propertyPath: LanguageOption
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5122756226176774308, guid: e23893e5ee19ba04096c9e0446a6272e, type: 3}
       propertyPath: m_RootOrder

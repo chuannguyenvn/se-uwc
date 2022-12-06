@@ -24,6 +24,8 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
         {
             ToggleStates[key] = false;
         }
+
+        ChosenEntities = new();
     }
 
     #endregion
@@ -44,12 +46,11 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
             var index = ChosenEntities.FindIndex(entity => entity == this);
             if (index == -1)
             {
-                chosenOrderText.gameObject.SetActive(false);
+                chosenOrderText.text = "";
             }
             else
             {
-                chosenOrderText.gameObject.SetActive(true);
-                chosenOrderText.text = index.ToString();
+                chosenOrderText.text = (index + 1).ToString();
             }
         };
 
@@ -91,15 +92,18 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
 
         if (capacity < SystemConstants.MCP.AlmostFullThreshold)
         {
-            background.color = choiceDisc.Color = VisualManager.Instance.MCPNotFullColor;
+            background.color = choiceDisc.Color =
+                chosenOrderText.color = VisualManager.Instance.MCPNotFullColor;
         }
         else if (capacity < SystemConstants.MCP.FullyLoadedThreshold)
         {
-            background.color = choiceDisc.Color = VisualManager.Instance.MCPAlmostFullColor;
+            background.color = choiceDisc.Color =
+                chosenOrderText.color = VisualManager.Instance.MCPAlmostFullColor;
         }
         else
         {
-            background.color = choiceDisc.Color = VisualManager.Instance.MCPFullyLoadedColor;
+            background.color = choiceDisc.Color =
+                chosenOrderText.color = VisualManager.Instance.MCPFullyLoadedColor;
         }
     }
 }
