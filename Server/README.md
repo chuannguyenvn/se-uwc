@@ -79,6 +79,7 @@ Các request dưới đây đều cần Authorization Bearer Token là access to
 - Get info of an MCP by MCP_id: GET `/api/mcp/:id` (Ex: GET `/api/mcp/1bde7f5293`)
 - Get current state of MCP: GET `/api/mcp/current/:id` (Ex: GET `/api/mcp/current/1bde7f5293`)
 - Get current state of MCP (in %): GET `/api/mcp/current/percentage/:id` (Ex: GET `/api/mcp/current/percentage/1bde7f5293`)
+- Reset current state: PUT `/api/current/reset/:id` (Ex: PUT `/api/current/reset/1bde7f5293`)
 
 ### Vehicle
 
