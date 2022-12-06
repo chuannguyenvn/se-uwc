@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Mapbox.Utils;
 using Shapes;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +16,32 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
 
     public static event Action<MCPMapEntity, bool> ToggleStateChanged;
 
-    public static bool GroupingSelect = false;
+    private static bool groupingSelect;
+
+    public static bool GroupingSelect
+    {
+        get => groupingSelect;
+        set
+        {
+            groupingSelect = value;
+            if (groupingSelect)
+            {
+                foreach (var (key, _) in ToggleStates)
+                {
+                    key.ChangeToSelectMode();
+                }
+            }
+            else
+            {
+                foreach (var (key, _) in ToggleStates)
+                {
+                    key.ChangeToInfoMode();
+                    key.HideDisc();
+                }
+            }
+        }
+    }
+
     public static Dictionary<MCPMapEntity, bool> ToggleStates = new();
     public static List<MCPMapEntity> ChosenEntities = new();
 
@@ -53,7 +80,32 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
                 chosenOrderText.text = (index + 1).ToString();
             }
         };
+        
+        ChangeToInfoMode();
+        HideDisc();
+    }
 
+    public override void ValueChangedHandler()
+    {
+        var percentage = data.StatusPercentage;
+
+        background.color = choiceDisc.Color = chosenOrderText.color =
+            VisualManager.Instance.GetMCPColor(percentage / 100f);
+    }
+
+    private void ChangeToInfoMode()
+    {
+        button.onClick.RemoveAllListeners();
+        button.onClick.AddListener(() =>
+        {
+            PrimarySidebar.Instance.OnViewChanged(ViewType.MCPsOverview);
+            MCPInformationPanel.Instance.Show(data);
+        });
+    }
+
+    private void ChangeToSelectMode()
+    {
+        button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() =>
         {
             if (GroupingSelect)
@@ -62,35 +114,37 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
 
                 if (ToggleStates[this])
                 {
-                    choiceDisc.gameObject.SetActive(true);
-                    choiceDisc.transform.DORotate(new Vector3(0, 0, -90), 45f, RotateMode.WorldAxisAdd)
-                        .SetSpeedBased(true)
-                        .SetLoops(-1)
-                        .SetEase(Ease.Linear);
+                    ShowDisc();
                     ChosenEntities.Add(this);
                 }
                 else
                 {
-                    choiceDisc.transform.DOKill();
+                    HideDisc();
                     ChosenEntities.Remove(this);
-                    choiceDisc.gameObject.SetActive(false);
                 }
 
                 ToggleStateChanged?.Invoke(this, ToggleStates[this]);
             }
             else
             {
-                var coordinate = new Vector2d(data.Latitude, data.Longitude);
-                MapManager.Instance.MCPInformationPopup.Show(data, coordinate);
+                choiceDisc.gameObject.SetActive(ToggleStates[this]);
             }
         });
     }
 
-    public override void ValueChangedHandler()
+    private void ShowDisc()
     {
-        var percentage = data.StatusPercentage;
-        
-        background.color = choiceDisc.Color = chosenOrderText.color =
-            VisualManager.Instance.GetMCPColor(percentage / 100f);
+        choiceDisc.gameObject.SetActive(true);
+        choiceDisc.transform.DORotate(new Vector3(0, 0, -90), 45f, RotateMode.WorldAxisAdd)
+            .SetSpeedBased(true)
+            .SetLoops(-1)
+            .SetEase(Ease.Linear);
+    }
+
+    private void HideDisc()
+    {
+        choiceDisc.transform.DOKill();
+        choiceDisc.gameObject.SetActive(false);
+        chosenOrderText.text = "";
     }
 }

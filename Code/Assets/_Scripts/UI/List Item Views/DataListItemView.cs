@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -11,7 +12,7 @@ public abstract class DataListItemView<T> : ListItemView where T : Data
     [SerializeField] protected Button button;
 
     public T Data { get; protected set; }
-    
+
     public string PrimaryText;
     public string SecondaryText;
 
@@ -19,6 +20,11 @@ public abstract class DataListItemView<T> : ListItemView where T : Data
     {
         Data = data;
     }
-    
+
     protected abstract void UpdateView();
+
+    public void Choose()
+    {
+        button.OnPointerClick(new PointerEventData(EventSystem.current));
+    }
 }

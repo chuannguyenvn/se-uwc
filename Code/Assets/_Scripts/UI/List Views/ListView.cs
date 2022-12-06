@@ -55,6 +55,17 @@ public abstract class ListView : MonoBehaviour, IShowHideAnimatable
         }
     }
 
+    public void RemoveAllItem()
+    {
+        foreach (var view in itemViews)
+        {
+            Destroy(view.gameObject);
+        }
+
+        itemViews = new();
+        UpdateScrollRect();
+    }
+
 
     protected virtual void UpdateScrollRect()
     {

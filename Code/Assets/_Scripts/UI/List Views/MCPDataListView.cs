@@ -14,4 +14,15 @@ public class MCPDataListView : DataListView<MCPData>
             AddDataItem(mcpData);
         }
     }
+
+    public void Choose(string mcpId)
+    {
+        foreach (var itemView in itemViews)
+        {
+            if (itemView is MCPDataListItemView mcpDataListItemView)
+            {
+                if (mcpDataListItemView.Data.ID == mcpId) mcpDataListItemView.Choose();
+            }
+        }
+    }
 }

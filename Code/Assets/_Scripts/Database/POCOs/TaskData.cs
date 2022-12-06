@@ -1,21 +1,13 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 public class TaskData : Data
 {
-    public string EmployeeID { get; set; }
-    public string MCPID { get; set; }
+    [JsonProperty("employee_id")] public string EmployeeID { get; set; }
+    [JsonProperty("mcp_id")] public string MCPID { get; set; }
 
-    public DateTime Timestamp { get; set; }
-    public bool CheckedIn { get; set; }
-    public bool CheckedOut { get; set; }
-
-    public TaskData(string id, string employeeID, string mcpid, DateTime timestamp, bool checkedIn,
-        bool checkedOut) : base(id)
-    {
-        EmployeeID = employeeID;
-        MCPID = mcpid;
-        Timestamp = timestamp;
-        CheckedIn = checkedIn;
-        CheckedOut = checkedOut;
-    }
+    [JsonProperty("vehicle_id")] public string VehicleID { get; set; }
+    [JsonProperty("timeToDo")] public string Timestamp { get; set; }
+    [JsonProperty("checkin")] public int CheckedIn { get; set; }
+    [JsonProperty("checkout")] public int CheckedOut { get; set; }
 }

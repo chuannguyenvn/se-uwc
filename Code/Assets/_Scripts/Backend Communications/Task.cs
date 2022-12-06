@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 public class Coordinate
@@ -24,4 +23,10 @@ public class CollectorRouteData
 {
     [JsonProperty("collectorId")] public string CollectorId { get; set; }
     [JsonProperty("points")] public List<Coordinate> Route { get; set; }
+}
+
+public class CollectorRouteTraversedData
+{
+    [JsonProperty("currentPos")] public Coordinate CurrentPos { get; set; }
+    [JsonProperty("route")] public List<Coordinate> Route { get; set; }
 }

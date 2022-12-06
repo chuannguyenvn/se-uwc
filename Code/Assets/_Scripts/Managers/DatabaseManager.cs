@@ -75,12 +75,10 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
                         }
                     });
             }
-
-
+            
             yield return new WaitForSeconds(5);
         }
     }
-
 
     private void RetrieveAllCollectorData()
     {
@@ -155,7 +153,7 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
             }
         });
     }
-
+    
     public string GetStaffNameByID(string staffId)
     {
         foreach (var staffData in AllStaffs)
@@ -188,7 +186,7 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
     public List<TaskData> FilterStaffsTasksByDate(StaffData staffData, DateTime dateTime)
     {
         return new List<TaskData>();
-        return AllTasks.FindAll(task =>
-            task.EmployeeID == staffData.ID && task.Timestamp.Date == dateTime.Date);
+        // return AllTasks.FindAll(task =>
+        //     task.EmployeeID == staffData.ID && task.Timestamp.Date == dateTime.Date);
     }
 }
