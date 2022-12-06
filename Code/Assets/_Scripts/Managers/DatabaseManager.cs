@@ -21,7 +21,6 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
     public List<StaffData> AllCollectors;
     public List<MCPData> AllMCPs;
     public List<VehicleData> AllVehicles;
-    public Dictionary<string, Inbox> InboxesByID;
     public List<TaskData> AllTasks;
     public List<MaintenanceLogData> AllMaintenanceLogs;
 
@@ -37,40 +36,18 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
             ApplicationManager.InitState.Data);
     }
 
-    private void Init()
-    {
-        // InboxesByID = new();
-        //
-        // var allMessageData = DatabaseLoader.Instance.LoadAllMessageData();
-        // foreach (var messageData in allMessageData)
-        // {
-        //     AddMessageToInbox(messageData);
-        // }
-        //
-        // foreach (var (id, inbox) in InboxesByID)
-        // {
-        //     inbox.SortMessages();
-        // }
-        //
-        // AllTasks = DatabaseLoader.Instance.LoadAllTaskData();
-        //
-        // AllMaintenanceLogs = DatabaseLoader.Instance.LoadAllMaintenanceLogData();
-
-        //ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.Data);
-    }
-
     private IEnumerator PeriodicallyRetrieveMCPStatus_CO()
     {
         while (true)
         {
             foreach (var mcpData in AllMCPs)
             {
+                Debug.Log("mcpid: " + mcpData.ID);
                 BackendCommunicator.Instance.MCPAPICommunicator.GetMCPStatePercentage(mcpData.ID,
                     (isSucceeded, percentage) =>
                     {
                         if (isSucceeded)
                         {
-                            Debug.Log("per: " + percentage);
                             mcpData.StatusPercentage = percentage;
                         }
                     });
@@ -84,8 +61,6 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
     {
         BackendCommunicator.Instance.StaffDatabaseCommunicator.GetAllCollector((success, list) =>
         {
-            Debug.Log("called");
-
             if (success == false)
             {
                 NotificationManager.Instance.EnqueueNotification(
@@ -103,8 +78,6 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
     {
         BackendCommunicator.Instance.StaffDatabaseCommunicator.GetAllJanitor((success, list) =>
         {
-            Debug.Log("called");
-
             if (success == false)
             {
                 NotificationManager.Instance.EnqueueNotification(
@@ -162,18 +135,6 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
         }
 
         throw new Exception();
-    }
-
-    private void AddMessageToInbox(MessageData messageData)
-    {
-        string otherPersonId = messageData.ReceiverID == AccountManager.Instance.AccountID
-            ? messageData.SenderID
-            : messageData.ReceiverID;
-
-        if (!InboxesByID.ContainsKey(otherPersonId))
-            InboxesByID.Add(otherPersonId, new Inbox(otherPersonId, GetStaffNameByID(otherPersonId)));
-
-        InboxesByID[otherPersonId].Messages.Add(messageData);
     }
 
     public MCPData GetMCPDataByID(string mcpId)
