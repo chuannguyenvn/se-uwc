@@ -23,6 +23,11 @@ public class StaffInformationPanel : InformationPanel<StaffData>
     private void Start()
     {
         assignTaskButton.onClick.AddListener(EnterAssignMode);
+        sendMessageButton.onClick.AddListener(() =>
+        {
+            PrimarySidebar.Instance.OnViewChanged(ViewType.MessagesOverview);
+            ListViewManager.Instance.InboxListView.SelectInboxByStaffId(Data.ID);
+        });
     }
 
     protected override void SetData(StaffData data)
@@ -52,7 +57,7 @@ public class StaffInformationPanel : InformationPanel<StaffData>
         {
             if (isSelected)
                 assigningMcpListView.AddDataItem(entity.Data);
-            else 
+            else
                 assigningMcpListView.RemoveDataItem(entity.Data);
         };
     }
