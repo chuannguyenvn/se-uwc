@@ -159,7 +159,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 2067834074532225457}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -386,6 +386,14 @@ PrefabInstance:
     - target: {fileID: 1007314501454630529, guid: be11f3a50b7e3d74db3cf8163e28879e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2071247842274403604, guid: be11f3a50b7e3d74db3cf8163e28879e, type: 3}
+      propertyPath: m_fontSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2071247842274403604, guid: be11f3a50b7e3d74db3cf8163e28879e, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6346095921770205254, guid: be11f3a50b7e3d74db3cf8163e28879e, type: 3}
       propertyPath: m_Name
