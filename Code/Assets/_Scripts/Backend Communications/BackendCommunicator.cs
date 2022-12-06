@@ -69,6 +69,7 @@ public class BackendCommunicator : PersistentSingleton<BackendCommunicator>
 
         var loginToken = JsonConvert.DeserializeObject<LoginToken>(request.downloadHandler.text);
         callback?.Invoke(true, loginToken);
+        request.Dispose();
     }
 
     private IEnumerator AssignWaypointsToCollector(string staffId, List<Vector2d> waypoints)

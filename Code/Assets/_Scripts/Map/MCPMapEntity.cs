@@ -20,7 +20,7 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
 
     public static void ResetToggleState()
     {
-        foreach (var (key, _) in ToggleStates)
+        foreach (var key in new List<MCPMapEntity>(ToggleStates.Keys))
         {
             ToggleStates[key] = false;
         }

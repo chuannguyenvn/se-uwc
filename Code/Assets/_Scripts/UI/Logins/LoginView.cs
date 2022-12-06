@@ -19,7 +19,7 @@ public class LoginView : MonoBehaviour
         loginButton.onClick.AddListener(TryLogin);
     }
 
-    private async void TryLogin()
+    private void TryLogin()
     {
         if (CheckFormFulfillment() == false)
         {
@@ -34,7 +34,7 @@ public class LoginView : MonoBehaviour
                 if (success)
                 {
                     AccountManager.Instance.SaveLoginCredentials(token);
-                    SceneManager.LoadScene("Main");
+                    SceneManager.LoadSceneAsync("Main");
                 }
                 else
                 {
