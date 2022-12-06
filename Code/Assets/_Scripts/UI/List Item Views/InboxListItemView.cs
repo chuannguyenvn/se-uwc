@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-public class InboxListItemView : DataListItemView<Inbox>
+public class InboxListItemView : DataListItemView<StaffData>
 {
-    public override void SetData(Inbox data)
+    public override void SetData(StaffData data)
     {
         base.SetData(data);
         
-        PrimaryText = data.RecipientName;
+        PrimaryText = data.Name;
 
         UpdateView();
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Threading.Tasks;
 using DG.Tweening;
 using TMPro;
@@ -7,9 +8,12 @@ using UnityEngine.UI;
 
 public class MessageDataListView : DataListView<MessageData>
 {
+    [SerializeField] private Chatbox chatbox;
     [SerializeField] private Image profilePicture;
     [SerializeField] private TMP_Text accountName;
     [SerializeField] private TMP_Text status;
+
+    private StaffData staffData;
 
     protected override void Init()
     {
@@ -19,13 +23,27 @@ public class MessageDataListView : DataListView<MessageData>
         prefab = ResourceManager.Instance.MessageDataListItemView;
 
         ListViewManager.Instance.InboxListView.InboxChosen += InboxChosenHandler;
+        PrimarySidebar.Instance.ViewChanged += (viewType) => staffData = null;
+        StartCoroutine(RefreshInbox_CO());
     }
 
-    private void InboxChosenHandler(Inbox inbox)
+    IEnumerator RefreshInbox_CO()
+    {
+        while (true)
+        {
+            if (staffData != null)
+                InboxChosenHandler(staffData);
+
+            yield return new WaitForSeconds(5f);
+        }
+    }
+
+    private void InboxChosenHandler(StaffData staffData)
     {
         RemoveAllItemViews();
 
-        BackendCommunicator.Instance.MessageDatabaseCommunicator.GetMessage(inbox.RecipientID,
+        this.staffData = staffData;
+        BackendCommunicator.Instance.MessageDatabaseCommunicator.GetMessage(staffData.ID,
             (isSucceeded, data) =>
             {
                 if (isSucceeded)
@@ -35,10 +53,12 @@ public class MessageDataListView : DataListView<MessageData>
                     {
                         AddDataItem(messageData);
                         // profilePicture.sprite = [something];
-                        accountName.text = inbox.RecipientName;
+                        accountName.text = staffData.Name;
                         // status.text = [something];
                         scrollRect.content.anchoredPosition =
                             new Vector2(0, scrollRect.content.sizeDelta.y - 600);
+
+                        chatbox.RecipientID = staffData.ID;
                     }
                 }
             });

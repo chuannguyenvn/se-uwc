@@ -1,8 +1,8 @@
 ﻿using System;
 
-public class InboxListView : DataListView<Inbox>
+public class InboxListView : DataListView<StaffData>
 {
-    public event Action<Inbox> InboxChosen;
+    public event Action<StaffData> InboxChosen;
 
     protected override void Init()
     {
@@ -13,11 +13,11 @@ public class InboxListView : DataListView<Inbox>
         var allStaffs = DatabaseManager.Instance.AllStaffs;
         foreach (var staff in allStaffs)
         {
-            AddDataItem(new Inbox(staff.ID, staff.Name));
+            AddDataItem(staff);
         }
     }
 
-    public void OnInboxChosen(Inbox inbox)
+    public void OnInboxChosen(StaffData inbox)
     {
         InboxChosen?.Invoke(inbox);
     }
@@ -28,7 +28,7 @@ public class InboxListView : DataListView<Inbox>
         {
             if (itemView is InboxListItemView inboxView)
             {
-                if (inboxView.Data.RecipientID == staffId)
+                if (inboxView.Data.ID == staffId)
                 {
                     OnInboxChosen(inboxView.Data);
                     return;

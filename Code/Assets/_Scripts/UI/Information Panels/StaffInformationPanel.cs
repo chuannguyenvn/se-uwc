@@ -23,11 +23,8 @@ public class StaffInformationPanel : InformationPanel<StaffData>
     private void Start()
     {
         assignTaskButton.onClick.AddListener(EnterAssignMode);
-        sendMessageButton.onClick.AddListener(() =>
-        {
-            PrimarySidebar.Instance.OnViewChanged(ViewType.MessagesOverview);
-            ListViewManager.Instance.InboxListView.SelectInboxByStaffId(Data.ID);
-        });
+        viewCalendarButton.onClick.AddListener(EnterCalendarViewingMode);
+        sendMessageButton.onClick.AddListener(GoToInbox);
     }
 
     protected override void SetData(StaffData data)
@@ -41,12 +38,7 @@ public class StaffInformationPanel : InformationPanel<StaffData>
         phoneNumber.text = data.PhoneNumber;
         taskDataListView.ShowTodayTasksOf(data);
     }
-
-    private void ShowCalendar()
-    {
-        calendar.gameObject.SetActive(true);
-    }
-
+    
     private void EnterAssignMode()
     {
         MCPMapEntity.GroupingSelect = true;
@@ -60,5 +52,16 @@ public class StaffInformationPanel : InformationPanel<StaffData>
             else
                 assigningMcpListView.RemoveDataItem(entity.Data);
         };
+    }
+
+    private void EnterCalendarViewingMode()
+    {
+        calendar.gameObject.SetActive(true);
+    }
+
+    private void GoToInbox()
+    {
+        PrimarySidebar.Instance.OnViewChanged(ViewType.MessagesOverview);
+        ListViewManager.Instance.InboxListView.SelectInboxByStaffId(Data.ID);
     }
 }
