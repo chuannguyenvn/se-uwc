@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StaffData : Data
 {
+    [JsonProperty("id")] public string ID { get; set; }
     [JsonProperty("name")] public string Name { get; set; }
 
     [JsonProperty("image")] public object Image { get; set; }

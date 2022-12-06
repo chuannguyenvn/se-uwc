@@ -2,6 +2,7 @@
 
 public class VehicleData : Data
 {
+    [JsonProperty("id")] public string ID { get; set; }
     [JsonProperty("category")] public string Category { get; set; }
 
     [JsonProperty("model")] public string Model { get; set; }
