@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public abstract class ListView : MonoBehaviour, IShowHideAnimatable
 {
-    [SerializeField] protected ScrollRect scrollRect;
+     protected ScrollRect scrollRect;
     protected List<ListItemView> itemViews = new();
 
     protected static float VERTICAL_SPACING = 10f;
@@ -18,6 +18,7 @@ public abstract class ListView : MonoBehaviour, IShowHideAnimatable
 
     protected virtual void Awake()
     {
+        scrollRect = GetComponent<ScrollRect>();
         rectTransform = GetComponent<RectTransform>();
         ApplicationManager.Instance.AddInitWork(Init, ApplicationManager.InitState.UI);
     }
