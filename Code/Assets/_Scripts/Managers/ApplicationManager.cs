@@ -21,9 +21,7 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>
 
     private Dictionary<InitState, int> workCountByInitState = new()
     {
-        {InitState.Data, 0},
-        {InitState.Map, 0},
-        {InitState.UI, 0},
+        {InitState.Data, 0}, {InitState.Map, 0}, {InitState.UI, 0},
     };
 
     // Event used for important classes to subscribe their initialize works to.
@@ -31,6 +29,8 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>
 
     // Similar to InitEventFlow.
     public event Action<TerminateState> TerminateEventFlow;
+
+    [SerializeField] private GameObject loadPanelGO;
 
     private void Start()
     {
@@ -61,6 +61,7 @@ public class ApplicationManager : PersistentSingleton<ApplicationManager>
             case InitState.Map:
                 InitEventFlow?.Invoke(InitState.UI);
                 Debug.Log("Completed Map");
+                loadPanelGO.GetComponent<IHideAnimatable>().AnimateHide();
                 break;
             case InitState.UI:
                 break;

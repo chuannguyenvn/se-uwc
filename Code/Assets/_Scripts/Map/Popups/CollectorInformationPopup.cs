@@ -28,6 +28,7 @@ public class CollectorInformationPopup : MapPopup<StaffData>
     private void Init()
     {
         rectTransform = GetComponent<RectTransform>();
+        ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.UI);
     }
 
     public override void Show(StaffData data, Vector2d position)

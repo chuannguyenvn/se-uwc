@@ -17,6 +17,7 @@ public class SidebarButton : MonoBehaviour
     {
         button.onClick.AddListener(() => PrimarySidebar.Instance.OnViewChanged(viewType));
         PrimarySidebar.Instance.ViewChanged += ViewChangedHandler;
+        ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.UI);
     }
 
     private void OnDestroy()

@@ -13,6 +13,7 @@ public abstract class MapEntity : MonoBehaviour
     protected virtual void Init()
     {
         MapWrapper.Instance.MapUpdated += MapUpdatedHandler;
+        ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.UI);
     }
 
     protected virtual void Terminate()

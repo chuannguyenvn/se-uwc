@@ -31,9 +31,9 @@ public class ViewGroup : MonoBehaviour
         {
             hideAnimatables.Add(hideGameObject.GetComponent<IHideAnimatable>());
         }
-
-
+        
         AnimateHide();
+        ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.UI);
     }
 
     private void Terminate()
