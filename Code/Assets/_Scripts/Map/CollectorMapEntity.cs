@@ -20,8 +20,6 @@ public class CollectorMapEntity : SingleCoordinateMapEntity<StaffData>
                         MapManager.Instance.CollectorInformationPopup.Show(data,
                             new Vector2d(coordinate.Latitude, coordinate.Longitude));
                 });
-            
-            BackendCommunicator.Instance.MapAPICommunicator.get
         });
 
         StartCoroutine(UpdatePosition_CO());
