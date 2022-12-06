@@ -28,7 +28,6 @@ public class MCPDatabaseCommunicator : MonoBehaviour
         }
 
         var mcpData = JsonConvert.DeserializeObject<List<MCPData>>(request.downloadHandler.text);
-
         callback?.Invoke(true, mcpData);
     }
 }

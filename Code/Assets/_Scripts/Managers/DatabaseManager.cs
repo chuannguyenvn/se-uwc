@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal.VersionControl;
 using UnityEngine;
 
 
@@ -59,6 +59,29 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
         //ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.Data);
     }
 
+    private IEnumerator PeriodicallyRetrieveMCPStatus_CO()
+    {
+        while (true)
+        {
+            foreach (var mcpData in AllMCPs)
+            {
+                BackendCommunicator.Instance.MCPAPICommunicator.GetMCPStatePercentage(mcpData.ID,
+                    (isSucceeded, percentage) =>
+                    {
+                        if (isSucceeded)
+                        {
+                            Debug.Log("per: " + percentage);
+                            mcpData.StatusPercentage = percentage;
+                        }
+                    });
+            }
+
+
+            yield return new WaitForSeconds(5);
+        }
+    }
+
+
     private void RetrieveAllCollectorData()
     {
         BackendCommunicator.Instance.StaffDatabaseCommunicator.GetAllCollector((success, list) =>
@@ -101,15 +124,16 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
     {
         BackendCommunicator.Instance.MCPDatabaseCommunicator.GetAllMCP((success, list) =>
         {
-            if (success == false)
-            {
-                NotificationManager.Instance.EnqueueNotification(
-                    new NotificationData(NotificationType.Error, "Cannot retrieve MCP data."));
-            }
-            else
+            if (success)
             {
                 AllMCPs = list;
                 ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.Data);
+                StartCoroutine(PeriodicallyRetrieveMCPStatus_CO());
+            }
+            else
+            {
+                NotificationManager.Instance.EnqueueNotification(
+                    new NotificationData(NotificationType.Error, "Cannot retrieve MCP data."));
             }
         });
     }
@@ -163,6 +187,7 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
 
     public List<TaskData> FilterStaffsTasksByDate(StaffData staffData, DateTime dateTime)
     {
+        return new List<TaskData>();
         return AllTasks.FindAll(task =>
             task.EmployeeID == staffData.ID && task.Timestamp.Date == dateTime.Date);
     }

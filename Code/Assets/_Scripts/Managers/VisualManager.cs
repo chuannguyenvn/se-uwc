@@ -25,17 +25,17 @@ public class VisualManager : PersistentSingleton<VisualManager>
 
     // @formatter:on
 
-    public Color GetMCPColor(float capacity)
+    public Color GetMCPColor(float percentage)
     {
-        if (capacity < SystemConstants.MCP.AlmostFullThreshold) return MCPNotFullColor;
-        if (capacity < SystemConstants.MCP.FullyLoadedThreshold) return MCPAlmostFullColor;
+        if (percentage < SystemConstants.MCP.AlmostFullThreshold) return MCPNotFullColor;
+        if (percentage < SystemConstants.MCP.FullyLoadedThreshold) return MCPAlmostFullColor;
         return MCPFullyLoadedColor;
     }
 
-    public string GetMCPStatusText(float capacity)
+    public string GetMCPStatusText(float percentage)
     {
-        if (capacity < SystemConstants.MCP.AlmostFullThreshold) return "Not full";
-        if (capacity < SystemConstants.MCP.FullyLoadedThreshold) return "Almost full";
+        if (percentage < SystemConstants.MCP.AlmostFullThreshold) return "Not full";
+        if (percentage < SystemConstants.MCP.FullyLoadedThreshold) return "Almost full";
         return "Fully loaded";
     }
 }

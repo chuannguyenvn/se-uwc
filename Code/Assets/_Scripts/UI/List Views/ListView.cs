@@ -28,16 +28,33 @@ public abstract class ListView : MonoBehaviour, IShowHideAnimatable
 
     public virtual void AddItem(ListItemView itemView)
     {
-        var totalHeight = itemViews.Sum(i => i.Height);
+        itemViews.Add(itemView);
+        UpdateItem(itemView);
+    }
+
+    public virtual void UpdateItem(ListItemView itemView)
+    {
         float yPos = 0;
-        if (itemViews.Count != 0) yPos = -(totalHeight + itemViews.Count * VERTICAL_SPACING);
+        var index = itemViews.FindIndex(view => view == itemView);
+        if (itemViews.Count != 0) yPos = -index * (VERTICAL_SPACING + itemView.Height);
         itemView.SetParent(scrollRect.content);
         itemView.SetPosition(new Vector2(0, yPos));
-        
-        itemViews.Add(itemView);
-        
         UpdateScrollRect();
     }
+
+    public virtual void RemoveItem(ListItemView itemView)
+    {
+        var index = itemViews.FindIndex(view => view == itemView);
+        if (index == -1) throw new Exception();
+        itemViews.RemoveAt(index);
+        Destroy(itemView.gameObject);
+
+        for (int i = index; i < itemViews.Count; i++)
+        {
+            UpdateItem(itemViews[i]);
+        }
+    }
+
 
     protected virtual void UpdateScrollRect()
     {

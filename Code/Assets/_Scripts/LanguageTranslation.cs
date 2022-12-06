@@ -18,6 +18,8 @@ public static class LanguageTranslation
         MCP_Not_Full,
         MCP_Almost_Full,
         MCP_Fully_Loaded,
+        MCP_Assign_Succeed,
+        MCP_Assign_Fail,
 
         Vehicle_Vehicle,
         Vehicle_Model,
@@ -61,6 +63,9 @@ public static class LanguageTranslation
                 {TextType.MCP_Not_Full, "not full"},
                 {TextType.MCP_Almost_Full, "almost full"},
                 {TextType.MCP_Fully_Loaded, "fully loaded"},
+                {TextType.MCP_Assign_Succeed, "MCPs assigned successfully"},
+                {TextType.MCP_Assign_Fail, "failed to assign MCPs"},
+
                 {TextType.Vehicle_Vehicle, "vehicle"},
                 {TextType.Vehicle_Model, "model"},
                 {TextType.Vehicle_Weight, "weight"},

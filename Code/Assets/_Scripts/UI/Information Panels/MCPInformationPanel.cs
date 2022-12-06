@@ -13,11 +13,14 @@ public class MCPInformationPanel : InformationPanel<MCPData>
 
     protected override void SetData(MCPData data)
     {
-        address.text = data.Address;
-        capacityBar.transform.localScale = new Vector3(data.Capacity, 1, 1);
-        status.text = VisualManager.Instance.GetMCPStatusText(data.Capacity);
-        capacityPercentage.text = Mathf.CeilToInt(data.Capacity * 100) + "%";
+        base.SetData(data);
 
-        var mcpColor = VisualManager.Instance.GetMCPColor(data.Capacity);
-        capacityBar.color = capacityTextBackground.color = mcpColor;    }
+        address.text = data.Address;
+        capacityBar.transform.localScale = new Vector3(data.StatusPercentage / 100f, 1, 1);
+        status.text = VisualManager.Instance.GetMCPStatusText(data.StatusPercentage / 100f);
+        capacityPercentage.text = Mathf.CeilToInt(data.StatusPercentage) + "%";
+
+        var mcpColor = VisualManager.Instance.GetMCPColor(data.StatusPercentage / 100f);
+        capacityBar.color = capacityTextBackground.color = mcpColor;
+    }
 }

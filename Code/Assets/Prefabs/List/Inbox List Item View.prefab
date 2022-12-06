@@ -102,6 +102,8 @@ GameObject:
   - component: {fileID: 5449518949396969477}
   - component: {fileID: 5419102462279142849}
   - component: {fileID: 4792924157461828066}
+  - component: {fileID: 5429451692748131141}
+  - component: {fileID: 8611225218338436649}
   m_Layer: 5
   m_Name: Inbox List Item View
   m_TagString: Untagged
@@ -150,7 +152,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 0
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -171,7 +173,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 8611225218338436649}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -187,12 +189,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e258da54f24ab0b86875ddb5e90c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rectTransform: {fileID: 5449518949396969477}
   image: {fileID: 3803840868739763733}
   primaryText_TMP: {fileID: 4408310699905987008}
   secondaryText_TMP: {fileID: 7774221405093166588}
   button: {fileID: 5419102462279142849}
   PrimaryText: 
   SecondaryText: 
+--- !u!222 &5429451692748131141
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449518949396969476}
+  m_CullTransparentMesh: 1
+--- !u!114 &8611225218338436649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5449518949396969476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ec8aa3ef324054a4b8000bffe84883b1, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6429265139106294817
 GameObject:
   m_ObjectHideFlags: 0

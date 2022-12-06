@@ -9,7 +9,9 @@ public abstract class InformationPanel<T> : Singleton<InformationPanel<T>>, ISho
 {
     [SerializeField] protected Button backButton;
     private float initialX;
-
+    
+    public T Data { get; protected set; }
+    
     protected override void Awake()
     {
         base.Awake();
@@ -21,10 +23,14 @@ public abstract class InformationPanel<T> : Singleton<InformationPanel<T>>, ISho
         initialX = transform.position.x;
         transform.position += Vector3.right * 30f;
         PrimarySidebar.Instance.ViewChanged += ViewChangedHandler;
+        backButton.onClick.AddListener(() => AnimateHide());
         Hide();
     }
 
-    protected abstract void SetData(T data);
+    protected virtual void SetData(T data)
+    {
+        Data = data;
+    }
 
     public async void Show(T data)
     {

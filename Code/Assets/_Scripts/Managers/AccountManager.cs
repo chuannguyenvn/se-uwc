@@ -7,15 +7,17 @@ public class AccountManager : PersistentSingleton<AccountManager>
 
     private LoginToken loginToken;
 
+    [SerializeField] private string token;
+
     public void SaveLoginCredentials(LoginToken loginToken)
     {
         this.loginToken = loginToken;
+        token = loginToken.AccessToken;
     }
 
     public string GetAccessToken()
     {
-        return
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImR1Yy5waEdsb2JhbCIsInJvbGUiOiJCYWNrT2ZmaWNlciIsImlhdCI6MTY3MDI1MjcyMCwiZXhwIjoxNjcwMjU0NTIwfQ.PupDfQGn1tXD7Hk9eZLHmemOzA_L7eALKTU8oHMrDcE";
+        if (token != String.Empty) return token;
         return loginToken.AccessToken;
     }
 }

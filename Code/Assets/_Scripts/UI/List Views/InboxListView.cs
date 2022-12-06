@@ -21,4 +21,19 @@ public class InboxListView : DataListView<Inbox>
     {
         InboxChosen?.Invoke(inbox);
     }
+
+    public void SelectInboxByStaffId(string staffId)
+    {
+        foreach (var itemView in itemViews)
+        {
+            if (itemView is InboxListItemView inboxView)
+            {
+                if (inboxView.Data.RecipientID == staffId)
+                {
+                    OnInboxChosen(inboxView.Data);
+                    return;
+                }
+            }
+        }
+    }
 }

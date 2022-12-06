@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mapbox.Utils;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class MapManager : PersistentSingleton<MapManager>
     [SerializeField] private MapWrapper mapWrapper;
 
     public CollectorInformationPopup CollectorInformationPopup;
+    public MCPInformationPopup MCPInformationPopup;
 
     protected override void Awake()
     {
@@ -60,5 +62,10 @@ public class MapManager : PersistentSingleton<MapManager>
     public Vector2 GeoToWorldPosition(Vector2d coordinate)
     {
         return mapWrapper.GeoToWorldPosition(coordinate);
+    }
+
+    public void GetRoute(List<Vector2d> route, Action<bool, List<Vector2d>> callback)
+    {
+        mapWrapper.GetRoute(route, callback);
     }
 }

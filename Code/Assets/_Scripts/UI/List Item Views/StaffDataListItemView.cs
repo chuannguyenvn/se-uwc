@@ -2,6 +2,8 @@
 {
     public override void SetData(StaffData data)
     {
+        base.SetData(data);
+
         PrimaryText = data.Name;
         SecondaryText = data.Role + " - " +
                         LanguageTranslation.GetText(LanguageTranslation.TextType.Staff_Currently_At,
