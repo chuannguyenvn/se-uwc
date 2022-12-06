@@ -28,10 +28,12 @@ public class MessageDataListItemView : DataListItemView<MessageData>
 
     protected override void UpdateView()
     {
+        primaryText_TMP.text = PrimaryText;
+        secondaryText_TMP.text = SecondaryText;
+        
         primaryText_TMP.ForceMeshUpdate();
         secondaryText_TMP.ForceMeshUpdate();
-
-
+        
         var width = Mathf.Clamp(primaryText_TMP.preferredWidth, 0f, 800f);
         var textSizeDelta = primaryText_TMP.rectTransform.sizeDelta;
 

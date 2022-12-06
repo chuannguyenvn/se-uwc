@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
-using Mapbox.Json;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -30,15 +31,17 @@ public class MessageDatabaseCommunicator : MonoBehaviour
         callback?.Invoke(true);
     }
 
-    public void GetMessage(string accountId, Action<bool, CollectorRouteTraversedData> callback)
+    public void GetMessage(string accountId, Action<bool, List<MessageData>> callback)
     {
         StartCoroutine(GetMessage_CO(accountId, callback));
     }
 
-    private IEnumerator GetMessage_CO(string accountId,
-        Action<bool, CollectorRouteTraversedData> callback)
+    private IEnumerator GetMessage_CO(string accountId, Action<bool, List<MessageData>> callback)
     {
-        var request = BackendCommunicator.CreateGetRequest(string.Format(GET_MESSAGE_PATH, accountId));
+        MessageRequestPayload payload = new() {User1 = "a16231a6af", User2 = accountId};
+        var payloadJson = JsonConvert.SerializeObject(payload);
+
+        var request = BackendCommunicator.CreatePostRequest(GET_MESSAGE_PATH, payloadJson);
         yield return request.SendWebRequest();
 
         Debug.Log(request.downloadHandler.text);
@@ -48,8 +51,15 @@ public class MessageDatabaseCommunicator : MonoBehaviour
             yield break;
         }
 
-        var routeTraversedData =
-            JsonConvert.DeserializeObject<CollectorRouteTraversedData>(request.downloadHandler.text);
-        callback?.Invoke(true, routeTraversedData);
+        var messageList = JsonConvert.DeserializeObject<List<MessageData>>(request.downloadHandler.text);
+        Debug.Log("Timestamp: " + messageList[0].Timestamp);
+        callback?.Invoke(true, messageList);
     }
+}
+
+public class MessageRequestPayload
+{
+    [JsonProperty("user1")] public string User1 { get; set; }
+
+    [JsonProperty("user2")] public string User2 { get; set; }
 }

@@ -24,15 +24,24 @@ public class MessageDataListView : DataListView<MessageData>
     private void InboxChosenHandler(Inbox inbox)
     {
         RemoveAllItemViews();
-        foreach (var messageData in inbox.Messages)
-        {
-            AddDataItem(messageData);
-        }
 
-        // profilePicture.sprite = [something];
-        accountName.text = inbox.RecipientName;
-        // status.text = [something];
-        scrollRect.content.anchoredPosition = new Vector2(0, scrollRect.content.sizeDelta.y - 600);
+        BackendCommunicator.Instance.MessageDatabaseCommunicator.GetMessage(inbox.RecipientID,
+            (isSucceeded, data) =>
+            {
+                if (isSucceeded)
+                {
+                    data.Sort((messageA, messageB) => messageA.Timestamp > messageB.Timestamp ? 1 : -1);
+                    foreach (var messageData in data)
+                    {
+                        AddDataItem(messageData);
+                        // profilePicture.sprite = [something];
+                        accountName.text = inbox.RecipientName;
+                        // status.text = [something];
+                        scrollRect.content.anchoredPosition =
+                            new Vector2(0, scrollRect.content.sizeDelta.y - 600);
+                    }
+                }
+            });
     }
 
     private void OnDestroy()
@@ -40,7 +49,7 @@ public class MessageDataListView : DataListView<MessageData>
         if (ListViewManager.Instance != null && ListViewManager.Instance.InboxListView != null)
             ListViewManager.Instance.InboxListView.InboxChosen -= InboxChosenHandler;
     }
-    
+
     public override Task AnimateHide()
     {
         return rectTransform.DOAnchorPosX(2000, VisualManager.Instance.ListAndPanelTime)

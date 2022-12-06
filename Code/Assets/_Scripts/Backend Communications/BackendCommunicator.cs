@@ -23,6 +23,7 @@ public class BackendCommunicator : PersistentSingleton<BackendCommunicator>
     public MCPDatabaseCommunicator MCPDatabaseCommunicator;
     public VehicleDatabaseCommunicator VehicleDatabaseCommunicator;
     public TaskDatabaseCommunicator TaskDatabaseCommunicator;
+    public MessageDatabaseCommunicator MessageDatabaseCommunicator;
     
     public MapAPICommunicator MapAPICommunicator;
     public MCPAPICommunicator MCPAPICommunicator;
