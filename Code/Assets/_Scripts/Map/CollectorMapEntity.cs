@@ -8,6 +8,9 @@ public class CollectorMapEntity : SingleCoordinateMapEntity<StaffData>
 {
     private CollectorCurrentPositionData currentPositionData;
 
+    private Vector3 lastTransformPos;
+    private Vector2d lastCoordinate;
+
     public void Init(StaffData data)
     {
         AssignData(data);
@@ -31,7 +34,14 @@ public class CollectorMapEntity : SingleCoordinateMapEntity<StaffData>
                 (isSucceed, coordinate) =>
                 {
                     if (isSucceed)
-                        UpdateCoordinate(new Vector2d(coordinate.Latitude, coordinate.Longitude));
+                    {
+                        var currentCoordinate = new Vector2d(coordinate.Latitude, coordinate.Longitude);
+                        UpdateCoordinate(currentCoordinate);
+
+                        transform.rotation = Quaternion.Euler(0, 0,(float)
+                            Vector2d.Angle(Vector2d.up, currentCoordinate - lastCoordinate));
+                        lastCoordinate = currentCoordinate;
+                    }
                 });
 
             yield return new WaitForSeconds(5f);
