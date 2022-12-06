@@ -14,9 +14,18 @@ public class LoginView : MonoBehaviour
 
     [SerializeField] private Button loginButton;
 
+    private static string PPUsernameKey = "saved_username";
+    private static string PPPasswordKey = "saved_password";
+
     private void Start()
     {
         loginButton.onClick.AddListener(TryLogin);
+
+        if (PlayerPrefs.HasKey(PPUsernameKey))
+        {
+            usernameField.text = PlayerPrefs.GetString(PPUsernameKey);
+            passwordField.text = PlayerPrefs.GetString(PPPasswordKey);
+        }
     }
 
     private void TryLogin()
@@ -33,6 +42,11 @@ public class LoginView : MonoBehaviour
             {
                 if (success)
                 {
+                    PlayerPrefs.SetString(PPUsernameKey, usernameField.text);
+
+                    // Bug: Remove this in final build.
+                    PlayerPrefs.SetString(PPPasswordKey, passwordField.text);
+
                     AccountManager.Instance.SaveLoginCredentials(token);
                     SceneManager.LoadSceneAsync("Main");
                 }
