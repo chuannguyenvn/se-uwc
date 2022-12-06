@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class MCPDataListItemView : DataListItemView<MCPData>
 {
     public override void SetData(MCPData data)
@@ -5,12 +7,13 @@ public class MCPDataListItemView : DataListItemView<MCPData>
         base.SetData(data);
 
         PrimaryText = data.Address;
-        SecondaryText = (data.Capacity * 100).ToString("F0") + "%";
+        SecondaryText = Mathf.CeilToInt(data.StatusPercentage) + "%";
 
-        ChangeIconColor(data.Capacity);
+        ChangeIconColor(data.StatusPercentage / 100f);
         UpdateView();
 
         button.onClick.AddListener(() => MCPInformationPanel.Instance.Show(data));
+        data.ValueChanged += ValueChangedHandler;
     }
 
     private void ChangeIconColor(float capacity)
@@ -28,10 +31,20 @@ public class MCPDataListItemView : DataListItemView<MCPData>
             image.color = VisualManager.Instance.MCPFullyLoadedColor;
         }
     }
-    
+
     protected override void UpdateView()
     {
         primaryText_TMP.text = PrimaryText;
         secondaryText_TMP.text = SecondaryText;
+    }
+
+    public void ValueChangedHandler()
+    {
+        var percentage = Data.StatusPercentage;
+
+        ChangeIconColor(percentage / 100f);
+        SecondaryText = percentage.ToString("F0") + "%";
+        
+        UpdateView();
     }
 }

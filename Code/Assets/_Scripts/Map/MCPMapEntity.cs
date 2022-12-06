@@ -88,22 +88,9 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
 
     public override void ValueChangedHandler()
     {
-        var capacity = data.Capacity;
-
-        if (capacity < SystemConstants.MCP.AlmostFullThreshold)
-        {
-            background.color = choiceDisc.Color =
-                chosenOrderText.color = VisualManager.Instance.MCPNotFullColor;
-        }
-        else if (capacity < SystemConstants.MCP.FullyLoadedThreshold)
-        {
-            background.color = choiceDisc.Color =
-                chosenOrderText.color = VisualManager.Instance.MCPAlmostFullColor;
-        }
-        else
-        {
-            background.color = choiceDisc.Color =
-                chosenOrderText.color = VisualManager.Instance.MCPFullyLoadedColor;
-        }
+        var percentage = data.StatusPercentage;
+        
+        background.color = choiceDisc.Color = chosenOrderText.color =
+            VisualManager.Instance.GetMCPColor(percentage / 100f);
     }
 }

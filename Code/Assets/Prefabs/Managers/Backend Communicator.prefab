@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1767596339}
   - component: {fileID: 1767596340}
   - component: {fileID: 1767596341}
+  - component: {fileID: 2313758567490055630}
   m_Layer: 0
   m_Name: Backend Communicator
   m_TagString: Untagged
@@ -52,6 +53,7 @@ MonoBehaviour:
   MCPDatabaseCommunicator: {fileID: 1767596339}
   VehicleDatabaseCommunicator: {fileID: 1767596338}
   MapAPICommunicator: {fileID: 1767596341}
+  MCPAPICommunicator: {fileID: 2313758567490055630}
 --- !u!114 &1767596338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,5 +100,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f7b9b8bcf3147ea870a566d37e3184f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2313758567490055630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154593472131301887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d9d2e710b54c1895e78b00e609dc13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

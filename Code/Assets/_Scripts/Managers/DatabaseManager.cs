@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,8 +32,7 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
             ApplicationManager.InitState.Data);
         ApplicationManager.Instance.AddInitWork(RetrieveAllJanitorData,
             ApplicationManager.InitState.Data);
-        ApplicationManager.Instance.AddInitWork(RetrieveAllMCPData, 
-            ApplicationManager.InitState.Data);
+        ApplicationManager.Instance.AddInitWork(RetrieveAllMCPData, ApplicationManager.InitState.Data);
         ApplicationManager.Instance.AddInitWork(RetrieveAllVehicleData,
             ApplicationManager.InitState.Data);
     }
@@ -58,6 +58,29 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
 
         //ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.Data);
     }
+
+    private IEnumerator PeriodicallyRetrieveMCPStatus_CO()
+    {
+        while (true)
+        {
+            foreach (var mcpData in AllMCPs)
+            {
+                BackendCommunicator.Instance.MCPAPICommunicator.GetMCPStatePercentage(mcpData.ID,
+                    (isSucceeded, percentage) =>
+                    {
+                        if (isSucceeded)
+                        {
+                            Debug.Log("per: " + percentage);
+                            mcpData.StatusPercentage = percentage;
+                        }
+                    });
+            }
+
+
+            yield return new WaitForSeconds(5);
+        }
+    }
+
 
     private void RetrieveAllCollectorData()
     {
@@ -101,15 +124,16 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
     {
         BackendCommunicator.Instance.MCPDatabaseCommunicator.GetAllMCP((success, list) =>
         {
-            if (success == false)
-            {
-                NotificationManager.Instance.EnqueueNotification(
-                    new NotificationData(NotificationType.Error, "Cannot retrieve MCP data."));
-            }
-            else
+            if (success)
             {
                 AllMCPs = list;
                 ApplicationManager.Instance.CompleteWork(ApplicationManager.InitState.Data);
+                StartCoroutine(PeriodicallyRetrieveMCPStatus_CO());
+            }
+            else
+            {
+                NotificationManager.Instance.EnqueueNotification(
+                    new NotificationData(NotificationType.Error, "Cannot retrieve MCP data."));
             }
         });
     }
