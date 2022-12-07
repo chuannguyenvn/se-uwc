@@ -53,10 +53,13 @@ async function process(collectorId, points, distance, velocity) {
         const currentPos = generateCurrentPosition(points[l-1], points[l-2], tmp);
         await firebase.collection('currentPos').doc(collectorId).set({
             collectorId: collectorId,
-            lastSeen: Date.now() % 10000000,
+            lastSeen: Date.now(),
             currentPos: currentPos
         });
-        return currentPos;
+        return {
+            currentPos,
+            route: points.reverse()
+        };
     }
 
     if(distance.length){
@@ -76,10 +79,13 @@ async function process(collectorId, points, distance, velocity) {
                 await firebase.collection('waypoints').doc(collectorId).delete();
                 await firebase.collection('currentPos').doc(collectorId).set({
                     collectorId: collectorId,
-                    lastSeen: Date.now() % 10000000,
+                    lastSeen: Date.now(),
                     currentPos: points[0]
                 });
-                return points[0];
+                return {
+                    currentPos: points[0],
+                    route: []
+                };
             }
             else {
                 return await subprocess(tmp, tmpPoint, traverse);
@@ -93,19 +99,28 @@ async function generateCurrentPositionOfCollector(collectorId) {
     const route = await firebase.collection('waypoints').doc(collectorId).get();
     const current = await firebase.collection('currentPos').doc(collectorId).get();
 
+    
     // collector is not on any route
     if(!route.exists) {
         // find current position document in Firestore
         const result = current.data().currentPos;
-
+        
         // update lastSeen time
-        await firebase.collection('currentPos').doc(collectorId).update({ lastSeen: Date.now() % 10000000 });
+        await firebase.collection('currentPos').doc(collectorId).set({
+            collectorId: collectorId,
+            currentPos: result,
+            lastSeen: Date.now()
+        });
+        console.log("here");
 
         // return current points
-        return result;
+        return {
+            currentPos: result,
+            route: []
+        }
     };
 
-    const time = ((Date.now() % 10000000) - current.data().lastSeen) / 1000;
+    const time = (Date.now() - current.data().lastSeen) / 1000;
     return await process(collectorId, route.data().points, route.data().distance, 5 * time);     // velocity = 90m/10s => 9m/s
 }
 
@@ -113,14 +128,22 @@ async function generateCurrentPositionOfCollector(collectorId) {
 // ========= Route function =========
 async function inputWaypoints(req, res) {
     try{
-        const distance = calculateDistance(req.body.collectorId, req.body.points);
         const points = req.body.points;
+        const collectorId = req.body.collectorId;
+        const distance = calculateDistance(collectorId, points);
         const data = {
-            collectorId: req.body.collectorId,
+            collectorId: collectorId,
             points: points.reverse(),
             distance: distance
         }
-        await firebase.collection('waypoints').doc(req.body.collectorId).set(data);
+
+        // insert simulation data into firebase
+        await firebase.collection('waypoints').doc(collectorId).set(data);
+        await firebase.collection('currentPos').doc(collectorId).set({
+            collectorId: collectorId,
+            currentPos: points[points.length - 1],
+            lastSeen: Date.now()
+        });
         res.status(200).send("Input successfully");
     } catch(err) {
         console.log(err);
@@ -142,13 +165,16 @@ async function getAllCurrentPosition(req, res) {
     try{
         const result = [];
         const collectors = await Employee.getEmployeeByRole("Collector");
+        const janitors = await Employee.getEmployeeByRole("Janitor");
         const collectorId = collectors.map(col => col.id);
-        console.log(collectorId);
+        const janitorId = janitors.map(jan => jan.id);
 
-        for(let i in collectorId) {
-            const point = await generateCurrentPositionOfCollector(collectorId[i]);
+        const idList = collectorId.concat(janitorId);
+
+        for(let i in idList) {
+            const point = await generateCurrentPositionOfCollector(idList[i]);
             result.push({
-                collectorId: collectorId[i],
+                collectorId: idList[i],
                 current: point
             })
         }
