@@ -29,7 +29,11 @@ public class Calendar : MonoBehaviour
         for (int i = 0; i < dateButtons.Count; i++)
         {
             var assignedDate = currentMonth.AddDays(i);
-            dateButtons[i].onClick.AddListener(() => { choosingDate = assignedDate; });
+            dateButtons[i].onClick.AddListener(() =>
+            {
+                choosingDate = assignedDate; 
+                ConfirmAction();
+            });
         }
         
         prevMonthButton.onClick.AddListener(() => SwitchMonth(-1));

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Mapbox.Utils;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 
 public class AssigningMCPListView : DataListView<MCPData>
@@ -30,9 +31,44 @@ public class AssigningMCPListView : DataListView<MCPData>
 
         prefab = ResourceManager.Instance.AssigningMcpListItemView;
 
+        calendar.gameObject.SetActive(false);
+
         AnimateHide();
 
-        calendar.gameObject.SetActive(false);
+
+        calendar.AssignAction((date) =>
+        {
+            BackendCommunicator.Instance.VehicleDatabaseCommunicator.GetAllVehicle((isSucceeded, list) =>
+            {
+                if (!isSucceeded) return;
+
+                var randomVehicle = list[Random.Range(0, list.Count - 1)];
+
+                foreach (var itemView in itemViews)
+                {
+                    if (itemView is DataListItemView<MCPData> dataListItemView)
+                    {
+                        AddTaskPayload taskData = new AddTaskPayload()
+                        {
+                            EmployeeID = StaffInformationPanel.Instance.Data.ID,
+                            MCPID = dataListItemView.Data.ID,
+                            VehicleID = randomVehicle.ID,
+                            Timestamp = date.AddHours(-7).ToString("yy/MM/dd hh:mm:ss"),
+                            CheckedIn = 0,
+                            CheckedOut = 0,
+                        };
+                        BackendCommunicator.Instance.TaskDatabaseCommunicator.AddTask(taskData,
+                            addSuccessfully =>
+                            {
+                                if (addSuccessfully) Debug.Log("added task");
+                            });
+                    }
+                    else throw new Exception();
+                }
+
+                AnimateHide();
+            });
+        });
 
         scheduleButton.onClick.RemoveAllListeners();
         scheduleButton.onClick.AddListener(() =>
@@ -41,6 +77,7 @@ public class AssigningMCPListView : DataListView<MCPData>
             assignNowButton.transform.position = Vector3.down * 1000;
             scheduleButton.transform.position = Vector3.down * 1000;
         });
+
 
         assignNowButton.onClick.RemoveAllListeners();
         assignNowButton.onClick.AddListener(() =>

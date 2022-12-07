@@ -12,18 +12,19 @@ public class TaskDatabaseCommunicator : MonoBehaviour
     private const string GET_TASK_INFO_PATH = "/api/task/info/{0}";
     private const string GET_EMPLOYEE_TASKS_PATH = "/api/task/info/employee/{0}";
 
-    public void AddTask(TaskData taskData, Action<bool> callback)
+    public void AddTask(AddTaskPayload taskData, Action<bool> callback)
     {
         StartCoroutine(AddTask_CO(taskData, callback));
     }
 
-    private IEnumerator AddTask_CO(TaskData taskData, Action<bool> callback)
+    private IEnumerator AddTask_CO(AddTaskPayload taskData, Action<bool> callback)
     {
         string taskDataDataJson = JsonConvert.SerializeObject(taskData);
 
         var request = BackendCommunicator.CreatePostRequest(ADD_TASK_PATH, taskDataDataJson);
         yield return request.SendWebRequest();
 
+        Debug.Log("Adding task: " + request.downloadHandler.text);
         if (request.result != UnityWebRequest.Result.Success)
         {
             callback?.Invoke(false);
@@ -101,3 +102,25 @@ public class TaskDatabaseCommunicator : MonoBehaviour
         }));
     }
 }
+
+public class AddTaskPayload
+{
+    [JsonProperty("employee_id")]
+    public string EmployeeID { get; set; }
+
+    [JsonProperty("mcp_id")]
+    public string MCPID { get; set; }
+
+    [JsonProperty("vehicle_id")]
+    public string VehicleID { get; set; }
+
+    [JsonProperty("timeToDo")]
+    public string Timestamp { get; set; }
+
+    [JsonProperty("checkin")]
+    public int CheckedIn { get; set; }
+
+    [JsonProperty("checkout")]
+    public int CheckedOut { get; set; }
+}
+
