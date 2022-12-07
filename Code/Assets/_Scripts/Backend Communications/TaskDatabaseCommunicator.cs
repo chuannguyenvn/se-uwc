@@ -12,6 +12,27 @@ public class TaskDatabaseCommunicator : MonoBehaviour
     private const string GET_TASK_INFO_PATH = "/api/task/info/{0}";
     private const string GET_EMPLOYEE_TASKS_PATH = "/api/task/info/employee/{0}";
 
+    public void AddTask(TaskData taskData, Action<bool> callback)
+    {
+        StartCoroutine(AddTask_CO(taskData, callback));
+    }
+
+    private IEnumerator AddTask_CO(TaskData taskData, Action<bool> callback)
+    {
+        string taskDataDataJson = JsonConvert.SerializeObject(taskData);
+
+        var request = BackendCommunicator.CreatePostRequest(ADD_TASK_PATH, taskDataDataJson);
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            callback?.Invoke(false);
+            yield break;
+        }
+
+        callback?.Invoke(true);
+    }
+    
     public void GetTaskInfo(string taskId, Action<bool, TaskData> callback)
     {
         StartCoroutine(GetTaskInfo_CO(taskId, callback));

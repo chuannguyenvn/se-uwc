@@ -37,6 +37,7 @@ public class CollectorMapEntity : SingleCoordinateMapEntity<StaffData>
                         transform.rotation = Quaternion.Euler(0, 0,
                             (float)Vector2d.Angle(Vector2d.up, currentCoordinate - lastCoordinate));
                         lastCoordinate = currentCoordinate;
+                        transform.SetSiblingIndex(transform.parent.childCount - 1);
                     }
                 });
 

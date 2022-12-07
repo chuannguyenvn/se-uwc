@@ -47,12 +47,10 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
 
     public static void MoveMCPUp(int index)
     {
-        
     }
-    
+
     public static void MoveMCPDown(int index)
     {
-        
     }
 
     #endregion
@@ -60,6 +58,7 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
     [SerializeField] private Image background;
     [SerializeField] private Disc choiceDisc;
     [SerializeField] private TMP_Text chosenOrderText;
+
 
     public void Init(MCPData data)
     {
@@ -89,8 +88,8 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
     {
         var percentage = data.StatusPercentage;
 
-        background.color = choiceDisc.Color = chosenOrderText.color =
-            VisualManager.Instance.GetMCPColor(percentage / 100f);
+        background.color = choiceDisc.Color =
+            chosenOrderText.color = VisualManager.Instance.GetMCPColor(percentage / 100f);
     }
 
     private void ChangeToInfoMode()
@@ -174,9 +173,12 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
 
     private void HideDisc()
     {
-        choiceDisc.transform.DOKill();
-        choiceDisc.gameObject.SetActive(false);
-        chosenOrderText.text = "";
+        if (choiceDisc != null)
+        {
+            choiceDisc.transform.DOKill();
+            choiceDisc.gameObject.SetActive(false);
+        }
+        if (chosenOrderText != null) chosenOrderText.text = "";
     }
 
     public void UpdateNumber(List<MCPData> listData)

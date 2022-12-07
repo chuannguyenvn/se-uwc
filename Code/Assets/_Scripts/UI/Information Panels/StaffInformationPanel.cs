@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,12 +20,20 @@ public class StaffInformationPanel : InformationPanel<StaffData>
     [SerializeField] private Calendar calendar;
 
     [SerializeField] private AssigningMCPListView assigningMcpListView;
-
+    [SerializeField] private RectTransform taskAndCalendarRectTransform;
+    private Vector2 initialTaskAndCalendarAnchorPos;
+    private RectTransform rectTransform;
+    
     private void Start()
     {
+        rectTransform = GetComponent<RectTransform>();
+        
         assignTaskButton.onClick.AddListener(EnterAssignMode);
         viewCalendarButton.onClick.AddListener(EnterCalendarViewingMode);
         sendMessageButton.onClick.AddListener(GoToInbox);
+
+        initialTaskAndCalendarAnchorPos = taskAndCalendarRectTransform.anchoredPosition;
+        taskAndCalendarRectTransform.anchoredPosition = new Vector2(0, 0);
     }
 
     protected override void SetData(StaffData data)
@@ -52,11 +61,14 @@ public class StaffInformationPanel : InformationPanel<StaffData>
             else
                 assigningMcpListView.RemoveDataItem(entity.Data);
         };
+
+        AnimateHide();
     }
 
     private void EnterCalendarViewingMode()
     {
-        calendar.gameObject.SetActive(true);
+        taskAndCalendarRectTransform.DOAnchorPos(initialTaskAndCalendarAnchorPos, 0.2f);
+        rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, 0);
     }
 
     private void GoToInbox()

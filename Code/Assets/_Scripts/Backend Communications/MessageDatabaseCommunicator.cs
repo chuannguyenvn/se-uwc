@@ -54,7 +54,6 @@ public class MessageDatabaseCommunicator : MonoBehaviour
         }
 
         var messageList = JsonConvert.DeserializeObject<List<MessageData>>(request.downloadHandler.text);
-        Debug.Log("Timestamp: " + messageList[0].Timestamp);
         callback?.Invoke(true, messageList);
     }
 }

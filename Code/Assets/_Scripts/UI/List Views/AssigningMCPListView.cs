@@ -16,14 +16,19 @@ public class AssigningMCPListView : DataListView<MCPData>
     private Vector3 initialAssignButtonAnchorPos;
     private Vector3 initialScheduleButtonAnchorPos;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        initialAssignButtonAnchorPos = assignNowButton.GetComponent<RectTransform>().anchoredPosition;
+        initialScheduleButtonAnchorPos = scheduleButton.GetComponent<RectTransform>().anchoredPosition;
+    }
+
     protected override void Init()
     {
         base.Init();
 
         prefab = ResourceManager.Instance.AssigningMcpListItemView;
-
-        initialAssignButtonAnchorPos = assignNowButton.GetComponent<RectTransform>().anchoredPosition;
-        initialScheduleButtonAnchorPos = scheduleButton.GetComponent<RectTransform>().anchoredPosition;
 
         AnimateHide();
 
