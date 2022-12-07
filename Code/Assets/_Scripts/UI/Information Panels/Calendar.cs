@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,13 +16,22 @@ public class Calendar : MonoBehaviour
 
     private DateTime currentMonth = new(DateTime.Today.Year, DateTime.Today.Month, 1);
 
-    private void Start()
+    private Action<DateTime> assignedAction;
+    private DateTime choosingDate;
+    
+    private void Awake()
     {
         for (int i = 0; i < 35; i++)
         {
             dateTexts.Add(dateButtons[i].GetComponentInChildren<TMP_Text>());
         }
-
+        
+        for (int i = 0; i < dateButtons.Count; i++)
+        {
+            var assignedDate = currentMonth.AddDays(i);
+            dateButtons[i].onClick.AddListener(() => { choosingDate = assignedDate; });
+        }
+        
         prevMonthButton.onClick.AddListener(() => SwitchMonth(-1));
         nextMonthButton.onClick.AddListener(() => SwitchMonth(1));
 
@@ -53,13 +63,11 @@ public class Calendar : MonoBehaviour
 
     public void AssignAction(Action<DateTime> action)
     {
-        for (int i = 0; i < dateButtons.Count; i++)
-        {
-            var assignedDate = currentMonth.AddDays(i);
-            dateButtons[i]
-                .onClick.AddListener((() =>
-                {
-                }));
-        }
+        assignedAction = action;
+    }
+
+    public void ConfirmAction()
+    {
+        assignedAction?.Invoke(choosingDate);
     }
 }
