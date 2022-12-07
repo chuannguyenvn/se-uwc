@@ -54,7 +54,7 @@ public class MessageDataListView : DataListView<MessageData>
                         AddDataItem(messageData);
                         // profilePicture.sprite = [something];
                         accountName.text = staffData.Name;
-                        // status.text = [something];
+                        status.text = staffData.Role;
                         scrollRect.content.anchoredPosition =
                             new Vector2(0, scrollRect.content.sizeDelta.y - 600);
 

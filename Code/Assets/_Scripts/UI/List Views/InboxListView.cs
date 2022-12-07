@@ -15,6 +15,9 @@ public class InboxListView : DataListView<StaffData>
         {
             AddDataItem(staff);
         }
+
+        if (itemViews[0] is DataListItemView<StaffData> dataListItemView)
+            OnInboxChosen(dataListItemView.Data);
     }
 
     public void OnInboxChosen(StaffData inbox)

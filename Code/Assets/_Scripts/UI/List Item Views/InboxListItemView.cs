@@ -7,6 +7,7 @@ public class InboxListItemView : DataListItemView<StaffData>
         base.SetData(data);
         
         PrimaryText = data.Name;
+        SecondaryText = data.Role;
 
         UpdateView();
 
@@ -16,5 +17,6 @@ public class InboxListItemView : DataListItemView<StaffData>
     protected override void UpdateView()
     {
         primaryText_TMP.text = PrimaryText;
+        secondaryText_TMP.text = SecondaryText;
     }
 }
