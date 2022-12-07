@@ -34,6 +34,14 @@ public class StaffInformationPanel : InformationPanel<StaffData>
 
         initialTaskAndCalendarAnchorPos = taskAndCalendarRectTransform.anchoredPosition;
         taskAndCalendarRectTransform.anchoredPosition = new Vector2(0, 0);
+        
+        MCPMapEntity.ToggleStateChanged += (entity, isSelected) =>
+        {
+            if (isSelected)
+                assigningMcpListView.AddDataItem(entity.Data);
+            else
+                assigningMcpListView.RemoveDataItem(entity.Data);
+        };
     }
 
     protected override void SetData(StaffData data)
@@ -53,14 +61,6 @@ public class StaffInformationPanel : InformationPanel<StaffData>
         MCPMapEntity.GroupingSelect = true;
 
         assigningMcpListView.AnimateShow();
-
-        MCPMapEntity.ToggleStateChanged += (entity, isSelected) =>
-        {
-            if (isSelected)
-                assigningMcpListView.AddDataItem(entity.Data);
-            else
-                assigningMcpListView.RemoveDataItem(entity.Data);
-        };
 
         AnimateHide();
     }

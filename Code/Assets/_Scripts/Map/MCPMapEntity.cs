@@ -30,6 +30,7 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
                 {
                     key.ChangeToSelectMode();
                 }
+                
             }
             else
             {
@@ -39,19 +40,13 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
                     key.HideDisc();
                 }
             }
+
+            ChosenEntities = new();
         }
     }
 
     public static Dictionary<MCPMapEntity, bool> ToggleStates = new();
     public static List<MCPMapEntity> ChosenEntities = new();
-
-    public static void MoveMCPUp(int index)
-    {
-    }
-
-    public static void MoveMCPDown(int index)
-    {
-    }
 
     #endregion
 

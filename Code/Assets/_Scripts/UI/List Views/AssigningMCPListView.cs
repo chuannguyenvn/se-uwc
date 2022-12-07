@@ -31,8 +31,6 @@ public class AssigningMCPListView : DataListView<MCPData>
 
         prefab = ResourceManager.Instance.AssigningMcpListItemView;
 
-        calendar.gameObject.SetActive(false);
-
         AnimateHide();
 
 
@@ -67,6 +65,8 @@ public class AssigningMCPListView : DataListView<MCPData>
                 }
 
                 AnimateHide();
+
+                MCPMapEntity.GroupingSelect = false;
             });
         });
 
@@ -151,6 +151,7 @@ public class AssigningMCPListView : DataListView<MCPData>
 
         assignNowButton.GetComponent<RectTransform>().anchoredPosition = initialAssignButtonAnchorPos;
         scheduleButton.GetComponent<RectTransform>().anchoredPosition = initialScheduleButtonAnchorPos;
+        calendar.gameObject.SetActive(false);
 
         StartCoroutine(DeferredCall_CO());
         return base.AnimateHide();
