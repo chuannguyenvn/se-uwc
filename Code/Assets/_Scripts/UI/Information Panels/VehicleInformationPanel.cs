@@ -16,9 +16,19 @@ public class VehicleInformationPanel : InformationPanel<VehicleData>
 
         vehicleCategory.text = data.Category;
         plate.text = data.ID;
-        model.text = "Model: " + data.Model;
-        weight.text = "Weight: " + Mathf.CeilToInt(data.Weight) + "kgs";
-        capacity.text = "Capacity: " + Mathf.CeilToInt(data.Capacity) + "kgs";
-        fuelConsumption.text = "Fuel consumption: " + Mathf.CeilToInt(data.FuelConsumption) + "l/100km";
+        model.text = LanguageTranslation.GetText(LanguageTranslation.TextType.Vehicle_Model,
+            LanguageTranslation.ReturnTextOption.Sentence_case) + ": " + data.Model;
+        weight.text = LanguageTranslation.GetText(LanguageTranslation.TextType.Vehicle_Weight,
+                          LanguageTranslation.ReturnTextOption.Sentence_case) + ": " +
+                      Mathf.CeilToInt(data.Weight) +
+                      "kgs";
+        capacity.text = LanguageTranslation.GetText(LanguageTranslation.TextType.Vehicle_Capacity,
+                            LanguageTranslation.ReturnTextOption.Sentence_case) + ": " +
+                        Mathf.CeilToInt(data.Capacity) +
+                        "kgs";
+        fuelConsumption.text =
+            LanguageTranslation.GetText(LanguageTranslation.TextType.Vehicle_Fuel_Consumption,
+                LanguageTranslation.ReturnTextOption.Sentence_case) + ": " +
+            Mathf.CeilToInt(data.FuelConsumption) + "l/100km";
     }
 }

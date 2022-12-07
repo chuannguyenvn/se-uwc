@@ -19,6 +19,8 @@ public class LoginView : MonoBehaviour
 
     private void Start()
     {
+        loginButton.GetComponentInChildren<TMP_Text>().text = LanguageTranslation.GetText(
+            LanguageTranslation.TextType.Login, LanguageTranslation.ReturnTextOption.Sentence_case);
         loginButton.onClick.AddListener(TryLogin);
 
         if (PlayerPrefs.HasKey(PPUsernameKey))

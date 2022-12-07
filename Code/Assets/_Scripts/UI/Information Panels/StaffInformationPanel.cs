@@ -23,18 +23,28 @@ public class StaffInformationPanel : InformationPanel<StaffData>
     [SerializeField] private RectTransform taskAndCalendarRectTransform;
     private Vector2 initialTaskAndCalendarAnchorPos;
     private RectTransform rectTransform;
-    
+
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
-        
+
         assignTaskButton.onClick.AddListener(EnterAssignMode);
         viewCalendarButton.onClick.AddListener(EnterCalendarViewingMode);
         sendMessageButton.onClick.AddListener(GoToInbox);
 
+        assignTaskButton.GetComponentInChildren<TMP_Text>().text = LanguageTranslation.GetText(
+            LanguageTranslation.TextType.Staff_Assign_Task,
+            LanguageTranslation.ReturnTextOption.Sentence_case);
+        viewCalendarButton.GetComponentInChildren<TMP_Text>().text = LanguageTranslation.GetText(
+            LanguageTranslation.TextType.Staff_View_Calendar,
+            LanguageTranslation.ReturnTextOption.Sentence_case);
+        sendMessageButton.GetComponentInChildren<TMP_Text>().text = LanguageTranslation.GetText(
+            LanguageTranslation.TextType.Staff_Send_Message,
+            LanguageTranslation.ReturnTextOption.Sentence_case);
+
         initialTaskAndCalendarAnchorPos = taskAndCalendarRectTransform.anchoredPosition;
         taskAndCalendarRectTransform.anchoredPosition = new Vector2(0, 0);
-        
+
         MCPMapEntity.ToggleStateChanged += (entity, isSelected) =>
         {
             if (isSelected)
@@ -55,7 +65,7 @@ public class StaffInformationPanel : InformationPanel<StaffData>
         phoneNumber.text = data.PhoneNumber;
         taskDataListView.ShowTodayTasksOf(data);
     }
-    
+
     private void EnterAssignMode()
     {
         MCPMapEntity.GroupingSelect = true;

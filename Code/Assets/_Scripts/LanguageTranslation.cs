@@ -6,13 +6,17 @@ public static class LanguageTranslation
 {
     public enum TextType
     {
+        Login,
         Login_Unfilled_Fields,
         Login_Failed,
-        
+
         Staff_Role_Collector,
         Staff_Role_Janitor,
         Staff_Currently_At,
         Staff_Is_Driving,
+        Staff_Assign_Task,
+        Staff_View_Calendar,
+        Staff_Send_Message,
 
         Major_Collecting_Point,
         MCP_Not_Full,
@@ -53,19 +57,22 @@ public static class LanguageTranslation
             LanguageOption.English,
             new Dictionary<TextType, string>
             {
+                {TextType.Login, "login"},
                 {TextType.Login_Unfilled_Fields, "some fields are not filled"},
                 {TextType.Login_Failed, "login failed"},
                 {TextType.Staff_Role_Collector, "collector"},
                 {TextType.Staff_Role_Janitor, "janitor"},
                 {TextType.Staff_Currently_At, "currently at"},
                 {TextType.Staff_Is_Driving, "is driving"},
+                {TextType.Staff_Assign_Task, "assign task"},
+                {TextType.Staff_View_Calendar, "view calendar"},
+                {TextType.Staff_Send_Message, "send message"},
                 {TextType.Major_Collecting_Point, "major collecting point"},
                 {TextType.MCP_Not_Full, "not full"},
                 {TextType.MCP_Almost_Full, "almost full"},
                 {TextType.MCP_Fully_Loaded, "fully loaded"},
                 {TextType.MCP_Assign_Succeed, "MCPs assigned successfully"},
                 {TextType.MCP_Assign_Fail, "failed to assign MCPs"},
-
                 {TextType.Vehicle_Vehicle, "vehicle"},
                 {TextType.Vehicle_Model, "model"},
                 {TextType.Vehicle_Weight, "weight"},
@@ -95,6 +102,10 @@ public static class LanguageTranslation
             LanguageOption.Vietnamese,
             new Dictionary<TextType, string>
             {
+                {TextType.Login, "đăng nhập"},
+                {TextType.Staff_Assign_Task, "giao việc"},
+                {TextType.Staff_View_Calendar, "xem lịch"},
+                {TextType.Staff_Send_Message, "gửi tin"},
                 {TextType.Staff_Role_Collector, "người thu gom"},
                 {TextType.Staff_Role_Janitor, "lao công"},
                 {TextType.Major_Collecting_Point, "điểm tập trung rác"},

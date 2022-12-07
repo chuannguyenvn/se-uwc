@@ -36,9 +36,14 @@ public class VisualManager : PersistentSingleton<VisualManager>
 
     public string GetMCPStatusText(float percentage)
     {
-        if (percentage < SystemConstants.MCP.AlmostFullThreshold) return "Not full";
-        if (percentage < SystemConstants.MCP.FullyLoadedThreshold) return "Almost full";
-        return "Fully loaded";
+        if (percentage < SystemConstants.MCP.AlmostFullThreshold)
+            return LanguageTranslation.GetText(LanguageTranslation.TextType.MCP_Not_Full,
+                LanguageTranslation.ReturnTextOption.Sentence_case);
+        if (percentage < SystemConstants.MCP.FullyLoadedThreshold)
+            return LanguageTranslation.GetText(LanguageTranslation.TextType.MCP_Almost_Full,
+                LanguageTranslation.ReturnTextOption.Sentence_case);
+        return LanguageTranslation.GetText(LanguageTranslation.TextType.Setting_MCPs_Fully_Loaded,
+            LanguageTranslation.ReturnTextOption.Sentence_case);
     }
 }
 

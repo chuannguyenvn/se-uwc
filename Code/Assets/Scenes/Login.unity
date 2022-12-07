@@ -547,6 +547,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2491945854748974179, guid: e23893e5ee19ba04096c9e0446a6272e, type: 3}
+      propertyPath: LanguageOption
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491945854748974179, guid: e23893e5ee19ba04096c9e0446a6272e, type: 3}
+      propertyPath: ReducedMotionOption
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5122756226176774308, guid: e23893e5ee19ba04096c9e0446a6272e, type: 3}
       propertyPath: m_RootOrder
       value: 5
