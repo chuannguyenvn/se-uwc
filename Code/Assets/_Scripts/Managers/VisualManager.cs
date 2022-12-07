@@ -11,9 +11,11 @@ public class VisualManager : PersistentSingleton<VisualManager>
     [Header("Theme")]
     public Color PrimaryColor;
     public Color SecondaryColor;
+    public Color SubtleGreyColor;
     public Color PrimaryTextColor;
     public Color SecondaryTextColor;
     public Color StaffEntityColor;
+    public Color WhiteTextColor;
 
     [Header("MCPs")] 
     public Color MCPNotFullColor;
@@ -38,4 +40,19 @@ public class VisualManager : PersistentSingleton<VisualManager>
         if (percentage < SystemConstants.MCP.FullyLoadedThreshold) return "Almost full";
         return "Fully loaded";
     }
+}
+
+public enum ColorThemeInheritorType
+{
+    PrimaryColor,
+    SecondaryColor,
+    SubtleGreyColor,
+    StaffEntityColor,
+}
+
+public enum TextThemeInheritorType
+{
+    PrimaryTextColor,
+    SecondaryTextColor,
+    WhiteTextColor,
 }

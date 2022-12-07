@@ -10,7 +10,7 @@ public class SettingListItemView : ListItemView, ITMPDeferrable
     private const float HORIZONTAL_OPTIONS_SPACING = 10f;
     private const float EXTRA_HORIZONTAL_TEXT_MARGIN = 10f;
     private const float EXTRA_HORIZONTAL_OPTIONS_MARGIN = 25f;
-    
+
     private Dictionary<Enum, Button> buttons = new();
 
     private Func<Enum> getProperty;
@@ -24,14 +24,15 @@ public class SettingListItemView : ListItemView, ITMPDeferrable
         optionText.text = optionName;
         optionText.GetComponent<RectTransform>().anchoredPosition =
             new Vector2(EXTRA_HORIZONTAL_TEXT_MARGIN, 0f);
-        
+
         this.getProperty = getProperty;
         this.setProperty = setProperty;
         enumType = e;
 
         foreach (var option in Enum.GetValues(e))
         {
-            var button = Instantiate(ResourceManager.Instance.SettingOptionButton, transform).GetComponent<Button>();
+            var button = Instantiate(ResourceManager.Instance.SettingOptionButton, transform)
+                .GetComponent<Button>();
 
             var buttonTMP_Text = button.GetComponentInChildren<TMP_Text>();
             buttonTMP_Text.text = option.ToString();
@@ -59,10 +60,11 @@ public class SettingListItemView : ListItemView, ITMPDeferrable
     {
         foreach (var button in buttons)
         {
-            button.Value.GetComponentInChildren<TMP_Text>().color = Color.gray;
+            button.Value.GetComponentInChildren<TMP_Text>().color =
+                VisualManager.Instance.SecondaryTextColor;
         }
 
-        buttons[option].GetComponentInChildren<TMP_Text>().color = Color.green;
+        buttons[option].GetComponentInChildren<TMP_Text>().color = VisualManager.Instance.PrimaryColor;
         SetProperty(option);
     }
 
