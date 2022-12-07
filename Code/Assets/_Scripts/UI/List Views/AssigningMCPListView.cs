@@ -9,7 +9,12 @@ using UnityEngine.UI;
 
 public class AssigningMCPListView : DataListView<MCPData>
 {
-    [SerializeField] private Button confirmButton;
+    [SerializeField] private Button assignNowButton;
+    [SerializeField] private Button scheduleButton;
+    [SerializeField] private Calendar calendar;
+
+    private Vector3 initialAssignButtonAnchorPos;
+    private Vector3 initialScheduleButtonAnchorPos;
 
     protected override void Init()
     {
@@ -17,11 +22,23 @@ public class AssigningMCPListView : DataListView<MCPData>
 
         prefab = ResourceManager.Instance.AssigningMcpListItemView;
 
+        initialAssignButtonAnchorPos = assignNowButton.GetComponent<RectTransform>().anchoredPosition;
+        initialScheduleButtonAnchorPos = scheduleButton.GetComponent<RectTransform>().anchoredPosition;
+
         AnimateHide();
 
-        confirmButton.onClick.RemoveAllListeners();
+        calendar.gameObject.SetActive(false);
 
-        confirmButton.onClick.AddListener(() =>
+        scheduleButton.onClick.RemoveAllListeners();
+        scheduleButton.onClick.AddListener(() =>
+        {
+            calendar.gameObject.SetActive(true);
+            assignNowButton.transform.position = Vector3.down * 1000;
+            scheduleButton.transform.position = Vector3.down * 1000;
+        });
+
+        assignNowButton.onClick.RemoveAllListeners();
+        assignNowButton.onClick.AddListener(() =>
         {
             BackendCommunicator.Instance.MapAPICommunicator.GetCollectorPosition(
                 StaffInformationPanel.Instance.Data.ID, (isSucceeded, routeTraversedData) =>
@@ -89,6 +106,10 @@ public class AssigningMCPListView : DataListView<MCPData>
     public override Task AnimateHide()
     {
         RemoveAllItem();
+
+        assignNowButton.GetComponent<RectTransform>().anchoredPosition = initialAssignButtonAnchorPos;
+        scheduleButton.GetComponent<RectTransform>().anchoredPosition = initialScheduleButtonAnchorPos;
+
         StartCoroutine(DeferredCall_CO());
         return base.AnimateHide();
     }

@@ -44,7 +44,16 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
 
     public static Dictionary<MCPMapEntity, bool> ToggleStates = new();
     public static List<MCPMapEntity> ChosenEntities = new();
+
+    public static void MoveMCPUp(int index)
+    {
+        
+    }
     
+    public static void MoveMCPDown(int index)
+    {
+        
+    }
 
     #endregion
 
@@ -71,7 +80,7 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
                 chosenOrderText.text = (index + 1).ToString();
             }
         };
-        
+
         ChangeToInfoMode();
         HideDisc();
     }
@@ -92,12 +101,14 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
             PrimarySidebar.Instance.OnViewChanged(ViewType.MCPsOverview);
             MCPInformationPanel.Instance.Show(data);
             ToggleStates[this] = false;
+            MapManager.Instance.HideRoutePolyline();
         });
     }
 
     private void ChangeToSelectMode()
     {
         button.onClick.RemoveAllListeners();
+
         button.onClick.AddListener(() =>
         {
             if (GroupingSelect)
@@ -121,6 +132,34 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
             {
                 choiceDisc.gameObject.SetActive(ToggleStates[this]);
             }
+
+            List<Vector2d> vector2ds = new();
+            foreach (var entity in ChosenEntities)
+            {
+                vector2ds.Add(entity.coordinate);
+            }
+
+            BackendCommunicator.Instance.MapAPICommunicator.GetCollectorPosition(
+                StaffInformationPanel.Instance.Data.ID, (isSucceeded, routeTraversedData) =>
+                {
+                    if (!isSucceeded) return;
+
+                    vector2ds.Add(new Vector2d(routeTraversedData.CurrentPos.Latitude,
+                        routeTraversedData.CurrentPos.Longitude));
+                    MapManager.Instance.GetRoute(vector2ds, (isSucceeded, list) =>
+                    {
+                        if (!isSucceeded) return;
+
+                        List<Coordinate> coordinates = new();
+
+                        foreach (var vector2d in list)
+                        {
+                            coordinates.Add(new Coordinate(vector2d.x, vector2d.y));
+                        }
+
+                        MapManager.Instance.ShowRoutePolyline(coordinates);
+                    });
+                });
         });
     }
 
@@ -138,5 +177,18 @@ public class MCPMapEntity : SingleCoordinateMapEntity<MCPData>
         choiceDisc.transform.DOKill();
         choiceDisc.gameObject.SetActive(false);
         chosenOrderText.text = "";
+    }
+
+    public void UpdateNumber(List<MCPData> listData)
+    {
+        var index = listData.FindIndex(data => data == Data);
+        if (index == -1)
+        {
+            chosenOrderText.text = "";
+        }
+        else
+        {
+            chosenOrderText.text = (index + 1).ToString();
+        }
     }
 }

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public abstract class ListView : MonoBehaviour, IShowHideAnimatable
 {
-     protected ScrollRect scrollRect;
+    protected ScrollRect scrollRect;
     protected List<ListItemView> itemViews = new();
 
     protected static float VERTICAL_SPACING = 10f;
@@ -43,6 +43,14 @@ public abstract class ListView : MonoBehaviour, IShowHideAnimatable
         UpdateScrollRect();
     }
 
+    public void UpdateAllItem()
+    {
+        foreach (var itemView in itemViews)
+        {
+            UpdateItem(itemView);
+        }
+    }
+
     public virtual void RemoveItem(ListItemView itemView)
     {
         var index = itemViews.FindIndex(view => view == itemView);
@@ -66,8 +74,7 @@ public abstract class ListView : MonoBehaviour, IShowHideAnimatable
         itemViews = new();
         UpdateScrollRect();
     }
-
-
+    
     protected virtual void UpdateScrollRect()
     {
         var totalHeight = itemViews.Sum(i => i.Height);

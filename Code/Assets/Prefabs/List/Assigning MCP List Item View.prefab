@@ -662,6 +662,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3814801423144521660 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 794534301733734287, guid: aec04517cc38ba14b8f473c32dd835bb, type: 3}
+  m_PrefabInstance: {fileID: 4608912028497397811}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3814801423223417578 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 794534301797327577, guid: aec04517cc38ba14b8f473c32dd835bb, type: 3}
@@ -685,7 +696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 3814801423223417578}
-  image: {fileID: 3814801423589452033}
+  image: {fileID: 3814801423144521660}
   primaryText_TMP: {fileID: 896979848477175078}
   secondaryText_TMP: {fileID: 6538193665612423450}
   button: {fileID: 3775412627017424686}
@@ -693,17 +704,6 @@ MonoBehaviour:
   SecondaryText: 
   moveUpButton: {fileID: 2168165872125347221}
   moveDownButton: {fileID: 3080787471108625973}
---- !u!114 &3814801423589452033 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 794534302227947826, guid: aec04517cc38ba14b8f473c32dd835bb, type: 3}
-  m_PrefabInstance: {fileID: 4608912028497397811}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6538193665612423450 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7298770860617591081, guid: aec04517cc38ba14b8f473c32dd835bb, type: 3}

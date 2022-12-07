@@ -8,7 +8,7 @@ public class TextThemeInheritor : MonoBehaviour
 {
     [SerializeField] private TextThemeInheritorType textThemeInheritorType;
 
-    private void Awake()
+    private void Start()
     {
         switch (textThemeInheritorType)
         {

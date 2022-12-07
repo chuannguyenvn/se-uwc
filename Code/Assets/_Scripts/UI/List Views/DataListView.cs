@@ -23,4 +23,35 @@ public abstract class DataListView<T> : ListView where T : Data
             return;
         }
     }
+
+    public int FindItemIndex(T data)
+    {
+        return itemViews.FindIndex(view =>
+        {
+            if (view is DataListItemView<T> dataListItemView)
+            {
+                return dataListItemView.Data == data;
+            }
+
+            return false;
+        });
+    }
+
+    public void MoveItemUp(T data)
+    {
+        var index = FindItemIndex(data);
+        if (index < 1) return;
+
+        (itemViews[index], itemViews[index - 1]) = (itemViews[index - 1], itemViews[index]);
+        UpdateAllItem();
+    }
+
+    public void MoveItemDown(T data)
+    {
+        var index = FindItemIndex(data);
+        if (index < 0 || index >= itemViews.Count - 1) return;
+
+        (itemViews[index], itemViews[index + 1]) = (itemViews[index + 1], itemViews[index]);
+        UpdateAllItem();
+    }
 }

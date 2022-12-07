@@ -4,4 +4,5 @@
     public MCPDataListView MCPDataListView;
     public VehicleDataListView VehicleDataListView;
     public InboxListView InboxListView;
+    public AssigningMCPListView AssigningMCPListView;
 }

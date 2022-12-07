@@ -7,7 +7,7 @@ public class ImageThemeInheritor : MonoBehaviour
 {
     [SerializeField] private ColorThemeInheritorType colorThemeInheritorType;
 
-    private void Awake()
+    private void Start()
     {
         switch (colorThemeInheritorType)
         {

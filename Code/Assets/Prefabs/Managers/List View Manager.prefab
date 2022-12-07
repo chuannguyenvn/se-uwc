@@ -48,3 +48,4 @@ MonoBehaviour:
   MCPDataListView: {fileID: 0}
   VehicleDataListView: {fileID: 0}
   InboxListView: {fileID: 0}
+  AssigningMCPListView: {fileID: 0}
