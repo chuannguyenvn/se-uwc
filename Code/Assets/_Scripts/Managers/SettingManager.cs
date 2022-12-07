@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class SettingManager : PersistentSingleton<SettingManager>
 {
-
     // @formatter:off
     
     [Header("Interface Settings")]
@@ -13,7 +12,18 @@ public class SettingManager : PersistentSingleton<SettingManager>
     public ToggleOption DarkThemeOption;
     public ToggleOption ColorblindOption;
     public ToggleOption ReducedMotionOption;
-    public LanguageOption LanguageOption;
+    
+    private LanguageOption languageOption;
+    public LanguageOption LanguageOption
+    {
+        get => languageOption;
+        set
+            {
+                languageOption = value;
+                if (value == LanguageOption.English) PlayerPrefs.SetString("Language", "English");
+                else PlayerPrefs.SetString("Language", "Vietnamese");
+            }
+    }
 
     [Header("Notification Settings")]
     public ToggleOption MessageNotificationOption;
@@ -30,6 +40,18 @@ public class SettingManager : PersistentSingleton<SettingManager>
     public ToggleOption AutomaticallySendCrashLogsOption;
 
     // @formatter:on
+
+    private void Start()
+    {
+        if (PlayerPrefs.GetString("Language", "English") == "English")
+        {
+            LanguageOption = LanguageOption.English;
+        }
+        else
+        {
+            LanguageOption = LanguageOption.Vietnamese;
+        }
+    }
 
     public void ExportMessages()
     {
