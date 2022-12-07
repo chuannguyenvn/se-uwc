@@ -39,7 +39,8 @@ public class MessageDatabaseCommunicator : MonoBehaviour
 
     private IEnumerator GetMessage_CO(string accountId, Action<bool, List<MessageData>> callback)
     {
-        MessageRequestPayload payload = new() {User1 = accountId, User2 = accountId};
+        MessageRequestPayload payload =
+            new() {User1 = AccountManager.Instance.AccountID, User2 = accountId};
         var payloadJson = JsonConvert.SerializeObject(payload);
 
         var request = BackendCommunicator.CreatePostRequest(GET_MESSAGE_PATH, payloadJson);
