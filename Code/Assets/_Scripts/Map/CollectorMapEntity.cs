@@ -41,7 +41,7 @@ public class CollectorMapEntity : SingleCoordinateMapEntity<StaffData>
                     }
                 });
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(10f);
         }
     }
 }

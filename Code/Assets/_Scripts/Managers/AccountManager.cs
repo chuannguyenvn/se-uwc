@@ -8,7 +8,7 @@ public class AccountManager : PersistentSingleton<AccountManager>
     private LoginToken loginToken;
 
     [SerializeField] private string token;
-
+    
     public void SaveLoginCredentials(LoginToken loginToken)
     {
         this.loginToken = loginToken;

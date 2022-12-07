@@ -24,7 +24,7 @@ public class BackendCommunicator : PersistentSingleton<BackendCommunicator>
     public VehicleDatabaseCommunicator VehicleDatabaseCommunicator;
     public TaskDatabaseCommunicator TaskDatabaseCommunicator;
     public MessageDatabaseCommunicator MessageDatabaseCommunicator;
-    
+
     public MapAPICommunicator MapAPICommunicator;
     public MCPAPICommunicator MCPAPICommunicator;
 
@@ -42,6 +42,7 @@ public class BackendCommunicator : PersistentSingleton<BackendCommunicator>
         var request = CreatePostRequest(LOGIN_PATH, json, false);
         yield return request.SendWebRequest();
 
+        Debug.Log(request.downloadHandler.text);
         if (request.result != UnityWebRequest.Result.Success)
         {
             callback?.Invoke(false, null);

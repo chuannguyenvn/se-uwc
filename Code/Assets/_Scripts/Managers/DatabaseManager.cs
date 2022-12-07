@@ -53,7 +53,7 @@ public class DatabaseManager : PersistentSingleton<DatabaseManager>
                     });
             }
             
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(15);
         }
     }
 
